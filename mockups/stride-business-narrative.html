@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STRIDE · 业务背景（给队友与评委）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="stride-doc-shared.css" />
+</head>
+<body>
+  <div class="page-bg" aria-hidden="true"></div>
+  <div class="grid-dots" aria-hidden="true"></div>
+
+  <header class="doc-header">
+    <a href="index.html" class="brand">
+      <span class="brand-icon" aria-hidden="true">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M8 2L14 8L8 14L2 8L8 2Z" fill="white"/></svg>
+      </span>
+      STRIDE
+    </a>
+    <nav class="doc-nav">
+      <a href="index.html">导读</a>
+      <a href="stride-business-narrative.html" class="active">业务背景</a>
+      <a href="stride-prd.html">PRD</a>
+      <a href="stride-home-digital.html">UI 原型</a>
+    </nav>
+  </header>
+
+  <header class="doc-hero">
+    <div class="badge-row">
+      <span class="badge accent">作品集 · 黑客松导读</span>
+      <span class="badge">假设案例：MiniMax</span>
+      <span class="badge warn">非官方 HR/财务数据</span>
+    </div>
+    <h1>我们为什么做 <span class="gradient-text">STRIDE</span>？</h1>
+    <p class="lead">
+      本文从 <strong>HRBP 视角</strong> 说明前因后果：在 AI 原生、多产品线、已上市的大模型公司里，
+      人力问题首先是 <strong>TCOW、编制、组织信号</strong> 的专业问题，其次才是
+      <strong>战略能力 × 产品线 × 岗位族</strong> 的对齐问题。
+      我们以 <strong>MiniMax 公开信息</strong> 为推演假设，构建可演示的作品集产品。
+    </p>
+  </header>
+
+  <div class="doc-layout">
+    <aside class="toc">
+      <h2>目录</h2>
+      <ol>
+        <li><a href="#context">项目语境</a></li>
+        <li><a href="#hrbp">写给 HRBP</a></li>
+        <li><a href="#env">公司环境</a></li>
+        <li><a href="#pain">六大痛点</a></li>
+        <li><a href="#position">战略人效定位</a></li>
+        <li><a href="#before-after">做之前 vs 之后</a></li>
+        <li><a href="#workflow">季度工作流</a></li>
+        <li><a href="#digital">数字化能力</a></li>
+        <li><a href="#10x">10x 边界</a></li>
+        <li><a href="#boundary">承诺边界</a></li>
+      </ol>
+    </aside>
+
+    <main class="doc-main">
+      <section class="doc-section" id="context">
+        <p class="section-label">前因</p>
+        <h2>项目语境：假设案例 MiniMax</h2>
+        <div class="card highlight">
+          <h4>⚠️ 请先读这句</h4>
+          <p style="margin:0;color:var(--text-secondary);font-size:0.9rem;">
+            <strong>STRIDE</strong> 是作品集 / 黑客松交付的 <strong>桌面研究推演产品</strong>，不是 MiniMax 内部 HRIS。
+            全部业务叙事、指标与编制数字均来自 <strong>公开信息 + 合理假设</strong>，用于说明「若一家上市大模型公司要做战略人效核算，产品应长什么样」。
+          </p>
+        </div>
+        <p>
+          <strong>MiniMax</strong>（港股上市 AI 公司）具备典型特征：多模态能力、多条 C 端产品与开放平台并行、
+          研发极度密集、海外收入占比提升、每季面临增长 vs 成本 vs 组织投入的张力。
+          2026 年前后公开叙事中的 <strong>10x Team</strong> 等产业机制，又带来「跨线协作 / 只取不交」的新型组织扯皮。
+        </p>
+        <div class="pill-row">
+          <span class="pill hot">已上市</span>
+          <span class="pill">6 产品线 P1–P6</span>
+          <span class="pill">C1–C7 战略能力</span>
+          <span class="pill">9 岗位族 + RF09 10x</span>
+          <span class="pill">70% 工程经 P6 二次分摊</span>
+        </div>
+      </section>
+
+      <section class="doc-section" id="hrbp">
+        <p class="section-label">后果 · 谁先用</p>
+        <h2>写给 HRBP：你每个季度都熟悉的场面</h2>
+        <div class="card">
+          <p style="margin:0;font-size:1rem;color:var(--text);line-height:1.7;">
+            业务说「人不够、要加 HC」，财务说「人力成本率又上去了」，CPO 问「算法到底投在海螺还是星野」——
+            而你手里的表往往是 <strong>各产品线各做各的 Excel</strong>，口径对不上，也不敢直接拿去高管会。
+          </p>
+        </div>
+        <p>
+          <strong>STRIDE 要解决的，首先是 HR 专业问题</strong>：本季人力总成本（TCOW）、Rev/FTE、Labor Cost%、编制达成与组织信号；
+          其次才是把这些数字 <strong>挂到战略坐标系</strong>，回答「加的人是不是加对了地方」。
+        </p>
+        <p>
+          产品默认界面是 <strong>HR 工作台四 Tab</strong>（总览 / 成本 / 组织 / 薪酬×绩效），不是董事会营销页。
+          给 CEO/CFO 的经营摘要与 HR 看板 <strong>同源数据</strong>，避免「两套故事」。
+        </p>
+      </section>
+
+      <section class="doc-section" id="env">
+        <p class="section-label">环境</p>
+        <h2>HRBP 在什么业务里干活</h2>
+        <div class="card-grid cols-2">
+          <article class="card">
+            <h4>业务特征</h4>
+            <ul style="margin:0;padding-left:1rem;font-size:0.88rem;">
+              <li>多条 C 端 + 开放平台 / API</li>
+              <li>基础模型与中台承接大量工时</li>
+              <li>披露口径：收入、员工成本、海外占比</li>
+              <li>10x 带来跨线协作新争议</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h4>四类季度压力</h4>
+            <ul style="margin:0;padding-left:1rem;font-size:0.88rem;">
+              <li><strong>成本</strong>：说不清 TCOW 哪块在涨</li>
+              <li><strong>编制</strong>：只有「要多少人」无战略证据</li>
+              <li><strong>组织</strong>：空缺/离职信号进不了主屏</li>
+              <li><strong>对齐</strong>：年报 vs JD vs 业务诉求不一致</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="doc-section" id="pain">
+        <p class="section-label">痛点</p>
+        <h2>六大痛点 → STRIDE 如何回应</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>痛点</th><th>现状</th><th>STRIDE 回应</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>TCOW 说不清</strong></td>
+                <td>财务与业务各执一词</td>
+                <td>成本 Tab：固定/浮动/法定/福利；双通道 disclosed / proxy</td>
+              </tr>
+              <tr>
+                <td><strong>Rev/FTE 各说各话</strong></td>
+                <td>DAU、HC、收入口径混乱</td>
+                <td>总览对标图 + 战略层能力 ROI（分路由）</td>
+              </tr>
+              <tr>
+                <td><strong>编制不同步</strong></td>
+                <td>计划 vs 达成 vs 战略主投脱节</td>
+                <td>组织 Tab + 向导 2 分摊矩阵</td>
+              </tr>
+              <tr>
+                <td><strong>薪酬×绩效难讲</strong></td>
+                <td>高绩效薪酬偏差难进经营叙事</td>
+                <td>Tab4 仅聚合，n&lt;5 脱敏 + 免责</td>
+              </tr>
+              <tr>
+                <td><strong>Excel 分摊政治</strong></td>
+                <td>P6 二次分摊引发争议</td>
+                <td>矩阵 + audit 日志 + CPO 模板</td>
+              </tr>
+              <tr>
+                <td><strong>问数慢、预测靠拍</strong></td>
+                <td>临时拉数 2 天、情景无模型</td>
+                <td>Insight Copilot + ForecastEngine 沙盘</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="doc-section" id="position">
+        <p class="section-label">定位</p>
+        <h2>「战略人效」在 HR 工作中的位置</h2>
+        <div class="stat-row">
+          <div class="stat-box"><div class="n">L1</div><div class="l">People Analytics<br/>TCOW / Rev/FTE</div></div>
+          <div class="stat-box"><div class="n">L2</div><div class="l">战略编制<br/>能力 ROI / 分摊</div></div>
+          <div class="stat-box"><div class="n">L3</div><div class="l">横切 10x<br/>支撑 / 采纳</div></div>
+          <div class="stat-box"><div class="n">L4</div><div class="l">经营摘要<br/>CEO/CFO 导出</div></div>
+        </div>
+        <div class="card highlight">
+          <h4>HRBP 可用定义</h4>
+          <p style="margin:0;font-size:0.92rem;">
+            在某一战略季，在 <strong>可审计的 TCOW 与编制事实</strong> 之上，把人力投入映射到
+            <strong>战略能力（C1–C7）× 产品线（P1–P6）× 岗位族（RF01–RF09）</strong>；
+            用披露与代理产出检验主投是否带来可观测结果，并支撑下一季编制、协作与情景预测。
+          </p>
+        </div>
+        <p>关键词：<strong>可审计</strong>、<strong>可重复</strong>——不是个人排名，而是组织投资决策的中立底稿。</p>
+      </section>
+
+      <section class="doc-section" id="before-after">
+        <p class="section-label">价值</p>
+        <h2>做 STRIDE 之前 vs 之后（预期）</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>场景</th><th>做之前</th><th>做之后</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>季中催 HC</td><td>口头估人数</td><td>组织 Tab + 情景预测（+N FTE 对 TCOW 影响）</td></tr>
+              <tr><td>财务问成本率</td><td>事后拼表</td><td>总览 KPI + Copilot，带 disclosed/proxy 标注</td></tr>
+              <tr><td>编制会</td><td>分摊扯皮</td><td>分摊矩阵 + audit + 主投权重</td></tr>
+              <tr><td>季度复盘</td><td>PPT 拼凑</td><td>HRBP 详版报告 → Executive 同源摘要</td></tr>
+              <tr><td>10x 协作</td><td>微信扯皮</td><td>协作义务表、Handoff/采纳登记</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>HRBP 可感知的 7 项能力</h3>
+        <ol>
+          <li>一眼看懂本季人力盘子（TCOW 四 KPI + 走势）</li>
+          <li>拆得清成本结构（固定/浮动/法定/福利）</li>
+          <li>管得住组织信号（编制达成、空缺、离职、Span）</li>
+          <li>讲得清薪酬策略一致性（聚合视角）</li>
+          <li>问得快（Chat-to-BI 标准问法）</li>
+          <li>算得明下季（编制/调薪/主投权重情景）</li>
+          <li>上得去战略会（三维矩阵 + 证据层，不必另做 CEO 专用表）</li>
+        </ol>
+      </section>
+
+      <section class="doc-section" id="workflow">
+        <p class="section-label">节奏</p>
+        <h2>HRBP 季度工作流（建议）</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <strong>季初 · 对齐</strong>
+            <p>向导 1：主投能力权重、各 PL stage、披露/代理字段；与 CPO 锁定模板 + audit</p>
+          </div>
+          <div class="timeline-item">
+            <strong>季中 · 监控</strong>
+            <p>工作台 Tab1–4 周更/月更 proxy；Copilot 答临时问题；组织 Tab 跟踪编制与空缺</p>
+          </div>
+          <div class="timeline-item">
+            <strong>季末 · 复盘</strong>
+            <p>向导 2–3 → CalcEngine + W1–W5 → 情景预测 A/B → 导出 HRBP 详版 → Executive 摘要</p>
+          </div>
+          <div class="timeline-item">
+            <strong>专项 · 按需</strong>
+            <p>10x 联合评审、Handoff/采纳；薪酬×绩效一致性回顾（聚合）</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="doc-section" id="digital">
+        <p class="section-label">数字化</p>
+        <h2>为什么评委应看到 Chat-to-BI 与预测</h2>
+        <div class="card-grid cols-3">
+          <article class="card">
+            <h4>Insight Copilot</h4>
+            <p style="font-size:0.85rem;margin:0;">「帮我拉一下数」从 2 天 → 2 分钟；白名单指标 + citation，高 assumption 拒绝瞎答。</p>
+          </article>
+          <article class="card">
+            <h4>ForecastEngine</h4>
+            <p style="font-size:0.85rem;margin:0;">编制会前预演加人/改主投；乐观/基准/保守三档 + 假设清单 + 水印。</p>
+          </article>
+          <article class="card">
+            <h4>调薪沙盘</h4>
+            <p style="font-size:0.85rem;margin:0;">滑块联动 CalcEngine，与财务对齐增量 TCOW / Labor Cost% Δ。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="doc-section" id="10x">
+        <p class="section-label">10x</p>
+        <h2>10x Team：HRBP 需要知道的边界</h2>
+        <p>10x 是横切项目 <strong>X10</strong>，不是第 7 条产品线。</p>
+        <ul>
+          <li><strong>分摊</strong>：建议 50% P6 + 50% 绑定 PL，与工程「70% 经 P6」分列展示</li>
+          <li><strong>协作</strong>：各岗位族有支撑 + 采纳义务；未采纳可触发 W8 等预警（复盘用，非自动裁人）</li>
+          <li><strong>UI</strong>：不占 HR 默认四 Tab；在「战略核算 / 10x」模块维护</li>
+        </ul>
+      </section>
+
+      <section class="doc-section" id="boundary">
+        <p class="section-label">边界</p>
+        <h2>可以向业务承诺 / 不应承诺</h2>
+        <div class="card-grid cols-2">
+          <article class="card" style="border-color:rgba(0,217,36,0.3);">
+            <h4>✓ 可以承诺</h4>
+            <ul style="margin:0;font-size:0.88rem;">
+              <li>口径一致、来源可追溯的季度人力洞察</li>
+              <li>战略季编制与分摊讨论的中立底稿</li>
+              <li>情景试算（带假设与水印）</li>
+            </ul>
+          </article>
+          <article class="card warn">
+            <h4>✗ 不应承诺</h4>
+            <ul style="margin:0;font-size:0.88rem;">
+              <li>自动裁员、个人绩效排名、薪酬调整指令</li>
+              <li>替代 HRIS 入转调离与薪酬发放</li>
+              <li>未经标注的内部精确编制或伪造披露</li>
+              <li>Copilot 编造未在快照中的指标</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <section class="doc-cta">
+    <div class="cta-box">
+      <h2>下一步：读 PRD 看我们打算做什么</h2>
+      <p>功能范围、四 Tab IA、Copilot、MVP 清单与成功标准</p>
+      <div class="cta-links">
+        <a class="cta-btn" href="stride-prd.html">打开 PRD 导读 →</a>
+        <a class="cta-btn ghost" href="stride-home-digital.html">查看 UI 原型</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="disclaimer-footer">
+    基于 MiniMax 等公开信息的推演 · 非任何公司官方 HR/财务数据 · 文档源：docs/00-background/business-narrative.md v2.0
+  </footer>
+
+  <script>
+    window.addEventListener("scroll", () => {
+      document.querySelectorAll(".toc a").forEach((a) => {
+        const id = a.getAttribute("href")?.slice(1);
+        if (!id) return;
+        const el = document.getElementById(id);
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= 120 && rect.bottom > 120) {
+          document.querySelectorAll(".toc a").forEach((x) => x.style.fontWeight = "");
+          a.style.fontWeight = "600";
+          a.style.color = "var(--accent)";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

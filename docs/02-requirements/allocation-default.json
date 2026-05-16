@@ -1,0 +1,100 @@
+{
+  "$schema": "allocation-default-v2",
+  "description": "Demo 默认岗位×产品线分摊矩阵（行和=100%）。工程/算法默认 70% 经 P6 二次分摊入口；RF09 10x 采用 50% P6 + 50% 绑定 PL（与 70% 规则分列）。见 docs/00-background/10x-team-program.md",
+  "version": "2025Q4",
+  "role_families": [
+    { "id": "RF01", "name": "算法与研究", "cost_coefficient": 1.35 },
+    { "id": "RF02", "name": "工程与基础设施", "cost_coefficient": 1.15 },
+    { "id": "RF03", "name": "产品", "cost_coefficient": 1.0 },
+    { "id": "RF04", "name": "体验与UI设计", "cost_coefficient": 0.95 },
+    { "id": "RF05", "name": "内容与IP运营", "cost_coefficient": 0.9 },
+    { "id": "RF06", "name": "增长与市场", "cost_coefficient": 0.95 },
+    { "id": "RF07", "name": "商务与客户", "cost_coefficient": 1.05 },
+    { "id": "RF08", "name": "职能支撑", "cost_coefficient": 0.85 },
+    { "id": "RF09", "name": "10x产业研究", "cost_coefficient": 1.4, "program": "X10" }
+  ],
+  "strategic_capabilities": [
+    { "id": "C1", "name": "基础模型与推理" },
+    { "id": "C2", "name": "多模态生成" },
+    { "id": "C3", "name": "AI原生产品" },
+    { "id": "C4", "name": "平台与商业化" },
+    { "id": "C5", "name": "全球化与增长" },
+    { "id": "C6", "name": "组织与合规底座" },
+    { "id": "C7", "name": "垂直产业10×", "optional_primary": true, "program": "X10" }
+  ],
+  "product_lines": [
+    { "id": "P1", "name": "星野/Talkie", "stage": "grow", "primary_capabilities": ["C3", "C5", "C2"] },
+    { "id": "P2", "name": "海螺 AI", "stage": "grow", "primary_capabilities": ["C2", "C3", "C1"] },
+    { "id": "P3", "name": "Audio/语音", "stage": "explore", "primary_capabilities": ["C2", "C1"], "x10_adoption_min_override": 0 },
+    { "id": "P4", "name": "视频/Hailuo", "stage": "grow", "primary_capabilities": ["C2", "C3", "C1"] },
+    { "id": "P5", "name": "开放平台/API", "stage": "grow", "primary_capabilities": ["C4", "C1", "C6", "C7"] },
+    { "id": "P6", "name": "基础模型与中台", "stage": "grow", "primary_capabilities": ["C1", "C2", "C6"], "exclude_revenue_efficiency": true }
+  ],
+  "x10_program": {
+    "id": "X10",
+    "name": "10x Team Program",
+    "is_product_line": false,
+    "allocation_rule": "50_percent_p6_plus_50_percent_bound_pl",
+    "default_fte_share_of_company": 0.04
+  },
+  "p6_hub_default_percent": 70,
+  "rf09_x10_split_percent": {
+    "P6": 50,
+    "bound_pl": 50,
+    "note": "bound_pl 由 domain_pod 决定，默认 P5"
+  },
+  "allocation_matrix_percent": {
+    "RF01": { "P1": 8, "P2": 12, "P3": 10, "P4": 10, "P5": 5, "P6": 55 },
+    "RF02": { "P1": 10, "P2": 15, "P3": 5, "P4": 15, "P5": 10, "P6": 45 },
+    "RF03": { "P1": 25, "P2": 20, "P3": 5, "P4": 15, "P5": 15, "P6": 20 },
+    "RF04": { "P1": 20, "P2": 25, "P3": 5, "P4": 20, "P5": 10, "P6": 20 },
+    "RF05": { "P1": 85, "P2": 5, "P3": 0, "P4": 5, "P5": 0, "P6": 5 },
+    "RF06": { "P1": 40, "P2": 15, "P3": 5, "P4": 10, "P5": 20, "P6": 10 },
+    "RF07": { "P1": 5, "P2": 5, "P3": 0, "P4": 0, "P5": 80, "P6": 10 },
+    "RF08": { "P1": 15, "P2": 15, "P3": 5, "P4": 10, "P5": 15, "P6": 40 },
+    "RF09": { "P1": 0, "P2": 10, "P3": 0, "P4": 0, "P5": 40, "P6": 50 }
+  },
+  "capability_weights_by_pl": {
+    "P1": { "C3": 0.5, "C5": 0.3, "C2": 0.2 },
+    "P2": { "C2": 0.5, "C3": 0.4, "C1": 0.1 },
+    "P3": { "C2": 0.7, "C1": 0.3 },
+    "P4": { "C2": 0.55, "C3": 0.35, "C1": 0.1 },
+    "P5": { "C4": 0.5, "C1": 0.25, "C6": 0.1, "C7": 0.15 },
+    "P6": { "C1": 0.55, "C2": 0.35, "C6": 0.1 }
+  },
+  "company_capability_weights_default": {
+    "C1": 0.2,
+    "C2": 0.25,
+    "C3": 0.2,
+    "C4": 0.15,
+    "C5": 0.1,
+    "C6": 0.05,
+    "C7": 0.05
+  },
+  "domain_pods": [
+    { "id": "POD-FIN", "domain": "金融", "bound_pl": "P5", "rf09_fte_default": 0.4 },
+    { "id": "POD-IND", "domain": "工业软件", "bound_pl": "P2", "rf09_fte_default": 0.35 },
+    { "id": "POD-CHIP", "domain": "芯片", "bound_pl": "P6", "rf09_fte_default": 0.25 }
+  ],
+  "collaboration_matrix": {
+    "RF01": { "min_adoptions_per_quarter": 1, "support_priority_pl": ["P6", "P5"] },
+    "RF02": { "min_adoptions_per_quarter": 2, "support_priority_pl": ["P6", "P2", "P5"] },
+    "RF03": { "min_adoptions_per_quarter": 1, "support_priority_pl": ["P5", "P2"] },
+    "RF04": { "min_adoptions_per_quarter": 1, "support_priority_pl": ["P2", "P5"] },
+    "RF05": { "min_adoptions_per_quarter": 1, "support_priority_pl": ["P1", "P5"] },
+    "RF06": { "min_adoptions_per_quarter": 1, "support_priority_pl": ["P5", "P1"] },
+    "RF07": { "min_adoptions_per_quarter": 1, "support_priority_pl": ["P5"] },
+    "RF08": { "min_adoptions_per_quarter": 0, "exempt_collaboration_score": true },
+    "RF09": { "min_adoptions_per_quarter": null, "assessed_by": "10x_framework_D1_D4" },
+    "PL_OWNER": { "min_adoptions_per_quarter": 1, "note": "per bound product line" }
+  },
+  "collaboration_score_formula": {
+    "support_weight": 0.5,
+    "adopt_weight": 0.5,
+    "efficiency_multiplier": "0.85 + 0.15 * collaboration_score",
+    "exempt_role_families": ["RF08"]
+  },
+  "locks": {
+    "RF05_P1": { "role": "RF05", "product_line": "P1", "min_percent": 85, "note": "R-P1-02 内容岗默认归 P1" }
+  }
+}

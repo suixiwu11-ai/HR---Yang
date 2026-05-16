@@ -1,0 +1,28 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js
+.next/
+out/
+build/
+
+# env
+.env
+.env*.local
+
+# debug / OS
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# sqlite / local data
+data/
+*.db
+
+# IDE (optional local only)
+.vercel
+
+# do not commit lock noise from nested installs if regenerated
+# package-lock.json is committed under web/

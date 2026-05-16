@@ -1,0 +1,25 @@
+code,name,formula,numerator,denominator,owner_role,capability_id,product_line_id,source_type,collection_hint,cadence,normalization,notes
+HR-TCOW,total_cost_of_workforce,sum(role_input),,,HRBP,,,derived,CalcEngine FTE×系数×分摊,quarterly,,HR 工作台主 KPI
+HR-REV-FTE,revenue_per_fte,revenue/hc,,,HRBP,,,derived,披露或proxy营收/HC,quarterly,,总览 Tab
+HR-LABOR-PCT,labor_cost_percent,tcow/revenue,,,HRBP,,,derived,双通道营收,quarterly,,成本 Tab
+HR-HC-ACHIEVE,headcount_plan_achievement,actual/plan,,,HRBP,,,observation,编制计划proxy,quarterly,,组织 Tab
+HR-SPAN,avg_span_of_control,hc/managers,,,HRBP,,,assumption,组织proxy,quarterly,,组织信号
+HR-TURNOVER,voluntary_turnover_rate,leavers/avg_hc,,,HRBP,,,assumption,离职proxy,quarterly,,组织信号
+HR-PAY-PERF-GAP,high_perf_pay_share_gap,high_perf_pay_share-high_perf_pop_share,,,HRBP,,,derived,薪酬绩效聚合,quarterly,,n<5不展示
+X10-D1,domain_benchmark_count,count,,,RF09,C7,X10,observation,Handoff/评测仓库,quarterly,,D1 领域问题与评测
+X10-D2,workflow_efficiency_gain,declared_reduction,,,RF09,C7,X10,observation,工作流 Demo 方法说明,quarterly,,D2 工作流与10×证据
+X10-D3a,handoff_completed_count,count,,,RF09,C7,X10,observation,Handoff Package 验收,quarterly,,D3a 交接完成
+X10-D3b,adoption_registered_count,count,,,RF09,C7,X10,observation,source:10x-handoff-{id},quarterly,,D3b 被采纳度
+X10-D4,experiment_yield_per_token,output_per_unit,,,RF09,C7,X10,assumption,实验台账,quarterly,,D4 战略资源效率
+X10-LEVERAGE,10x_leverage_ratio,adoptions / x10_input,,,CEO,C7,X10,derived,CalcEngine,quarterly,,仅 Executive 视图
+RF01-10X-SUPPORT,algo_10x_support_completion,completed/committed,,,RF01,,X10,observation,季度承诺项,quarterly,,协作-支撑
+RF01-10X-ADOPT,algo_10x_adoption_count,count,,,RF01,,X10,observation,release 引用 benchmark,quarterly,min=1,协作-采纳
+RF02-10X-SUPPORT,eng_10x_support_completion,completed/committed,,,RF02,,X10,observation,联调/API,quarterly,,协作-支撑
+RF02-10X-ADOPT,eng_10x_adoption_count,count,,,RF02,,X10,observation,PR/changelog,quarterly,min=2,协作-采纳
+RF03-10X-ADOPT,pm_10x_adoption_count,count,,,RF03,,X10,observation,路线图 source:10x-*,quarterly,min=1,协作-采纳
+RF04-10X-ADOPT,design_10x_adoption_count,count,,,RF04,,X10,observation,工作流 UI 复用,quarterly,min=1,协作-采纳
+RF05-10X-ADOPT,content_10x_adoption_count,count,,,RF05,,X10,observation,模板/剧本,quarterly,min=1,协作-采纳
+RF06-10X-ADOPT,growth_10x_adoption_count,count,,,RF06,,X10,observation,GTM Demo,quarterly,min=1,协作-采纳
+RF07-10X-ADOPT,sales_10x_adoption_count,count,,,RF07,,X10,observation,案例库/标书,quarterly,min=1,协作-采纳
+COLLAB-SCORE,collaboration_score,0.5*support+0.5*adopt,,,HRBP,,,derived,CalcEngine,quarterly,,修正人效乘数
+EFF-INDEX-ADJ,role_efficiency_index_adjusted,index*(0.85+0.15*collab),,,HRBP,,,derived,CalcEngine,quarterly,,RF08 豁免
