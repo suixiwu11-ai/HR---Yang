@@ -21,6 +21,11 @@ Thumbs.db
 data/
 *.db
 
+# local agent tooling (not part of hackathon deliverable)
+.agents/
+.cursor/
+skills-lock.json
+
 # IDE (optional local only)
 .vercel
 

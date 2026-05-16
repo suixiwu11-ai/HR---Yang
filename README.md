@@ -1,72 +1,85 @@
-# HR Hackathon 2026-05 · STRIDE
+# 🤖 HR×AI 公益黑客松 — AI人效产品
 
-> **某大模型公司战略人效核算台**（公开信息推演 Demo）  
-> 仓库：[github.com/suixiwu11-ai/HR-hackathon-2026-05](https://github.com/suixiwu11-ai/HR-hackathon-2026-05)
+> 用 AI 重新定义组织人效：不以岗位为标的，通过任务包/任务域识别高价值任务。
 
 ---
 
-## 这是什么
+## 我们是谁
 
-面向 **HRBP** 的季度人力洞察工作台：**TCOW / Rev/FTE / Labor Cost% / 编制达成** 同屏，叠加战略能力×产品线×岗位族核算，并带 **Chat-to-BI** 与 **情景预测**（作品集 / 黑客松）。
+5 人团队参加 **HR AI 公益黑客松**，探索人力资源与人工智能的交叉创新。
 
-| 模块 | 路径 |
+| 姓名 | 角色 | 一句话 |
+|------|------|--------|
+| 吴隋栖（Yang） | 产品设计负责人 | HIS行业，SAP产品实施背景，开始学习开发 |
+| Frank Li（Frank） | 项目管理负责人 | 甲方in-house HR，探索AI原生组织转型 |
+| 杨嘉（嘉尔） | 产品设计协助 / 业务组 | 广告行业人效管理经验，准备进入储能制造行业 |
+| 李宗达（Michael） | 业务组 | 本科在读，有咨询、VC、字节芯片招聘等实习经历 |
+| 宋诗瑶 | 项目管理协助 / 业务组 | 游戏行业HR背景，研究AI工具在HR中的应用 |
+
+## 项目简介
+
+- **主题**: AI人效产品——不以岗位为标的，通过任务包/任务域重新定义组织，聚焦高价值任务识别
+- **阶段**: 方向确定，业务场景细化中；**STRIDE 原型文档与代码已入库**（见下）
+- **开发周期**: 2026-05-16 正式开启 → 2026-05-23 原型展示
+
+## 产品交付 · STRIDE（结构化文档 + 原型）
+
+**某大模型公司战略人效核算台**（公开信息推演 Demo）— HRBP 人力洞察工作台 + Chat-to-BI + 情景预测。
+
+| 入口 | 路径 |
 |------|------|
-| **文档（从这里读）** | [`docs/HACKATHON.md`](docs/HACKATHON.md) ← 黑客松 5 分钟路径 |
-| **完整文档索引** | [`docs/README.md`](docs/README.md) |
-| **Next.js 应用** | [`web/`](web/) |
-| **HTML 原型** | [`mockups/`](mockups/) |
+| **黑客松 5 分钟读文档** | [`项目/2026-05-黑客松项目/STRIDE/docs/HACKATHON.md`](项目/2026-05-黑客松项目/STRIDE/docs/HACKATHON.md) |
+| **STRIDE 仓库说明** | [`项目/2026-05-黑客松项目/STRIDE/README.md`](项目/2026-05-黑客松项目/STRIDE/README.md) |
 | **UX 北极星** | [Netlify HRBP 原型](https://warm-squirrel-e57666.netlify.app/) |
 
----
-
-## 快速开始
-
-### 读文档（评委 / 队友）
-
-1. [`docs/HACKATHON.md`](docs/HACKATHON.md)  
-2. [`docs/00-background/business-narrative.md`](docs/00-background/business-narrative.md)  
-3. [`docs/02-requirements/PRD-v1.2.md`](docs/02-requirements/PRD-v1.2.md)
-
-### 跑前端（开发者）
-
 ```bash
-cd web
-npm install
-npm run dev
+cd "项目/2026-05-黑客松项目/STRIDE/web"
+npm install && npm run dev
 ```
 
-浏览器打开 http://localhost:3000
+## 快速链接
 
-### 看原型（无环境）
+| 链接 | 说明 |
+|------|------|
+| [活动规则](https://hk77iwx9jc.feishu.cn/docx/FmGpd2tvEoVe51x5m2CcyoM6nsh) | 主办方飞书文档 |
+| [报名表](https://my.feishu.cn/share/base/form/shrcnaa900m2QFAPazD8VBloVjf) | 每人都要填写，5/16 截止 |
+| [黑客松项目总览](项目/2026-05-黑客松项目/README.md) | 场景、分工、时间线 |
 
-本地打开 [`mockups/index.html`](mockups/index.html) 或 [`mockups/stride-home-digital.html`](mockups/stride-home-digital.html)
+## 时间线
 
----
+```
+5/9     开放报名，搭建协作工作区
+5/12    首次团队会议：确定方向、分工、时间线
+5/15    19:00 线上启动会
+5/16    报名截止 → 开发正式开始
+5/16-5/22  产品设计 + 技术框架确定 + Coding
+5/23    线上线下coding环节 + 产品原型展示（最终截止）
+```
 
-## 仓库结构
+## 协作方式
+
+本团队采用 **AI 原生协作模式**：所有知识沉淀在 Markdown 文件中，Git 历史即团队记忆。
+
+- 📋 任务看板 → `上下文/待办.md`
+- 📝 决策记录 → `上下文/决策.md`
+- 🧠 AI 记忆 → `上下文/会话日志.md`
+- 👥 团队信息 → `团队/成员与分工.md`
+
+> 如果你是团队成员，请阅读 [`AGENTS.md`](AGENTS.md) 了解完整协作指南。
+
+## 仓库结构（摘要）
 
 ```text
-├── README.md                 # 本文件（仓库入口）
-├── docs/
-│   ├── HACKATHON.md          # 黑客松必读 / 文档分层
-│   ├── MANIFEST.md           # 全量文档清单与 tier
-│   ├── SESSION-HANDOFF.md    # Agent 接续提示词
-│   ├── 00-background/        # 业务与战略上下文
-│   ├── 01-discovery/         # 专访与访谈综合
-│   ├── 02-requirements/      # PRD、指标、分摊 JSON/CSV
-│   ├── 03-architecture/      # 架构、UI 规范、埋点
-│   ├── 04-demo/              # Demo 种子计划
-│   └── 99-archive/           # 可选阅读（德勤建议等）
-├── mockups/                  # 静态 HTML 原型
-└── web/                      # Next.js 14 应用
+├── README.md                          # 本文件（团队入口）
+├── 上下文/ 团队/ 共享知识/              # 团队协作
+├── 项目/2026-05-黑客松项目/
+│   ├── README.md                      # 赛题与场景
+│   └── STRIDE/                        # 产品：文档 + mockups + web
+│       ├── docs/                      # PRD、HACKATHON.md、架构…
+│       ├── mockups/
+│       └── web/
 ```
 
 ---
 
-## 免责声明
-
-全部指标基于 **公开信息推演**，非任何公司官方 HR/财务数据。高假设占比须带水印；Executive 视图不展示岗位末位排名。
-
----
-
-**团队仓库** · HR Hackathon 2026-05
+*本仓库为团队协作使用。STRIDE 指标均为公开信息推演，非任何公司官方 HR/财务数据。*

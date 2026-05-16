@@ -1,6 +1,6 @@
 # STRIDE Web · Next.js
 
-HR Hackathon 2026-05 前端应用。需求见仓库根目录：
+HR Hackathon 2026-05 · STRIDE 前端。路径：`项目/2026-05-黑客松项目/STRIDE/web`
 
 - [docs/HACKATHON.md](../docs/HACKATHON.md)
 - [docs/02-requirements/PRD-v1.2.md](../docs/02-requirements/PRD-v1.2.md)
