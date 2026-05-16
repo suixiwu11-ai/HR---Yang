@@ -78,7 +78,7 @@ docs/
 ## 与远程仓库协作
 
 ```bash
-git clone https://github.com/suixiwu11-ai/HR-hackathon-2026-05.git
+git clone https://github.com/Frankli9986/HR-hackathon-2026-05.git
 cd HR-hackathon-2026-05/项目/2026-05-黑客松项目/STRIDE
 # 先读 docs/HACKATHON.md，再 cd web && npm i && npm run dev
 ```
