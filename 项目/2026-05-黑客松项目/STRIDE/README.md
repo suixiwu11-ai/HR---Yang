@@ -25,7 +25,7 @@
 
 1. [`docs/HACKATHON.md`](docs/HACKATHON.md)  
 2. [`docs/00-background/business-narrative.md`](docs/00-background/business-narrative.md)  
-3. [`docs/02-requirements/PRD-v1.2.md`](docs/02-requirements/PRD-v1.2.md)
+3. [`docs/02-requirements/PRD-v1.3.md`](docs/02-requirements/PRD-v1.3.md)
 
 ### 跑前端
 

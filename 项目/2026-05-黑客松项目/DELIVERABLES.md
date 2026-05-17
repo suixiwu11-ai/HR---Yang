@@ -235,9 +235,9 @@
 
 | 角色 | 优先阅读 / 使用 |
 |------|-----------------|
-| **评委 / 访客** | [business-narrative.md](./STRIDE/docs/00-background/business-narrative.md) → [mockups/index.html](./STRIDE/mockups/index.html) → [PRD-v1.2.md](./STRIDE/docs/02-requirements/PRD-v1.2.md) |
+| **评委 / 访客** | [business-narrative.md](./STRIDE/docs/00-background/business-narrative.md) → [mockups/index.html](./STRIDE/mockups/index.html) → [PRD-v1.3.md](./STRIDE/docs/02-requirements/PRD-v1.3.md) |
 | **HRBP / 业务** | [business-narrative.md](./STRIDE/docs/00-background/business-narrative.md) · [Netlify 原型](https://warm-squirrel-e57666.netlify.app/) |
-| **产品** | [PRD-v1.2.md](./STRIDE/docs/02-requirements/PRD-v1.2.md) · [interview-synthesis.md](./STRIDE/docs/01-discovery/interview-synthesis.md) |
+| **产品** | [PRD-v1.3.md](./STRIDE/docs/02-requirements/PRD-v1.3.md) · [interview-synthesis.md](./STRIDE/docs/01-discovery/interview-synthesis.md) |
 | **开发** | [HACKATHON.md](./STRIDE/docs/HACKATHON.md) · [architecture-v2.1.md](./STRIDE/docs/03-architecture/architecture-v2.1.md) · [SESSION-HANDOFF.md](./STRIDE/docs/SESSION-HANDOFF.md) |
 | **项目经理** | 本文件 · [项目/README.md](./README.md) · [上下文/待办.md](../../上下文/待办.md) |
 
@@ -247,7 +247,7 @@
 
 - 新增交付物时：更新对应阶段表格，并递增 **统计截止** 日期。  
 - 完成阶段 8 / 11 项后，将状态由「计划中/进行中」改为「已完成」。  
-- STRIDE 单一技术事实来源仍以 [PRD-v1.2.md](./STRIDE/docs/02-requirements/PRD-v1.2.md) 为准；本清单仅做 **_inventory**，不替代 PRD 范围定义。
+- STRIDE 单一技术事实来源仍以 [PRD-v1.3.md](./STRIDE/docs/02-requirements/PRD-v1.3.md) 为准；本清单仅做 **_inventory**，不替代 PRD 范围定义。
 
 ---
 
