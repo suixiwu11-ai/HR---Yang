@@ -53,7 +53,24 @@
 
 ---
 
-## 4. 仍打不开？
+## 4. Actions 报错：`Get Pages site failed` / `Not Found`
+
+**原因**：仓库 **还没把 Pages 的 Source 设成 GitHub Actions**。工作流里的 `configure-pages` 查不到站点配置就会 404。
+
+**处理（必做，约 30 秒）**：
+
+1. 打开 https://github.com/suixiwu11-ai/HR-hackathon-2026-05/settings/pages  
+2. 找到 **Build and deployment**  
+3. **Source** 从「Deploy from a branch」或未发布 → 改成 **GitHub Actions**  
+4. 保存后，到 **Actions** → **Deploy STRIDE HTML docs** → **Re-run all jobs**
+
+> 若 Source 仍是 **Deploy from a branch** + `/docs`，Actions 部署会一直失败；两种方式二选一即可。
+
+**Node.js 20 deprecated** 黄色提示可忽略，不影响本次部署。
+
+---
+
+## 5. 仍打不开？
 
 | 现象 | 处理 |
 |------|------|
@@ -64,7 +81,7 @@
 
 ---
 
-## 5. 维护约定
+## 6. 维护约定
 
 - **只改** `项目/.../STRIDE/mockups/`，不要手改 `docs/`（会被 sync 覆盖）  
 - 详细说明见 [`项目/2026-05-黑客松项目/STRIDE/docs/GITHUB-PAGES.md`](../项目/2026-05-黑客松项目/STRIDE/docs/GITHUB-PAGES.md)
