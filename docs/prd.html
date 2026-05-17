@@ -96,19 +96,21 @@
 
   <div class="doc-layout">
     <aside class="toc">
-      <h2>目录</h2>
-      <ol>
-        <li><a href="#why">Why STRIDE</a></li>
-        <li><a href="#def">1. 产品定义</a></li>
-        <li><a href="#users">2. 用户场景</a></li>
-        <li><a href="#features">3. 功能需求</a></li>
-        <li><a href="#routes">4. 页面与路由</a></li>
-        <li><a href="#data">5. 领域规则与预警</a></li>
-        <li><a href="#scope">6. 范围与里程碑</a></li>
-        <li><a href="#arch">7. 产品架构与技术</a></li>
-        <li><a href="#nfr">8. 非功能需求</a></li>
-        <li><a href="#proto">9. 可点击原型</a></li>
-      </ol>
+      <details class="toc-details" open>
+        <summary><span class="toc-summary-label">目录</span></summary>
+        <ol>
+          <li><a href="#why">Why STRIDE</a></li>
+          <li><a href="#def">1. 产品定义</a></li>
+          <li><a href="#users">2. 用户场景</a></li>
+          <li><a href="#features">3. 功能需求</a></li>
+          <li><a href="#routes">4. 页面与路由</a></li>
+          <li><a href="#data">5. 领域规则与预警</a></li>
+          <li><a href="#scope">6. 范围与里程碑</a></li>
+          <li><a href="#arch">7. 产品架构与技术</a></li>
+          <li><a href="#nfr">8. 非功能需求</a></li>
+          <li><a href="#proto">9. 可点击原型</a></li>
+        </ol>
+      </details>
     </aside>
     <main class="doc-main">
       <section class="doc-section" id="def">
@@ -385,5 +387,6 @@ L0 持久化     SQLite（data/stride.db）+ 演示数据加载器</pre>
     </div>
   </section>
   <footer class="disclaimer-footer">源：docs/02-requirements/PRD-v1.3.md（含附录 A 架构摘要）· MiniMax 公开信息推演</footer>
+  <script src="doc-toc.js"></script>
 </body>
 </html>

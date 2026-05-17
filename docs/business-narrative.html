@@ -38,17 +38,19 @@
 
   <div class="doc-layout">
     <aside class="toc">
-      <h2>目录</h2>
-      <ol>
-        <li><a href="#s1">一、行业</a></li>
-        <li><a href="#s2">二、企业画像</a></li>
-        <li><a href="#s3">三、压力与突围</a></li>
-        <li><a href="#s4">四、对 HR 的要求</a></li>
-        <li><a href="#s5">五、HR 现状痛点</a></li>
-        <li><a href="#s6">六、方法论五步</a></li>
-        <li><a href="#s7">七、跨行业规律</a></li>
-        <li><a href="#s8">八、结论</a></li>
-      </ol>
+      <details class="toc-details" open>
+        <summary><span class="toc-summary-label">目录</span></summary>
+        <ol>
+          <li><a href="#s1">一、行业</a></li>
+          <li><a href="#s2">二、企业画像</a></li>
+          <li><a href="#s3">三、压力与突围</a></li>
+          <li><a href="#s4">四、对 HR 的要求</a></li>
+          <li><a href="#s5">五、HR 现状痛点</a></li>
+          <li><a href="#s6">六、方法论五步</a></li>
+          <li><a href="#s7">七、跨行业规律</a></li>
+          <li><a href="#s8">八、结论</a></li>
+        </ol>
+      </details>
     </aside>
     <main class="doc-main">
       <section class="doc-section" id="s1">
@@ -187,13 +189,6 @@
     </div>
   </section>
   <footer class="disclaimer-footer">源文档：docs/00-background/business-narrative.md v3.1 · MiniMax 公开信息推演</footer>
-  <script>
-    document.querySelectorAll('.toc a').forEach(a => {
-      a.addEventListener('click', () => {
-        document.querySelectorAll('.toc a').forEach(x => { x.style.fontWeight = ''; x.style.color = ''; });
-        a.style.fontWeight = '600'; a.style.color = 'var(--accent)';
-      });
-    });
-  </script>
+  <script src="doc-toc.js"></script>
 </body>
 </html>

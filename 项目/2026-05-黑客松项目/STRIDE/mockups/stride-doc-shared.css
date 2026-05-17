@@ -211,6 +211,68 @@ a:hover { color: var(--accent-hover); }
   }
 }
 
+/* 窄屏：正文在上，目录可折叠，避免 sticky 挡住阅读 */
+@media (max-width: 959px) {
+  .doc-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .doc-main {
+    order: 1;
+  }
+
+  .toc {
+    order: 0;
+    position: relative;
+    top: auto;
+    z-index: 1;
+    padding: 0;
+  }
+
+  .toc-details > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+  .toc-details > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .toc-details > summary::after {
+    content: "展开";
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .toc-details[open] > summary::after {
+    content: "收起";
+  }
+
+  .toc-details[open] > summary {
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0.5rem;
+  }
+
+  .toc-details > ol {
+    padding: 0 1rem 0.85rem;
+    max-height: min(50vh, 320px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
 .toc {
   position: sticky;
   top: calc(var(--nav-h) + 1rem);
@@ -221,12 +283,43 @@ a:hover { color: var(--accent-hover); }
   box-shadow: var(--shadow-sm);
 }
 
-.toc h2 {
+.toc-details {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (min-width: 960px) {
+  .toc-details > summary {
+    display: none;
+  }
+
+  .toc-details > ol {
+    display: block;
+  }
+}
+
+.toc h2,
+.toc-details > summary .toc-summary-label {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-muted);
   margin-bottom: 0.75rem;
+}
+
+@media (max-width: 959px) {
+  .toc h2 {
+    display: none;
+  }
+
+  .toc-details > summary .toc-summary-label {
+    margin: 0;
+    font-size: 0.9rem;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--text);
+  }
 }
 
 .toc ol {
