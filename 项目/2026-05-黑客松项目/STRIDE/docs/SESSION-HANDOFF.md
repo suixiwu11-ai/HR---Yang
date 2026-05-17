@@ -21,10 +21,10 @@
 **栈**：Next.js 14 + TS + SQLite；ECharts；MD+PDF；无 RBAC；默认 `?view=hrbp` 或路由 `/`。
 
 **MVP 必做**：
-- HR 工作台四 Tab + TCOW/Rev/FTE/Labor Cost%/编制达成
-- `POST /api/copilot/ask`（规则+白名单指标，≥12 标准问法）
+- HR 工作台四 Tab + 人力总成本/人均营收/人力成本占营收比/编制达成
+- `POST /api/copilot/ask`（规则+白名单指标，≥8 标准问法）
 - `POST /api/forecast/scenario`（编制增量、主投权重调整）
-- 向导1–3 + CalcEngine + W1–W5 + Demo 种子
+- 向导 1–3 + 核算引擎 + 五类标准预警 + 演示数据种子
 - `/executive` 精简摘要（非营销 Hero）
 
 **领域**：C1–C7、P1–P6、RF01–RF09、X10；双通道硬隔离。
