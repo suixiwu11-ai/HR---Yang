@@ -267,9 +267,23 @@ a:hover { color: var(--accent-hover); }
 
   .toc-details > ol {
     padding: 0 1rem 0.85rem;
-    max-height: min(50vh, 320px);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    max-height: none;
+    overflow: visible;
+  }
+
+  /* 滚过目录区域后收起，仅保留顶栏条，可再点开 */
+  .toc.toc-auto-collapsed {
+    position: sticky;
+    top: var(--nav-h);
+    z-index: 40;
+    box-shadow: var(--shadow-md);
+  }
+
+  .toc-sentinel {
+    display: block;
+    height: 1px;
+    width: 100%;
+    pointer-events: none;
   }
 }
 
