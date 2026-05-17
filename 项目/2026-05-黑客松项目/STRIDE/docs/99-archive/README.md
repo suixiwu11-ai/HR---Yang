@@ -1,10 +1,6 @@
 # 归档文档（Tier 3）
 
-黑客松与 MVP **不必阅读**本目录；保留作作品集扩展与咨询叙事参考。
-
-| 路径 | 说明 |
-|------|------|
-| [advisory/deloitte-china-strategic-workforce-product-recommendation.md](./advisory/deloitte-china-strategic-workforce-product-recommendation.md) | 德勤中国产品化建议（非赛题） |
+黑客松与 MVP **不必阅读**本目录；仅保留 superseded 版本说明与历史链接 stub。
 
 **Superseded PRD**：请使用 [../02-requirements/PRD-v1.2.md](../02-requirements/PRD-v1.2.md)，勿编辑 [PRD-v1.1.md](../02-requirements/PRD-v1.1.md) 正文。
 

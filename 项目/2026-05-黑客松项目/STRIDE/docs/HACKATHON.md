@@ -35,7 +35,7 @@
 HR 四 Tab（可静态）→ 1 条 Copilot 问数 → 1 个 forecast 情景 → 一季种子数据 → `/executive` 半屏摘要。
 
 **可砍**  
-10x 全模块、W6–W11、德勤文档、六线专访全文、PDF 导出（MD 即可）。
+10x 全模块、W6–W11、六线专访全文、PDF 导出（MD 即可）。
 
 ---
 
@@ -52,7 +52,7 @@ HR 四 Tab（可静态）→ 1 条 Copilot 问数 → 1 个 forecast 情景 → 
 
 ## Tier 3 · 归档（黑客松可不读）
 
-见 [99-archive/README.md](./99-archive/README.md)（德勤建议、superseded PRD、旧路径 stub）。
+见 [99-archive/README.md](./99-archive/README.md)（superseded PRD、旧路径 stub）。
 
 ---
 

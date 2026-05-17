@@ -34,7 +34,7 @@
 | 7 体验原型（HTML） | 6 | 可浏览器打开的静态稿 |
 | 8 工程实现 | 1 套（骨架） | Next.js + SQLite（待对齐 PRD） |
 | 9 索引与交接 | 5 | 阅读路径、清单、Handoff |
-| 10 归档参考 | 4 | 旧版 PRD、德勤建议等 |
+| 10 归档参考 | 2 | 旧版 PRD、路径 stub |
 | 11 演示与路演 | 0/4 | 5/23 前待完成 |
 | **外部参考** | 1 | 早期 HRBP UX 原型（Netlify） |
 
@@ -208,12 +208,12 @@
 ## 阶段 10：归档与参考
 
 **时间**：—  
-**目标**：保留历史版本与非赛题材料，不干扰主路径。
+**目标**：保留 superseded 版本说明与历史路径 stub。
 
 | 交付物 | 路径 | 类型 | 状态 |
 |--------|------|------|------|
 | 归档说明 | [STRIDE/docs/99-archive/README.md](./STRIDE/docs/99-archive/README.md) | 索引 | 已完成 |
-| 德勤中国人效产品化建议 | [STRIDE/docs/99-archive/advisory/deloitte-china-strategic-workforce-product-recommendation.md](./STRIDE/docs/99-archive/advisory/deloitte-china-strategic-workforce-product-recommendation.md) | 参考 | 已归档 |
+| PRD / 架构 / 专访 stub | [STRIDE/docs/PRD-MiniMax-…](./STRIDE/docs/PRD-MiniMax-Strategic-Workforce-v1.0.md) 等 | 重定向 | 已归档 |
 
 ---
 

@@ -26,7 +26,7 @@
 | T2 | [02-requirements/collaboration-10x-obligations.md](./02-requirements/collaboration-10x-obligations.md) | 10x 协作 |
 | T2 | [03-architecture/event-tracking-plan.md](./03-architecture/event-tracking-plan.md) | 埋点 |
 | T3 | [02-requirements/PRD-v1.1.md](./02-requirements/PRD-v1.1.md) | superseded |
-| T3 | [99-archive/](./99-archive/README.md) | 德勤 + stub |
+| T3 | [99-archive/](./99-archive/README.md) | superseded PRD + stub |
 | T3 | [PRD-MiniMax-Strategic-Workforce-v1.0.md](./PRD-MiniMax-Strategic-Workforce-v1.0.md) | 重定向 stub |
 | T3 | [architecture-v2.md](./architecture-v2.md) | 重定向 stub |
 | T3 | [interviews-product-lines.md](./interviews-product-lines.md) | 重定向 stub |

@@ -101,9 +101,8 @@ docs/
 │   └── event-tracking-plan.md         # MVP 埋点计划
 ├── 04-demo/
 │   └── demo-seed-plan.md              # 2025Q2–Q4 预填计划
-├── 99-archive/                        # Tier 3：德勤建议等（黑客松可跳过）
-│   ├── README.md
-│   └── advisory/deloitte-china-...md
+├── 99-archive/                        # Tier 3：superseded PRD、历史 stub
+│   └── README.md
 ├── HACKATHON.md                       # 黑客松阅读路径
 ├── MANIFEST.md                        # 文档清单 + tier
 └── assets/                            # 预留（Mermaid 源等）
@@ -133,7 +132,6 @@ docs/
 | 队友 / 评委导读 HTML | [mockups/stride-business-narrative.html](../mockups/stride-business-narrative.html) · [stride-prd.html](../mockups/stride-prd.html) |
 | **UI 设计（亮色数字化）** | [03-architecture/ui-design-digital-v1.md](./03-architecture/ui-design-digital-v1.md) · 原型 [mockups/stride-home-digital.html](../mockups/stride-home-digital.html) |
 | Demo 种子 | [04-demo/demo-seed-plan.md](./04-demo/demo-seed-plan.md) |
-| 德勤产品化建议（归档） | [99-archive/advisory/deloitte-china-strategic-workforce-product-recommendation.md](./99-archive/advisory/deloitte-china-strategic-workforce-product-recommendation.md) |
 
 ---
 

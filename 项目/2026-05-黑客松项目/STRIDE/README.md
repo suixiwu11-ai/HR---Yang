@@ -37,7 +37,7 @@ npm run dev
 
 ### 看原型（无环境）
 
-打开 [`mockups/index.html`](mockups/index.html)
+打开 [`mockups/stride-business-narrative.html`](mockups/stride-business-narrative.html) → [`mockups/stride-prd.html`](mockups/stride-prd.html)
 
 ---
 
