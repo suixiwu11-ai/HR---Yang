@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STRIDE 路 闃熷弸 & 璇勫瀵艰</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="stride-doc-shared.css" />
+  <style>
+    .hub-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+      display: grid;
+      gap: 1rem;
+    }
+    @media (min-width: 640px) { .hub-grid { grid-template-columns: 1fr 1fr; } }
+    .hub-card {
+      display: block;
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.2s, border-color 0.2s;
+      color: inherit;
+    }
+    .hub-card:hover {
+      border-color: rgba(99, 91, 255, 0.35);
+      box-shadow: var(--shadow-md);
+    }
+    .hub-card h3 { font-size: 1.1rem; margin-bottom: 0.35rem; }
+    .hub-card p { font-size: 0.88rem; color: var(--text-secondary); margin: 0; }
+    .hub-card .tag {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    .read-order {
+      max-width: 560px;
+      margin: 2rem auto;
+      padding: 1.25rem 1.5rem;
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .read-order ol { margin: 0.5rem 0 0 1.25rem; }
+    .read-order li { margin-bottom: 0.35rem; }
+  </style>
+</head>
+<body>
+  <div class="page-bg" aria-hidden="true"></div>
+  <div class="grid-dots" aria-hidden="true"></div>
+
+  <header class="doc-header">
+    <span class="brand">
+      <span class="brand-icon" aria-hidden="true">
+        <svg viewBox="0 0 16 16" fill="none"><path d="M8 2L14 8L8 14L2 8L8 2Z" fill="white"/></svg>
+      </span>
+      STRIDE
+    </span>
+    <nav class="doc-nav">
+      <a href="index.html" class="active">瀵艰</a>
+      <a href="stride-business-narrative.html">涓氬姟鑳屾櫙</a>
+      <a href="stride-prd.html">PRD</a>
+      <a href="stride-home-digital.html">UI 鍘熷瀷</a>
+    </nav>
+  </header>
+
+  <header class="doc-hero slogan-hero">
+    <div class="badge-row">
+      <span class="badge accent">榛戝鏉?/ 闃熷弸 onboarding</span>
+      <span class="badge">鍋囪妗堜緥 路 MiniMax</span>
+    </div>
+    <p class="slogan-main">3 鍒嗛挓璇绘噦 <span class="gradient-text">STRIDE</span></p>
+    <p class="slogan-sub">
+      鎴樼暐浜烘晥鏍哥畻鍙?鈥?鍩轰簬涓婂競澶фā鍨嬪叕鍙稿叕寮€淇℃伅鐨勬闈㈢爺绌舵帹婕斻€?br />
+      鍏堢湅<strong>涓轰粈涔堝仛</strong>锛屽啀鐪?strong>鍋氫粈涔?/strong>锛屾渶鍚庣湅<strong>闀夸粈涔堟牱</strong>銆?    </p>
+    <p class="slogan-en">Portfolio 路 Not official HRIS 路 All metrics are illustrative</p>
+  </header>
+
+  <div class="read-order">
+    <strong>寤鸿闃呰椤哄簭</strong>
+    <ol>
+      <li><a href="stride-business-narrative.html">涓氬姟鑳屾櫙</a> 鈥?鍓嶅洜鍚庢灉锛圚RBP 瑙嗚锛?/li>
+      <li><a href="stride-prd.html">PRD 瀵艰</a> 鈥?鍔熻兘銆丮VP銆丆opilot锛堝惈 Slogan锛?/li>
+      <li><a href="stride-home-digital.html">UI 鍘熷瀷</a> 鈥?宸茬‘璁や寒鑹叉暟瀛楀寲瑙嗚</li>
+    </ol>
+  </div>
+
+  <div class="hub-grid">
+    <a class="hub-card" href="stride-business-narrative.html">
+      <span class="tag">Step 1 路 涓轰粈涔?/span>
+      <h3>涓氬姟鑳屾櫙</h3>
+      <p>MiniMax 鍋囪涓嬬殑鍏ぇ鐥涚偣銆佹垬鐣ヤ汉鏁堝畾浣嶃€佸搴﹀伐浣滄祦銆?0x 杈圭晫銆?/p>
+    </a>
+    <a class="hub-card" href="stride-prd.html">
+      <span class="tag">Step 2 路 鍋氫粈涔?/span>
+      <h3>PRD v1.2</h3>
+      <p>Slogan銆屼汉鍔涙湁璐︼紝鎴樼暐鏈夋嵁銆嵚?鍥?Tab 路 Chat-to-BI 路 MVP 娓呭崟銆?/p>
+    </a>
+    <a class="hub-card" href="stride-home-digital.html">
+      <span class="tag">Step 3 路 闀夸粈涔堟牱</span>
+      <h3>UI 鍘熷瀷锛堟暟瀛楀寲浜壊锛?/h3>
+      <p>Stripe 椋庢牸 路 宸?APPROVED 路 瀹炵幇鏃跺榻?ui-design-digital-v1銆?/p>
+    </a>
+    <a class="hub-card" href="stride-home-executive.html" style="opacity:0.75;">
+      <span class="tag">褰掓。</span>
+      <h3>Executive 娣辫壊鍘熷瀷</h3>
+      <p>鏈噰绾虫柟鍚戯紝浠呬綔 /executive 鎽樿灞傚弬鑰冦€?/p>
+    </a>
+  </div>
+
+  <footer class="disclaimer-footer">
+    鎵撳紑鏈〉锛?code>mockups/index.html</code> 路 瀹屾暣 Markdown 瑙?<code>docs/</code> 鐩綍
+  </footer>
+</body>
+</html>
