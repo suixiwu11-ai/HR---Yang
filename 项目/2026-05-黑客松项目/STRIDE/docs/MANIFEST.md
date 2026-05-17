@@ -6,7 +6,7 @@
 |------|------|------|
 | T0 | [HACKATHON.md](./HACKATHON.md) | 黑客松阅读路径 |
 | T0 | [00-background/business-narrative.md](./00-background/business-narrative.md) | HRBP 业务叙事 v2 |
-| T0 | [02-requirements/PRD-v1.2.md](./02-requirements/PRD-v1.2.md) | 主 PRD |
+| T0 | [02-requirements/PRD-v1.3.md](./02-requirements/PRD-v1.3.md) | 主 PRD（含附录 A 架构） |
 | T0 | [04-demo/demo-seed-plan.md](./04-demo/demo-seed-plan.md) | Demo 种子 |
 | T1 | [SESSION-HANDOFF.md](./SESSION-HANDOFF.md) | Agent 接续 |
 | T1 | [03-architecture/architecture-v2.1.md](./03-architecture/architecture-v2.1.md) | 架构 |
@@ -25,6 +25,7 @@
 | T2 | [02-requirements/10x-team-assessment-framework.md](./02-requirements/10x-team-assessment-framework.md) | 10x 考核 |
 | T2 | [02-requirements/collaboration-10x-obligations.md](./02-requirements/collaboration-10x-obligations.md) | 10x 协作 |
 | T2 | [03-architecture/event-tracking-plan.md](./03-architecture/event-tracking-plan.md) | 埋点 |
+| T3 | [02-requirements/PRD-v1.2.md](./02-requirements/PRD-v1.2.md) | superseded |
 | T3 | [02-requirements/PRD-v1.1.md](./02-requirements/PRD-v1.1.md) | superseded |
 | T3 | [99-archive/](./99-archive/README.md) | superseded PRD + stub |
 | T3 | [PRD-MiniMax-Strategic-Workforce-v1.0.md](./PRD-MiniMax-Strategic-Workforce-v1.0.md) | 重定向 stub |

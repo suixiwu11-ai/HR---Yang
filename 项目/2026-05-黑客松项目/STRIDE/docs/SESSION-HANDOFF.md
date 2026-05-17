@@ -11,7 +11,7 @@
 ## STRIDE 开发接续
 作品集 **某大模型公司战略人效核算台 / STRIDE**。**中文回复**。
 
-**单一事实来源**：`docs/02-requirements/PRD-v1.2.md`（v1.2：HR 工作台默认、Chat-to-BI、预测；Executive 仅子页）。
+**单一事实来源**：`docs/02-requirements/PRD-v1.3.md`（对齐 business-narrative；架构见 PRD 附录 A + `architecture-v2.1.md`）。
 
 **UX 北极星**：https://warm-squirrel-e57666.netlify.app/ — 四 Tab（总览/成本/组织/薪酬绩效）+ 右侧 Chat-to-BI + 调薪沙盘。
 **勿把** `mockups/stride-home-executive.html` 当首页（仅 `/executive` 经营摘要参考）。

@@ -1,7 +1,7 @@
 # 黑客松阅读路径 · STRIDE
 
 > **目标**：48 小时内能 **讲清故事、做出 Demo、答辩不跑偏**。  
-> **主 PRD**：[PRD-v1.2.md](./02-requirements/PRD-v1.2.md) · **全量清单**：[MANIFEST.md](./MANIFEST.md)
+> **主 PRD**：[PRD-v1.3.md](./02-requirements/PRD-v1.3.md) · **全量清单**：[MANIFEST.md](./MANIFEST.md)
 
 ---
 
@@ -11,7 +11,7 @@
 |---|------|----------------|
 | 1 | 本文 | 读什么、不读什么 |
 | 2 | [business-narrative.md](./00-background/business-narrative.md) | HRBP 为什么需要这个台子 |
-| 3 | [PRD-v1.2.md](./02-requirements/PRD-v1.2.md) §1–§5 | 做什么：四 Tab、Copilot、预测、Executive 子页 |
+| 3 | [PRD-v1.3.md](./02-requirements/PRD-v1.3.md) | 做什么；附录 A 为架构摘要 |
 | 4 | [Netlify 原型](https://warm-squirrel-e57666.netlify.app/) | **UX 长什么样**（比 markdown 重要） |
 | 5 | [demo-seed-plan.md](./04-demo/demo-seed-plan.md) | Demo 演哪三季、亮哪条预警 |
 

@@ -46,7 +46,7 @@
 
 | 顺序 | 文档 | 目的 |
 |------|------|------|
-| 1 | [02-requirements/PRD-v1.2.md](./02-requirements/PRD-v1.2.md) | 范围、HR 工作台、Chat-to-BI、预测 |
+| 1 | [02-requirements/PRD-v1.3.md](./02-requirements/PRD-v1.3.md) | **主 PRD**（含架构附录 A） |
 | 2 | [03-architecture/architecture-v2.1.md](./03-architecture/architecture-v2.1.md) | 四层架构、SQLite API、数据模型 |
 | 2b | [03-architecture/ui-design-digital-v1.md](./03-architecture/ui-design-digital-v1.md) | 亮色数字化 UI 规范（Tailwind / 组件） |
 | 3 | [02-requirements/allocation-default.json](./02-requirements/allocation-default.json) | 默认分摊矩阵 |
@@ -88,7 +88,8 @@ docs/
 │   ├── interviews-10x-program.md      # 10x Program 专访
 │   └── interview-synthesis.md         # 跨访谈主题、冲突、裁决（含 10x）
 ├── 02-requirements/
-│   ├── PRD-v1.2.md                    # 主 PRD（HR 工作台 + Copilot + 预测）
+│   ├── PRD-v1.3.md                    # 主 PRD（对齐 business-narrative；附录 A 架构）
+│   ├── PRD-v1.2.md                    # 归档（superseded）
 │   ├── PRD-v1.1.md                    # 归档（superseded）
 │   ├── user-decisions.md              # 用户确认的 6 项交付决策
 │   ├── 10x-team-assessment-framework.md   # 10x 四维考核 D1–D4、协作分
@@ -126,7 +127,7 @@ docs/
 | 高管专访 | [01-discovery/interviews-executives.md](./01-discovery/interviews-executives.md) |
 | 产品线专访 | [01-discovery/interviews-product-lines.md](./01-discovery/interviews-product-lines.md) |
 | 访谈综合 | [01-discovery/interview-synthesis.md](./01-discovery/interview-synthesis.md) |
-| PRD | [02-requirements/PRD-v1.2.md](./02-requirements/PRD-v1.2.md) |
+| PRD | [02-requirements/PRD-v1.3.md](./02-requirements/PRD-v1.3.md) |
 | 用户决策 | [02-requirements/user-decisions.md](./02-requirements/user-decisions.md) |
 | 架构 | [03-architecture/architecture-v2.1.md](./03-architecture/architecture-v2.1.md) |
 | 队友 / 评委导读 HTML | [mockups/stride-business-narrative.html](../mockups/stride-business-narrative.html) · [stride-prd.html](../mockups/stride-prd.html) |
@@ -153,7 +154,7 @@ docs/
 
 | 工件 | 版本 | 状态 |
 |------|------|------|
-| PRD | **v1.2**（HR 优先 + Chat-to-BI + 预测） | READY_FOR_BUILD |
+| PRD | **v1.3**（对齐 business-narrative v3.1） | READY_FOR_BUILD |
 | 架构 | v2.1（含 X10 实体说明） | 与 PRD 对齐 |
 | 业务叙事 / 10x 框架 | 2026-05-16 | COMPLETE |
 | 六线 + 10x 专访 | 2026-05-16 | COMPLETE |

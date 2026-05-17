@@ -1,5 +1,6 @@
-# 某大模型公司战略人效核算台 — 产品需求文档 v1.2
+# 某大模型公司战略人效核算台 — 产品需求文档 v1.2（已 supersede）
 
+> **⚠️ 请以 [PRD-v1.3.md](./PRD-v1.3.md) 为单一事实来源**（对齐 [business-narrative.md](../00-background/business-narrative.md) v3.1；架构见 PRD 附录 A + [architecture-v2.1.md](../03-architecture/architecture-v2.1.md)）。  
 > **英文代号**：**STRIDE** — *Strategic Talent ROI & Investment Decision Engine*  
 > **中文产品名**：某大模型公司战略人效核算台（对外标题不出现 MiniMax 品牌）  
 > **数据主体**：MiniMax 公开信息推演；**交付定位**：长期作品集（Portfolio）  
