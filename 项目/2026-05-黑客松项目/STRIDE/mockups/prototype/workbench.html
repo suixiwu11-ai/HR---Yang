@@ -9,7 +9,8 @@
   <link rel="stylesheet" href="../stride-app.css" />
 </head>
 <body class="app-shell">
-  <div class="proto-banner">HTML 原型 · 2025 Q3 Demo · 假设案例 MiniMax · 数据为推演</div>
+  <div class="proto-banner">HTML 原型 · 2025 Q3 · 假设案例 MiniMax · PRD §3.1 四 Tab 必交付</div>
+
   <header class="app-header">
     <div class="app-header-inner">
       <a href="../index.html" class="brand" style="text-decoration:none;color:inherit;">
@@ -38,12 +39,15 @@
 
   <p class="breadcrumb" style="max-width:1400px;margin:0.75rem auto 0;padding:0 1.5rem;">
     <a href="../index.html">首页</a> / <a href="../prd.html">PRD</a> / <strong>工作台</strong>
+    <span style="color:var(--text-muted);"> · 2025 Q3</span>
   </p>
 
   <div class="app-main with-copilot" id="app-main">
-    <div>
-      <!-- 总览 -->
-      <div class="panel" id="panel-overview">
+    <div id="panels-root">
+
+      <!-- ========== 总览 ========== -->
+      <div class="panel" id="panel-overview" data-copilot-hint="overview">
+        <p class="tab-intro"><strong>Tab1 总览</strong>（PRD §3.1）— 四 KPI、营收 vs TCOW 走势、产品线 Rev/FTE 对标；对应业务叙事 §5.1–5.2 成本与效率口径分裂。</p>
         <div class="kpi-grid">
           <div class="kpi-card">
             <div class="label">人力总成本 TCOW</div>
@@ -55,7 +59,7 @@
             <div class="label">人力成本占营收比</div>
             <div class="value">38.4%</div>
             <div class="delta down">↑ 1.1pp</div>
-            <span class="tag-src">disclosed 通道对照</span>
+            <span class="tag-src">disclosed 对照 37.3%</span>
           </div>
           <div class="kpi-card">
             <div class="label">人均营收 Rev/FTE</div>
@@ -80,92 +84,344 @@
           <h3>产品线人均营收对标</h3>
           <div class="table-wrap" style="margin:0;">
             <table>
-              <thead><tr><th>产品线</th><th>Rev/FTE</th><th>人力成本率</th></tr></thead>
+              <thead><tr><th>产品线</th><th>Rev/FTE</th><th>人力成本率</th><th>通道</th></tr></thead>
               <tbody>
-                <tr><td>P2 海螺</td><td>¥ 210万</td><td>35%</td></tr>
-                <tr><td>P1 星野</td><td>¥ 198万</td><td>37%</td></tr>
-                <tr><td>P6 中台</td><td>—</td><td>分摊入口</td></tr>
+                <tr><td>P2 海螺</td><td>¥ 210万</td><td>35%</td><td>proxy</td></tr>
+                <tr><td>P1 星野</td><td>¥ 198万</td><td>37%</td><td>proxy</td></tr>
+                <tr><td>P3 开放平台</td><td>¥ 172万</td><td>41%</td><td>proxy</td></tr>
+                <tr><td>P6 中台</td><td>—</td><td>分摊入口</td><td>—</td></tr>
               </tbody>
             </table>
           </div>
         </div>
       </div>
 
-      <!-- 成本 -->
-      <div class="panel hidden" id="panel-cost" hidden>
-        <h2 style="font-size:1.25rem;margin-bottom:1rem;">成本 · TCOW 结构</h2>
+      <!-- ========== 成本 ========== -->
+      <div class="panel is-hidden" id="panel-cost" data-copilot-hint="cost">
+        <p class="tab-intro"><strong>Tab2 成本</strong> — TCOW 结构（固定/浮动/法定/福利）；产品线/部门成本表与<strong>预算偏离标签</strong>。对应 §5.1「看得见总数、看不清结构」。</p>
         <div class="kpi-grid">
-          <div class="kpi-card"><div class="label">固定</div><div class="value">52%</div></div>
-          <div class="kpi-card"><div class="label">浮动</div><div class="value">28%</div></div>
-          <div class="kpi-card"><div class="label">法定</div><div class="value">12%</div></div>
-          <div class="kpi-card"><div class="label">福利</div><div class="value">8%</div></div>
+          <div class="kpi-card">
+            <div class="label">本季人力总成本</div>
+            <div class="value">¥ 2.84亿</div>
+            <div class="delta up">↑ ¥1,650万 QoQ</div>
+          </div>
+          <div class="kpi-card">
+            <div class="label">固定成本占比</div>
+            <div class="value">52%</div>
+            <div class="delta down">↑ 2pp · 关注</div>
+          </div>
+          <div class="kpi-card">
+            <div class="label">浮动成本占比</div>
+            <div class="value">28%</div>
+            <div class="delta">奖金计提季</div>
+          </div>
+          <div class="kpi-card">
+            <div class="label">法定 + 福利</div>
+            <div class="value">20%</div>
+            <span class="tag-src">disclosed 社保基数上调</span>
+          </div>
         </div>
+
+        <div class="two-col" style="margin-top:1rem;">
+          <div class="chart-panel">
+            <h3>TCOW 结构拆解</h3>
+            <div class="structure-bar" aria-hidden="true">
+              <span style="width:52%;background:#635bff;" title="固定"></span>
+              <span style="width:28%;background:#00d4ff;" title="浮动"></span>
+              <span style="width:12%;background:#94a3b8;" title="法定"></span>
+              <span style="width:8%;background:#ff80b5;" title="福利"></span>
+            </div>
+            <ul class="structure-legend">
+              <li><span class="dot" style="background:#635bff"></span>固定 ¥1.48亿 (52%)</li>
+              <li><span class="dot" style="background:#00d4ff"></span>浮动 ¥0.80亿 (28%)</li>
+              <li><span class="dot" style="background:#94a3b8"></span>法定 ¥0.34亿 (12%)</li>
+              <li><span class="dot" style="background:#ff80b5"></span>福利 ¥0.22亿 (8%)</li>
+            </ul>
+            <p style="font-size:0.75rem;color:var(--text-muted);margin-top:0.75rem;">本季异常：固定占比升 2pp，主因新入职算法/工程 base 上调（P2、P6）</p>
+          </div>
+          <div class="chart-panel">
+            <h3>成本结构 QoQ 变化</h3>
+            <div class="chart-bars-mock">
+              <span style="height:52%"></span>
+              <span style="height:58%"></span>
+              <span style="height:55%"></span>
+              <span class="hi" style="height:70%"></span>
+            </div>
+            <p style="font-size:0.8rem;color:var(--text-secondary);margin-top:0.5rem;">固定成本 · 上季 → 本季</p>
+          </div>
+        </div>
+
         <div class="chart-panel" style="margin-top:1rem;">
-          <h3>产品线成本一览</h3>
-          <p style="font-size:0.85rem;color:var(--text-secondary);">P3 开放平台预算偏离 +4.2% · 关注点标签已亮</p>
+          <h3>产品线 / 部门成本一览</h3>
+          <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.75rem;">含中台二次分摊后 · 人力成本率 = 条线 TCOW ÷ 条线营收（proxy）</p>
+          <div class="table-wrap" style="margin:0;">
+            <table>
+              <thead>
+                <tr><th>条线</th><th>TCOW</th><th>营收 proxy</th><th>人力成本率</th><th>预算偏离</th><th>标签</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>P3 开放平台</strong></td>
+                  <td>¥ 4,120万</td><td>¥ 1.02亿</td><td>40.4%</td>
+                  <td style="color:var(--orange);">+4.2%</td>
+                  <td><span class="tag-warn">超预算</span></td>
+                </tr>
+                <tr>
+                  <td>P2 海螺</td>
+                  <td>¥ 6,800万</td><td>¥ 1.94亿</td><td>35.1%</td>
+                  <td>+0.8%</td>
+                  <td><span class="tag-warn">关注</span></td>
+                </tr>
+                <tr>
+                  <td>P1 星野</td>
+                  <td>¥ 5,200万</td><td>¥ 1.41亿</td><td>36.9%</td>
+                  <td>-0.3%</td>
+                  <td><span class="tag-ok">正常</span></td>
+                </tr>
+                <tr>
+                  <td>P6 基础模型与中台</td>
+                  <td>¥ 9,100万</td><td>—</td><td>—</td>
+                  <td>—</td>
+                  <td>分摊源 · 70% 二次分摊</td>
+                </tr>
+                <tr>
+                  <td>P4 语音（探索）</td>
+                  <td>¥ 1,850万</td><td>¥ 0.28亿</td><td>66.1%</td>
+                  <td>+1.1%</td>
+                  <td><span class="tag-warn">探索期</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
 
-      <!-- 组织 -->
-      <div class="panel hidden" id="panel-org" hidden>
-        <h2 style="font-size:1.25rem;margin-bottom:1rem;">组织 · 效率信号</h2>
-        <div class="kpi-grid">
-          <div class="kpi-card"><div class="label">关键岗空缺</div><div class="value">7</div></div>
-          <div class="kpi-card"><div class="label">离职率</div><div class="value">8.1%</div></div>
-          <div class="kpi-card"><div class="label">管理幅度 Span</div><div class="value">1:6.2</div></div>
-        </div>
         <div class="card highlight" style="margin-top:1rem;">
-          <h4>编制 / 调薪沙盘</h4>
-          <p style="font-size:0.85rem;margin:0 0 0.75rem;">+10 工程 FTE → 海螺 · 下季 TCOW +¥ 1,240万（基准）</p>
-          <a href="scenario.html" class="btn btn-primary" style="display:inline-block;text-decoration:none;color:#fff;">打开情景试算 →</a>
+          <h4>双通道提示</h4>
+          <p style="margin:0;font-size:0.85rem;">披露通道：员工成本同比增速与年报口径对齐；业务 proxy 通道：条线营收与 HC 为内部推演，<strong>不得</strong>混入经营摘要披露段落。</p>
         </div>
-        <a href="wizard.html" class="btn btn-secondary" style="display:inline-block;margin-top:0.75rem;text-decoration:none;">向导 2：分摊矩阵 →</a>
       </div>
 
-      <!-- 薪酬 -->
-      <div class="panel hidden" id="panel-pay" hidden>
-        <h2 style="font-size:1.25rem;margin-bottom:1rem;">薪酬×绩效 · 一致性（聚合）</h2>
-        <div class="card warn">
-          <p style="margin:0;font-size:0.85rem;"><strong>免责声明</strong>：非绩效裁员工具；n&lt;5 团队不展示；仅部门/产品线聚合。</p>
+      <!-- ========== 组织 ========== -->
+      <div class="panel is-hidden" id="panel-org" data-copilot-hint="org">
+        <p class="tab-intro"><strong>Tab3 组织</strong> — 编制达成、管理幅度、关键岗空缺、离职率；编制/调薪沙盘入口；跳转向导 2。对应 §5.3 编制与组织信号。</p>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="label">编制达成率</div>
+            <div class="value">94%</div>
+            <div class="delta down">计划 1,248 / 在岗 1,173</div>
+            <span class="tag-src">proxy</span>
+          </div>
+          <div class="kpi-card">
+            <div class="label">关键岗空缺</div>
+            <div class="value">7</div>
+            <div class="delta down">算法 Lead ×2 · 出海负责人 ×1</div>
+          </div>
+          <div class="kpi-card">
+            <div class="label">离职率（年化 proxy）</div>
+            <div class="value">8.1%</div>
+            <div class="delta">研发序列 9.4%</div>
+          </div>
+          <div class="kpi-card">
+            <div class="label">管理幅度 Span</div>
+            <div class="value">1 : 6.2</div>
+            <span class="tag-src">assumption</span>
+          </div>
         </div>
-        <div class="table-wrap" style="margin-top:1rem;">
-          <table>
-            <thead><tr><th>部门</th><th>高绩效占比</th><th>高绩效薪酬占比</th><th>偏差</th></tr></thead>
-            <tbody>
-              <tr><td>研发中台</td><td>32%</td><td>28%</td><td style="color:var(--orange);">-4pp</td></tr>
-              <tr><td>P2 海螺</td><td>29%</td><td>31%</td><td>+2pp</td></tr>
-            </tbody>
-          </table>
+
+        <div class="two-col" style="margin-top:1rem;">
+          <div class="chart-panel">
+            <h3>产品线编制达成</h3>
+            <div class="table-wrap" style="margin:0;">
+              <table>
+                <thead><tr><th>产品线</th><th>计划 HC</th><th>在岗</th><th>达成率</th><th>缺口</th></tr></thead>
+                <tbody>
+                  <tr><td>P2 海螺</td><td>420</td><td>398</td><td>94.8%</td><td>-22</td></tr>
+                  <tr><td>P1 星野</td><td>310</td><td>305</td><td style="color:#0e6245;">98.4%</td><td>-5</td></tr>
+                  <tr><td>P3 开放平台</td><td>185</td><td>162</td><td style="color:var(--orange);">87.6%</td><td>-23</td></tr>
+                  <tr><td>P6 中台</td><td>280</td><td>268</td><td>95.7%</td><td>-12</td></tr>
+                  <tr><td>P4 语音</td><td>53</td><td>40</td><td style="color:var(--orange);">75.5%</td><td>-13</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="chart-panel">
+            <h3>关键岗空缺清单</h3>
+            <ul class="vacancy-list">
+              <li><span>算法 Lead · P2</span><span>空缺 68 天</span></li>
+              <li><span>资深后端 · P3</span><span>空缺 42 天</span></li>
+              <li><span>出海 GM · 国际</span><span>空缺 35 天</span></li>
+              <li><span>评测负责人 · P6</span><span>空缺 21 天</span></li>
+            </ul>
+            <p style="font-size:0.75rem;color:var(--text-muted);margin-top:0.5rem;">替补周期 median：45 天（proxy）</p>
+          </div>
+        </div>
+
+        <div class="sandbox-box">
+          <h4 style="margin-bottom:0.5rem;">编制增量沙盘（简化 · PRD §3.3）</h4>
+          <label style="font-size:0.8rem;color:var(--text-secondary);">向 P2 海螺增加工程 FTE</label>
+          <input type="range" id="fte-slider" min="0" max="30" value="10" />
+          <div class="sandbox-result" id="fte-result">
+            <strong>+10 FTE</strong>（RF03 工程）→ 下季 TCOW <strong>+¥ 1,240万</strong>（基准）· 人力成本率 <strong>+0.8pp</strong>
+          </div>
+          <div class="btn-row" style="margin-top:0.75rem;">
+            <a href="scenario.html" class="btn btn-primary" style="text-decoration:none;color:#fff;">完整情景试算 →</a>
+            <a href="wizard.html" class="btn btn-secondary" style="text-decoration:none;">向导 2：分摊矩阵 →</a>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:1rem;">
+          <h4>调薪沙盘入口（PRD §3.3）</h4>
+          <p style="font-size:0.85rem;margin:0 0 0.5rem;">全公司调薪包 +3%（研发序列 +4%）→ 增量 TCOW +¥ 820万 / 季</p>
+          <a href="scenario.html" style="font-size:0.85rem;font-weight:500;">在情景页切换「调薪」模式 →</a>
         </div>
       </div>
+
+      <!-- ========== 薪酬×绩效 ========== -->
+      <div class="panel is-hidden" id="panel-pay" data-copilot-hint="pay">
+        <p class="tab-intro"><strong>Tab4 薪酬×绩效</strong> — 高绩效占比 vs 高绩效薪酬占比（部门/产品线<strong>聚合</strong>）；策略提示；固定免责。对应 §5.4，n&lt;5 不展示个案。</p>
+
+        <div class="card warn">
+          <p style="margin:0;font-size:0.85rem;"><strong>固定免责声明</strong>：本 Tab 为聚合分析，非绩效裁员工具；样本量 &lt;5 的团队/部门不展示；禁止用于个案末位或薪酬调整指令。</p>
+        </div>
+
+        <div class="kpi-grid" style="margin-top:1rem;">
+          <div class="kpi-card">
+            <div class="label">公司 · 高绩效人群占比</div>
+            <div class="value">28%</div>
+            <span class="tag-src">绩效分布 proxy</span>
+          </div>
+          <div class="kpi-card">
+            <div class="label">公司 · 高绩效薪酬占比</div>
+            <div class="value">31%</div>
+            <span class="tag-src">薪酬预算拆分</span>
+          </div>
+          <div class="kpi-card">
+            <div class="label">一致性偏差（公司）</div>
+            <div class="value" style="color:var(--accent);">+3pp</div>
+            <div class="delta">薪酬略向高绩效倾斜</div>
+          </div>
+          <div class="kpi-card">
+            <div class="label">需关注部门数</div>
+            <div class="value" style="color:var(--orange);">2</div>
+            <div class="delta">偏差 &gt;5pp</div>
+          </div>
+        </div>
+
+        <div class="chart-panel" style="margin-top:1rem;">
+          <h3>部门 / 产品线一致性表</h3>
+          <div class="table-wrap" style="margin:0;">
+            <table>
+              <thead>
+                <tr><th>组织单元</th><th>高绩效占比</th><th>高绩效薪酬占比</th><th>偏差</th><th>策略提示</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>研发中台 P6</td>
+                  <td>32%</td><td>28%</td>
+                  <td style="color:var(--orange);">-4pp</td>
+                  <td>高绩效未充分反映在薪酬包，建议 COE 复核</td>
+                </tr>
+                <tr>
+                  <td>P2 海螺</td>
+                  <td>29%</td><td>31%</td>
+                  <td style="color:#0e6245;">+2pp</td>
+                  <td>与主投战略一致，可接受</td>
+                </tr>
+                <tr>
+                  <td>P3 开放平台</td>
+                  <td>26%</td><td>33%</td>
+                  <td style="color:var(--orange);">+7pp</td>
+                  <td>商业化激励偏高，建议与业绩挂钩复核</td>
+                </tr>
+                <tr>
+                  <td>职能共享</td>
+                  <td>24%</td><td>24%</td>
+                  <td>0pp</td>
+                  <td><span class="tag-ok">一致</span></td>
+                </tr>
+                <tr style="opacity:0.5;">
+                  <td colspan="5"><em>某创新小组（n=4）— 已脱敏隐藏</em></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="two-col" style="margin-top:1rem;">
+          <div class="chart-panel">
+            <h3>可视化 · P6 研发中台</h3>
+            <p style="font-size:0.8rem;color:var(--text-muted);">高绩效人群 vs 高绩效薪酬占用</p>
+            <div style="margin:1rem 0;">
+              <div class="consistency-bar"><span style="width:4rem;">高绩效人</span><div class="track"><div class="fill-a" style="width:32%"></div></div><span>32%</span></div>
+              <div class="consistency-bar"><span style="width:4rem;">高绩效薪</span><div class="track"><div class="fill-b" style="width:28%"></div></div><span>28%</span></div>
+            </div>
+          </div>
+          <div class="chart-panel">
+            <h3>季度策略建议（聚合）</h3>
+            <ul style="margin:0;padding-left:1.1rem;font-size:0.85rem;color:var(--text-secondary);">
+              <li>P3：商业化序列奖金系数偏高，与人力成本率上升同步审视</li>
+              <li>P6：建议下季调薪包向高绩效工程倾斜 1–2pp</li>
+              <li>全公司：调薪 +3% 情景见组织 Tab 沙盘 / <a href="scenario.html">情景试算</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <aside class="copilot-panel">
+    <aside class="copilot-panel" id="copilot-panel">
       <h3>💬 Insight Copilot</h3>
-      <div class="copilot-msg bot">
+      <div class="copilot-msg bot" id="copilot-answer">
         <strong>本季人力总成本同比 +6.2%</strong><br />
         主要驱动：P2 工程 FTE +8、中台分摊比例上调。<br />
-        <span style="font-size:0.7rem;color:var(--text-muted);">来源：HR-TCOW · proxy · 2025-Q3 快照</span>
+        <span style="font-size:0.7rem;color:var(--text-muted);">来源：HR-TCOW · proxy · 2025-Q3</span>
       </div>
-      <div class="copilot-msg">示例问法：哪条线人力成本率最高？</div>
+      <div class="copilot-msg" id="copilot-suggest">试试问：哪条线人力成本率最高？</div>
       <div class="copilot-input">
-        <input type="text" placeholder="本季编制达成最低的是谁？" />
-        <button type="button">问</button>
+        <input type="text" id="copilot-input" placeholder="本季编制达成最低的是谁？" />
+        <button type="button" id="copilot-btn">问</button>
       </div>
       <p style="font-size:0.65rem;color:var(--text-muted);margin-top:0.75rem;">规则路径 · 白名单指标 · 高 assumption 拒绝瞎答</p>
     </aside>
   </div>
 
-  <style>.panel.hidden { display: none !important; }</style>
   <script>
-    document.querySelectorAll('#main-tabs button[data-panel]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('#main-tabs button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        document.querySelectorAll('.panel').forEach(p => p.classList.add('hidden'));
-        document.getElementById('panel-' + btn.dataset.panel).classList.remove('hidden');
+    const copilotByTab = {
+      overview: {
+        answer: '<strong>本季人力总成本同比 +6.2%</strong><br/>主要驱动：P2 工程 FTE +8、中台分摊上调。<br/><span style="font-size:0.7rem;color:var(--text-muted)">HR-TCOW · proxy</span>',
+        suggest: '试试问：哪条线人力成本率最高？'
+      },
+      cost: {
+        answer: '<strong>P3 开放平台人力成本率最高：40.4%</strong><br/>超预算 +4.2%，主因 HC 缺口填补 + 浮动成本计提。<br/><span style="font-size:0.7rem;color:var(--text-muted)">HR-LABOR-PCT · proxy · P3</span>',
+        suggest: '试试问：固定成本为什么升了 2pp？'
+      },
+      org: {
+        answer: '<strong>编制达成最低：P4 语音 75.5%</strong><br/>探索期产品线，预警已降敏；非裁编依据。<br/><span style="font-size:0.7rem;color:var(--text-muted)">HR-HC-ACHIEVE · assumption 18%</span>',
+        suggest: '试试问：关键岗空缺最长的是哪个？'
+      },
+      pay: {
+        answer: '<strong>P3 偏差 +7pp</strong>：高绩效薪酬占比高于高绩效人群占比。<br/>建议与商业化业绩挂钩复核；n&lt;5 团队已脱敏。<br/><span style="font-size:0.7rem;color:var(--text-muted)">HR-PAY-PERF-GAP · 聚合</span>',
+        suggest: '试试问：公司层面一致性如何？'
+      }
+    };
+
+    function showPanel(name) {
+      document.querySelectorAll('.panel').forEach(p => p.classList.add('is-hidden'));
+      document.getElementById('panel-' + name).classList.remove('is-hidden');
+      document.querySelectorAll('#main-tabs button[data-panel]').forEach(b => {
+        b.classList.toggle('active', b.dataset.panel === name);
       });
+      const c = copilotByTab[name];
+      if (c) {
+        document.getElementById('copilot-answer').innerHTML = c.answer;
+        document.getElementById('copilot-suggest').textContent = c.suggest;
+      }
+    }
+
+    document.querySelectorAll('#main-tabs button[data-panel]').forEach(btn => {
+      btn.addEventListener('click', () => showPanel(btn.dataset.panel));
     });
+
     document.querySelectorAll('#view-switch button').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('#view-switch button').forEach(b => b.classList.remove('active'));
@@ -173,6 +429,17 @@
         if (btn.dataset.view === 'exec') location.href = 'executive.html';
       });
     });
+
+    const slider = document.getElementById('fte-slider');
+    const fteResult = document.getElementById('fte-result');
+    if (slider && fteResult) {
+      slider.addEventListener('input', () => {
+        const n = slider.value;
+        const tcow = Math.round(n * 124);
+        const pp = (n * 0.08).toFixed(1);
+        fteResult.innerHTML = '<strong>+' + n + ' FTE</strong>（RF03 工程）→ 下季 TCOW <strong>+¥ ' + tcow + '万</strong>（基准）· 人力成本率 <strong>+' + pp + 'pp</strong>';
+      });
+    }
   </script>
 </body>
 </html>

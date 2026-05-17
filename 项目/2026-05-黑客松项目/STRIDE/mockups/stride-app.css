@@ -178,3 +178,70 @@
   padding: 0.25rem 0.5rem; border-radius: 6px;
   background: #fff4e6; color: var(--orange);
 }
+
+.panel.is-hidden { display: none !important; }
+
+.tab-intro {
+  font-size: 0.88rem; color: var(--text-secondary);
+  margin-bottom: 1rem; padding: 0.75rem 1rem;
+  background: var(--accent-soft); border-radius: var(--radius);
+  border: 1px solid rgba(99, 91, 255, 0.15);
+}
+
+.structure-bar {
+  display: flex; height: 28px; border-radius: 8px; overflow: hidden;
+  margin: 1rem 0;
+}
+.structure-bar span { display: block; height: 100%; }
+.structure-legend {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.5rem; font-size: 0.75rem; color: var(--text-secondary);
+}
+.structure-legend li { list-style: none; display: flex; align-items: center; gap: 0.4rem; }
+.structure-legend .dot { width: 8px; height: 8px; border-radius: 2px; }
+
+.tag-warn {
+  display: inline-block; font-size: 0.65rem; font-weight: 600;
+  padding: 0.15rem 0.45rem; border-radius: 4px;
+  background: #fff4e6; color: #c2410c;
+}
+.tag-ok {
+  display: inline-block; font-size: 0.65rem; font-weight: 600;
+  padding: 0.15rem 0.45rem; border-radius: 4px;
+  background: #ecfdf5; color: #0e6245;
+}
+
+.vacancy-list { list-style: none; }
+.vacancy-list li {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0.65rem 0; border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+.vacancy-list li:last-child { border-bottom: none; }
+
+.sandbox-box {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem; margin-top: 1rem;
+}
+.sandbox-box input[type="range"] { width: 100%; margin: 0.5rem 0; }
+.sandbox-result {
+  font-size: 0.85rem; color: var(--text-secondary);
+  padding-top: 0.75rem; border-top: 1px dashed var(--border);
+}
+.sandbox-result strong { color: var(--accent); }
+
+.consistency-bar {
+  display: flex; align-items: center; gap: 0.5rem;
+  margin: 0.35rem 0; font-size: 0.75rem;
+}
+.consistency-bar .track {
+  flex: 1; height: 8px; background: var(--bg);
+  border-radius: 4px; overflow: hidden; display: flex;
+}
+.consistency-bar .fill-a { background: var(--accent); height: 100%; }
+.consistency-bar .fill-b { background: #94a3b8; height: 100%; }
+
+.two-col { display: grid; gap: 1rem; }
+@media (min-width: 900px) { .two-col { grid-template-columns: 1fr 1fr; } }
