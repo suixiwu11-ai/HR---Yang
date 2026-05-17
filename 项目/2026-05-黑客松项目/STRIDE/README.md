@@ -35,9 +35,11 @@ npm install
 npm run dev
 ```
 
-### 看原型（无环境）
+### 看文档 HTML（无环境）
 
-打开 [`mockups/stride-business-narrative.html`](mockups/stride-business-narrative.html) → [`mockups/stride-prd.html`](mockups/stride-prd.html)
+本地：[`mockups/stride-business-narrative.html`](mockups/stride-business-narrative.html) → [`stride-prd.html`](mockups/stride-prd.html)
+
+**一键分享给评委（GitHub Pages，访客无需登录）**：见 [`docs/GITHUB-PAGES.md`](docs/GITHUB-PAGES.md)
 
 ---
 
