@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STRIDE · 情景试算（原型）</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../stride-doc-shared.css" />
+  <link rel="stylesheet" href="../stride-app.css" />
+</head>
+<body class="app-shell">
+  <div class="proto-banner">ForecastEngine · 透明公式 · 非黑箱 ML</div>
+  <header class="doc-header">
+    <a href="../index.html" class="brand">
+      <span class="brand-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M8 2L14 8L8 14L2 8L8 2Z" fill="white"/></svg></span>
+      STRIDE
+    </a>
+    <nav class="doc-nav">
+      <a href="workbench.html">工作台</a>
+      <a href="wizard.html">向导</a>
+      <a href="scenario.html" class="active">情景</a>
+      <a href="executive.html">经营摘要</a>
+    </nav>
+  </header>
+  <main class="app-main" style="max-width:900px;">
+    <p class="breadcrumb"><a href="workbench.html">组织 Tab</a> / 情景试算</p>
+    <h1 style="font-size:1.5rem;margin-bottom:0.5rem;">编制增量情景</h1>
+    <p style="color:var(--text-secondary);margin-bottom:1.5rem;">+10 工程 FTE · 岗位族 RF03 · 目标产品线 P2 海螺</p>
+    <div class="form-row cols-2">
+      <div class="form-field"><label>新增 FTE</label><input type="number" value="10" /></div>
+      <div class="form-field"><label>目标 PL</label><select><option>P2 海螺</option></select></div>
+    </div>
+    <div class="stat-row">
+      <div class="stat-box"><div class="n">+¥980万</div><div class="l">乐观</div></div>
+      <div class="stat-box"><div class="n" style="color:var(--accent);">+¥1,240万</div><div class="l">基准</div></div>
+      <div class="stat-box"><div class="n">+¥1,520万</div><div class="l">保守</div></div>
+    </div>
+    <div class="card highlight">
+      <h4>下季人力成本占营收比 Δ（基准）</h4>
+      <p style="margin:0;font-size:1.25rem;font-weight:700;">+0.8pp → 39.2%</p>
+      <p style="font-size:0.8rem;color:var(--text-muted);margin-top:0.5rem;">假设：营收增速 +12%（proxy）· 假设占比 22% · 已水印</p>
+    </div>
+    <div class="btn-row">
+      <a href="workbench.html" class="btn btn-secondary" style="text-decoration:none;">← 工作台</a>
+      <a href="executive.html" class="btn btn-primary" style="text-decoration:none;color:#fff;">查看经营摘要 →</a>
+    </div>
+  </main>
+</body>
+</html>

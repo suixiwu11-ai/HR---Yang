@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STRIDE · PRD v1.3</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="stride-doc-shared.css" />
+</head>
+<body>
+  <div class="page-bg" aria-hidden="true"></div>
+  <div class="grid-dots" aria-hidden="true"></div>
+  <header class="doc-header">
+    <a href="index.html" class="brand">
+      <span class="brand-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M8 2L14 8L8 14L2 8L8 2Z" fill="white"/></svg></span>
+      STRIDE
+    </a>
+    <nav class="doc-nav">
+      <a href="index.html">首页</a>
+      <a href="business-narrative.html">业务背景</a>
+      <a href="prd.html" class="active">PRD</a>
+      <a href="prototype/workbench.html">产品原型</a>
+    </nav>
+  </header>
+
+  <header class="doc-hero slogan-hero">
+    <div class="badge-row">
+      <span class="badge accent">PRD v1.3 · READY_FOR_BUILD</span>
+      <span class="badge">假设案例 MiniMax</span>
+    </div>
+    <p class="slogan-main"><span class="gradient-text">人力有账，战略有据。</span></p>
+    <p class="slogan-sub">
+      人力洞察工作台 + 战略季编制核算 + 问数 + 情景试算<br />
+      经营摘要仅为<strong>同源导出</strong>，不是另一套故事
+    </p>
+    <p class="slogan-en">STRIDE — Strategic Talent ROI & Investment Decision Engine</p>
+    <p style="margin-top:1.25rem;">
+      <a href="prototype/workbench.html" style="font-weight:600;">→ 打开可点击产品原型</a>
+    </p>
+  </header>
+
+  <div class="doc-layout">
+    <aside class="toc">
+      <h2>目录</h2>
+      <ol>
+        <li><a href="#def">1. 产品定义</a></li>
+        <li><a href="#users">2. 用户场景</a></li>
+        <li><a href="#features">3. 功能需求</a></li>
+        <li><a href="#ia">4. 信息架构</a></li>
+        <li><a href="#data">5. 数据规则</a></li>
+        <li><a href="#scope">6. MVP 范围</a></li>
+        <li><a href="#proto">产品原型页</a></li>
+      </ol>
+    </aside>
+    <main class="doc-main">
+      <section class="doc-section" id="def">
+        <p class="section-label">1</p>
+        <h2>产品定义</h2>
+        <p>解决 HR 五类困境：成本结构、效率口径、编制脱节、薪酬叙事、分摊政治、问数慢。</p>
+        <div class="card highlight">
+          <h4>一句话</h4>
+          <p style="margin:0;"><strong>人力洞察工作台</strong>（四 Tab + 问数 + 情景）+ <strong>战略季向导与核算</strong> + <strong>经营摘要</strong>（单屏导出）。</p>
+        </div>
+        <h3>设计原则</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>原则</th><th>要求</th></tr></thead>
+            <tbody>
+              <tr><td>人力优先</td><td>首屏 TCOW、人均营收、人力成本率、编制达成</td></tr>
+              <tr><td>简易可演示</td><td>规则问数 + 透明公式预测</td></tr>
+              <tr><td>同源口径</td><td>同一 CalcSnapshot</td></tr>
+              <tr><td>双通道</td><td>披露 vs 推演硬隔离</td></tr>
+              <tr><td>非裁员工具</td><td>无末位进经营摘要；薪酬仅聚合</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="stat-row">
+          <div class="stat-box"><div class="n">5min</div><div class="l">HRBP 测试目标</div></div>
+          <div class="stat-box"><div class="n">8+</div><div class="l">标准问法</div></div>
+          <div class="stat-box"><div class="n">15min</div><div class="l">Demo 路径</div></div>
+        </div>
+      </section>
+
+      <section class="doc-section" id="users">
+        <p class="section-label">2</p>
+        <h2>用户与场景</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>优先级</th><th>角色</th><th>场景</th></tr></thead>
+            <tbody>
+              <tr><td>P0</td><td>HRBP</td><td>季中监控、编制会、对齐 CPO/财务</td></tr>
+              <tr><td>P1</td><td>CPO</td><td>stage、主投、模型-产品联动</td></tr>
+              <tr><td>P2</td><td>经营层</td><td>披露相关一页摘要（只读）</td></tr>
+              <tr><td>P3</td><td>PL 负责人</td><td>本线人效卡（只读）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ol>
+          <li>季中：总览发现某线人力成本率上升 → Copilot 追问 → 跳转成本 Tab</li>
+          <li>编制会前：组织 Tab 沙盘「+10 工程到海螺」→ 下季 TCOW 区间</li>
+          <li>季末：向导录入 → 核算 → HR 报告 + 经营摘要同源生成</li>
+        </ol>
+      </section>
+
+      <section class="doc-section" id="features">
+        <p class="section-label">3</p>
+        <h2>功能需求（必交付）</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Tab</th><th>路由</th><th>能力</th></tr></thead>
+            <tbody>
+              <tr><td><strong>总览</strong></td><td>/</td><td>四 KPI + 走势 + 对标 + Copilot 侧栏</td></tr>
+              <tr><td>成本</td><td>/cost</td><td>TCOW 结构；条线成本表</td></tr>
+              <tr><td>组织</td><td>/org</td><td>编制达成、Span、空缺、离职；沙盘入口</td></tr>
+              <tr><td>薪酬×绩效</td><td>/pay-performance</td><td>高绩效薪酬偏差（聚合 n&lt;5 脱敏）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>洞察问数</h3>
+        <p>规则+模板 → 白名单指标 → 回答含来源类型 → 假设过高则拒绝。</p>
+        <h3>情景试算</h3>
+        <p>编制增量、主投权重调整、调薪沙盘 → 乐观/基准/保守 + 假设清单。</p>
+        <h3>向导 1–3 + 核算</h3>
+        <p>战略权重 / FTE 分摊（行和 100%）/ 产出证据 → 人效指数、能力 ROI、五类预警。</p>
+      </section>
+
+      <section class="doc-section" id="ia">
+        <p class="section-label">4</p>
+        <h2>信息架构</h2>
+        <pre class="pre-block">/                 → 工作台 · 总览
+/cost / /org / /pay-performance
+/insight          → 问数全屏（可选）
+/scenario         → 情景试算
+/wizard/1|2|3     → 战略 / 投入 / 产出
+/strategic        → 能力 ROI、预警
+/executive        → 经营摘要
+/report           → MD/PDF</pre>
+        <p>顶栏视图：<strong>人力业务伙伴 | 首席人才官 | 经营层</strong>（无登录，仅切换卡片集）</p>
+      </section>
+
+      <section class="doc-section" id="data">
+        <p class="section-label">5</p>
+        <h2>数据与预警（摘要）</h2>
+        <pre class="pre-block">岗位投入 = FTE × 13周 × 系数 × 分摊%
+人力总成本 = Σ 投入
+人效指数 = Σ(产出×战略权重) / 投入 × 100</pre>
+        <p>五类预警：投入升产出降、主投 ROI 偏低、权重偏离、模型-产品脱节、收入-投入倒挂（探索期降敏）。</p>
+      </section>
+
+      <section class="doc-section" id="scope">
+        <p class="section-label">6</p>
+        <h2>MVP 与不做</h2>
+        <div class="card-grid cols-2">
+          <article class="card" style="border-color:rgba(0,217,36,0.3);">
+            <h4>✓ MVP</h4>
+            <ul style="margin:0;font-size:0.85rem;">
+              <li>四 Tab + KPI + Copilot</li>
+              <li>两类情景试算</li>
+              <li>向导 + 核算 + W1–W5</li>
+              <li>/executive + 报告</li>
+              <li>Demo 2025Q2–Q4</li>
+            </ul>
+          </article>
+          <article class="card warn">
+            <h4>✗ 不做</h4>
+            <ul style="margin:0;font-size:0.85rem;">
+              <li>真实 HRIS 对接</li>
+              <li>登录鉴权</li>
+              <li>LLM 编造披露数</li>
+              <li>IR 营销首页</li>
+            </ul>
+          </article>
+        </div>
+        <p style="margin-top:1rem;font-size:0.85rem;">技术栈：Next.js 14 · TypeScript · SQLite · ECharts</p>
+      </section>
+
+      <section class="doc-section" id="proto">
+        <p class="section-label">原型</p>
+        <h2>HTML 产品原型（可点击）</h2>
+        <div class="card-grid cols-2">
+          <a class="card" href="prototype/workbench.html" style="display:block;color:inherit;">
+            <h4>HR 工作台</h4>
+            <p style="font-size:0.85rem;margin:0;">四 Tab · Copilot · 视图切换</p>
+          </a>
+          <a class="card" href="prototype/wizard.html" style="display:block;color:inherit;">
+            <h4>战略向导 1–3</h4>
+            <p style="font-size:0.85rem;margin:0;">权重 · 分摊矩阵 · 产出证据</p>
+          </a>
+          <a class="card" href="prototype/scenario.html" style="display:block;color:inherit;">
+            <h4>情景试算</h4>
+            <p style="font-size:0.85rem;margin:0;">编制增量 · 三档区间</p>
+          </a>
+          <a class="card" href="prototype/executive.html" style="display:block;color:inherit;">
+            <h4>经营摘要</h4>
+            <p style="font-size:0.85rem;margin:0;">同源一页结论 + 免责</p>
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <section class="doc-cta">
+    <div class="cta-box">
+      <h2>体验产品原型</h2>
+      <div class="cta-links">
+        <a class="cta-btn" href="prototype/workbench.html">打开工作台 →</a>
+        <a class="cta-btn ghost" href="business-narrative.html">← 业务背景</a>
+      </div>
+    </div>
+  </section>
+  <footer class="disclaimer-footer">源：docs/02-requirements/PRD-v1.3.md · MiniMax 公开信息推演</footer>
+</body>
+</html>

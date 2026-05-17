@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STRIDE · HR 工作台（原型）</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../stride-doc-shared.css" />
+  <link rel="stylesheet" href="../stride-app.css" />
+</head>
+<body class="app-shell">
+  <div class="proto-banner">HTML 原型 · 2025 Q3 Demo · 假设案例 MiniMax · 数据为推演</div>
+  <header class="app-header">
+    <div class="app-header-inner">
+      <a href="../index.html" class="brand" style="text-decoration:none;color:inherit;">
+        <span class="brand-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M8 2L14 8L8 14L2 8L8 2Z" fill="white"/></svg></span>
+        STRIDE
+      </a>
+      <nav class="app-tabs" id="main-tabs">
+        <button type="button" class="active" data-panel="overview">总览</button>
+        <button type="button" data-panel="cost">成本</button>
+        <button type="button" data-panel="org">组织</button>
+        <button type="button" data-panel="pay">薪酬×绩效</button>
+        <a href="wizard.html">向导</a>
+        <a href="scenario.html">情景</a>
+        <a href="executive.html">经营摘要</a>
+      </nav>
+      <div style="display:flex;gap:0.75rem;align-items:center;">
+        <div class="view-switch" id="view-switch">
+          <button type="button" class="active" data-view="hrbp">HRBP</button>
+          <button type="button" data-view="cpo">CPO</button>
+          <button type="button" data-view="exec">经营层</button>
+        </div>
+        <a href="../prd.html" style="font-size:0.75rem;color:var(--text-muted);">PRD</a>
+      </div>
+    </div>
+  </header>
+
+  <p class="breadcrumb" style="max-width:1400px;margin:0.75rem auto 0;padding:0 1.5rem;">
+    <a href="../index.html">首页</a> / <a href="../prd.html">PRD</a> / <strong>工作台</strong>
+  </p>
+
+  <div class="app-main with-copilot" id="app-main">
+    <div>
+      <!-- 总览 -->
+      <div class="panel" id="panel-overview">
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="label">人力总成本 TCOW</div>
+            <div class="value">¥ 2.84亿</div>
+            <div class="delta up">↑ 6.2% QoQ</div>
+            <span class="tag-src">proxy</span>
+          </div>
+          <div class="kpi-card">
+            <div class="label">人力成本占营收比</div>
+            <div class="value">38.4%</div>
+            <div class="delta down">↑ 1.1pp</div>
+            <span class="tag-src">disclosed 通道对照</span>
+          </div>
+          <div class="kpi-card">
+            <div class="label">人均营收 Rev/FTE</div>
+            <div class="value">¥ 186万</div>
+            <div class="delta up">↑ 4%</div>
+            <span class="tag-src">proxy</span>
+          </div>
+          <div class="kpi-card">
+            <div class="label">编制达成率</div>
+            <div class="value">94%</div>
+            <span class="tag-src">assumption 12%</span>
+          </div>
+        </div>
+        <div class="chart-panel" style="margin-top:1rem;">
+          <h3>营收 vs 人力总成本（滚动四季）</h3>
+          <div class="chart-bars-mock">
+            <span style="height:55%"></span><span style="height:62%"></span>
+            <span style="height:58%"></span><span class="hi" style="height:72%"></span>
+          </div>
+        </div>
+        <div class="chart-panel" style="margin-top:1rem;">
+          <h3>产品线人均营收对标</h3>
+          <div class="table-wrap" style="margin:0;">
+            <table>
+              <thead><tr><th>产品线</th><th>Rev/FTE</th><th>人力成本率</th></tr></thead>
+              <tbody>
+                <tr><td>P2 海螺</td><td>¥ 210万</td><td>35%</td></tr>
+                <tr><td>P1 星野</td><td>¥ 198万</td><td>37%</td></tr>
+                <tr><td>P6 中台</td><td>—</td><td>分摊入口</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 成本 -->
+      <div class="panel hidden" id="panel-cost" hidden>
+        <h2 style="font-size:1.25rem;margin-bottom:1rem;">成本 · TCOW 结构</h2>
+        <div class="kpi-grid">
+          <div class="kpi-card"><div class="label">固定</div><div class="value">52%</div></div>
+          <div class="kpi-card"><div class="label">浮动</div><div class="value">28%</div></div>
+          <div class="kpi-card"><div class="label">法定</div><div class="value">12%</div></div>
+          <div class="kpi-card"><div class="label">福利</div><div class="value">8%</div></div>
+        </div>
+        <div class="chart-panel" style="margin-top:1rem;">
+          <h3>产品线成本一览</h3>
+          <p style="font-size:0.85rem;color:var(--text-secondary);">P3 开放平台预算偏离 +4.2% · 关注点标签已亮</p>
+        </div>
+      </div>
+
+      <!-- 组织 -->
+      <div class="panel hidden" id="panel-org" hidden>
+        <h2 style="font-size:1.25rem;margin-bottom:1rem;">组织 · 效率信号</h2>
+        <div class="kpi-grid">
+          <div class="kpi-card"><div class="label">关键岗空缺</div><div class="value">7</div></div>
+          <div class="kpi-card"><div class="label">离职率</div><div class="value">8.1%</div></div>
+          <div class="kpi-card"><div class="label">管理幅度 Span</div><div class="value">1:6.2</div></div>
+        </div>
+        <div class="card highlight" style="margin-top:1rem;">
+          <h4>编制 / 调薪沙盘</h4>
+          <p style="font-size:0.85rem;margin:0 0 0.75rem;">+10 工程 FTE → 海螺 · 下季 TCOW +¥ 1,240万（基准）</p>
+          <a href="scenario.html" class="btn btn-primary" style="display:inline-block;text-decoration:none;color:#fff;">打开情景试算 →</a>
+        </div>
+        <a href="wizard.html" class="btn btn-secondary" style="display:inline-block;margin-top:0.75rem;text-decoration:none;">向导 2：分摊矩阵 →</a>
+      </div>
+
+      <!-- 薪酬 -->
+      <div class="panel hidden" id="panel-pay" hidden>
+        <h2 style="font-size:1.25rem;margin-bottom:1rem;">薪酬×绩效 · 一致性（聚合）</h2>
+        <div class="card warn">
+          <p style="margin:0;font-size:0.85rem;"><strong>免责声明</strong>：非绩效裁员工具；n&lt;5 团队不展示；仅部门/产品线聚合。</p>
+        </div>
+        <div class="table-wrap" style="margin-top:1rem;">
+          <table>
+            <thead><tr><th>部门</th><th>高绩效占比</th><th>高绩效薪酬占比</th><th>偏差</th></tr></thead>
+            <tbody>
+              <tr><td>研发中台</td><td>32%</td><td>28%</td><td style="color:var(--orange);">-4pp</td></tr>
+              <tr><td>P2 海螺</td><td>29%</td><td>31%</td><td>+2pp</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <aside class="copilot-panel">
+      <h3>💬 Insight Copilot</h3>
+      <div class="copilot-msg bot">
+        <strong>本季人力总成本同比 +6.2%</strong><br />
+        主要驱动：P2 工程 FTE +8、中台分摊比例上调。<br />
+        <span style="font-size:0.7rem;color:var(--text-muted);">来源：HR-TCOW · proxy · 2025-Q3 快照</span>
+      </div>
+      <div class="copilot-msg">示例问法：哪条线人力成本率最高？</div>
+      <div class="copilot-input">
+        <input type="text" placeholder="本季编制达成最低的是谁？" />
+        <button type="button">问</button>
+      </div>
+      <p style="font-size:0.65rem;color:var(--text-muted);margin-top:0.75rem;">规则路径 · 白名单指标 · 高 assumption 拒绝瞎答</p>
+    </aside>
+  </div>
+
+  <style>.panel.hidden { display: none !important; }</style>
+  <script>
+    document.querySelectorAll('#main-tabs button[data-panel]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#main-tabs button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.panel').forEach(p => p.classList.add('hidden'));
+        document.getElementById('panel-' + btn.dataset.panel).classList.remove('hidden');
+      });
+    });
+    document.querySelectorAll('#view-switch button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#view-switch button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        if (btn.dataset.view === 'exec') location.href = 'executive.html';
+      });
+    });
+  </script>
+</body>
+</html>

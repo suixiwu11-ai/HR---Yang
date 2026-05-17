@@ -31,6 +31,7 @@
 | **交付物清单（按阶段）** | [`项目/2026-05-黑客松项目/DELIVERABLES.md`](项目/2026-05-黑客松项目/DELIVERABLES.md) |
 | **黑客松 5 分钟读文档** | [`项目/2026-05-黑客松项目/STRIDE/docs/HACKATHON.md`](项目/2026-05-黑客松项目/STRIDE/docs/HACKATHON.md) |
 | **STRIDE 仓库说明** | [`项目/2026-05-黑客松项目/STRIDE/README.md`](项目/2026-05-黑客松项目/STRIDE/README.md) |
+| **HTML 导读（业务+PRD+原型）** | [`mockups/index.html`](项目/2026-05-黑客松项目/STRIDE/mockups/index.html) · 在线：`https://frankli9986.github.io/HR-hackathon-2026-05/`（需开启 Pages） |
 | **UX 北极星** | [Netlify HRBP 原型](https://warm-squirrel-e57666.netlify.app/) |
 
 ```bash

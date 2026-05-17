@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STRIDE · 业务背景</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="stride-doc-shared.css" />
+</head>
+<body>
+  <div class="page-bg" aria-hidden="true"></div>
+  <div class="grid-dots" aria-hidden="true"></div>
+  <header class="doc-header">
+    <a href="index.html" class="brand">
+      <span class="brand-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M8 2L14 8L8 14L2 8L8 2Z" fill="white"/></svg></span>
+      STRIDE
+    </a>
+    <nav class="doc-nav">
+      <a href="index.html">首页</a>
+      <a href="business-narrative.html" class="active">业务背景</a>
+      <a href="prd.html">PRD</a>
+      <a href="prototype/workbench.html">产品原型</a>
+    </nav>
+  </header>
+
+  <header class="doc-hero">
+    <div class="badge-row">
+      <span class="badge accent">business-narrative v3.1</span>
+      <span class="badge">假设案例：MiniMax（公开信息）</span>
+      <span class="badge warn">非官方口径</span>
+    </div>
+    <h1>多产品线 AI 公司的<br /><span class="gradient-text">人才管理命题</span></h1>
+    <p class="lead">
+      从行业进入「组织兑现」阶段，到典型上市大模型公司的多线作战与 AI 工作流重塑，
+      说明 HR 为何需要<strong>可审计、可重复</strong>的人力洞察体系——而非又一张 PPT。
+    </p>
+  </header>
+
+  <div class="doc-layout">
+    <aside class="toc">
+      <h2>目录</h2>
+      <ol>
+        <li><a href="#s1">一、行业</a></li>
+        <li><a href="#s2">二、企业画像</a></li>
+        <li><a href="#s3">三、压力与突围</a></li>
+        <li><a href="#s4">四、对 HR 的要求</a></li>
+        <li><a href="#s5">五、HR 现状痛点</a></li>
+        <li><a href="#s6">六、方法论五步</a></li>
+        <li><a href="#s7">七、跨行业规律</a></li>
+        <li><a href="#s8">八、结论</a></li>
+      </ol>
+    </aside>
+    <main class="doc-main">
+      <section class="doc-section" id="s1">
+        <p class="section-label">一</p>
+        <h2>行业：从「模型竞赛」到「组织兑现」</h2>
+        <p>资本与用户关注的不仅是「有没有大模型」，而是<strong>能否稳定产品化、商业化并在多产品线持续兑现</strong>。</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>维度</th><th>对组织与人才的影响</th></tr></thead>
+            <tbody>
+              <tr><td>研发密度极高</td><td>算法/工程/产品占成本主体；关键岗波动放大交付风险</td></tr>
+              <tr><td>产品形态多元</td><td>C 端、开放平台、ToB 并存；单一「人均产值」无法衡量全公司</td></tr>
+              <tr><td>迭代周期缩短</td><td>编制调配须按季跟进，而非年度调一次</td></tr>
+              <tr><td>AI 渗透工作流</td><td>岗位边界与协作方式同时变化，JD 易滞后</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>含义</strong>：人效讨论须回答「人投在哪些能力、产品线、任务上，是否支撑本阶段战略」。</p>
+      </section>
+
+      <section class="doc-section" id="s2">
+        <p class="section-label">二</p>
+        <h2>企业：典型「多产品线 AI 原生」画像（以 MiniMax 为参照）</h2>
+        <div class="card highlight">
+          <p style="margin:0;font-size:0.9rem;">本文以<strong>已上市、多模态、C 端与开放平台并举</strong>的大模型公司为参照（公开材料特征）。<strong>不代表</strong> MiniMax 或任何企业官方判断。</p>
+        </div>
+        <h3>2.1 业务与组织</h3>
+        <ul>
+          <li>多条 C 端产品线（社交/内容、创作、语音、视频等）处于不同 stage</li>
+          <li>开放平台 / API：ToB 逻辑与 C 端不同</li>
+          <li><strong>基础模型与中台 P6</strong>：集中研发再向各线二次分摊</li>
+          <li>全球化：海外收入与区域团队提升编制敏感性</li>
+          <li><strong>10x 等横切项目</strong>：垂直研究须被产品线采纳，避免「只取不交」</li>
+        </ul>
+        <h3>2.2 组织特征（HR 视角）</h3>
+        <div class="card-grid cols-2">
+          <article class="card"><h4>矩阵协作</h4><p style="font-size:0.85rem;margin:0;">产品线与中台双线预算与汇报</p></article>
+          <article class="card"><h4>岗位族分化</h4><p style="font-size:0.85rem;margin:0;">算法/工程/产品/商务成本系数差异大</p></article>
+          <article class="card"><h4>探索型业务</h4><p style="font-size:0.85rem;margin:0;">「买期权」阶段不宜用成熟线标准考核</p></article>
+          <article class="card"><h4>双轨口径</h4><p style="font-size:0.85rem;margin:0;">披露字段 vs 内部复盘 proxy 须硬隔离</p></article>
+        </div>
+      </section>
+
+      <section class="doc-section" id="s3">
+        <p class="section-label">三</p>
+        <h2>企业压力与突围方向</h2>
+        <ul>
+          <li><strong>战略与组织时差</strong>：董事会预期 vs 招聘/编制刷新滞后 1–2 季</li>
+          <li><strong>多线资源争夺</strong>：无透明分摊时编制会退化为口水战</li>
+          <li><strong>AI 重写工作流</strong>：个人 Copilot 提效 ≠ 组织交付提效</li>
+          <li><strong>突围五件事</strong>：主投清晰、中台可解释、探索受保护、协作可验收、财务可对话</li>
+        </ul>
+      </section>
+
+      <section class="doc-section" id="s4">
+        <p class="section-label">四</p>
+        <h2>业务压力 → 对人才管理的五类要求</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>业务诉求</th><th>人才管理要求</th></tr></thead>
+            <tbody>
+              <tr><td>战略落地</td><td>编制映射到 战略能力 × 产品线 × 岗位族</td></tr>
+              <tr><td>成本控制</td><td>说清 TCOW 结构与人力成本占营收比驱动</td></tr>
+              <tr><td>交付提速</td><td>识别关键岗空缺与协作断点</td></tr>
+              <tr><td>激励一致</td><td>薪酬绩效向高价值任务倾斜（聚合、可脱敏）</td></tr>
+              <tr><td>治理信任</td><td>披露 / proxy / 假设 分级，季度可复用</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="doc-section" id="s5">
+        <p class="section-label">五</p>
+        <h2>HR 现状：卡在哪里（约占管理议题七成）</h2>
+        <div class="card-grid cols-2">
+          <article class="card warn"><h4>5.1 成本</h4><p style="font-size:0.85rem;margin:0;">看得见总数，看不清结构、归属与中台分摊体感</p></article>
+          <article class="card warn"><h4>5.2 效率</h4><p style="font-size:0.85rem;margin:0;">DAU、HC、人均收入各说各话</p></article>
+          <article class="card warn"><h4>5.3 编制</h4><p style="font-size:0.85rem;margin:0;">计划/达成/战略主投脱节；组织信号不进主屏</p></article>
+          <article class="card warn"><h4>5.4 薪酬×绩效</h4><p style="font-size:0.85rem;margin:0;">政策有，聚合叙事弱；调薪缺透明试算</p></article>
+          <article class="card warn"><h4>5.5 分摊政治</h4><p style="font-size:0.85rem;margin:0;">Excel 版本不可追溯；JD/年报/业务三套叙事</p></article>
+          <article class="card warn"><h4>5.6 节奏</h4><p style="font-size:0.85rem;margin:0;">临时问数 2–3 天；编制会前无可解释情景</p></article>
+        </div>
+      </section>
+
+      <section class="doc-section" id="s6">
+        <p class="section-label">六</p>
+        <h2>方法论：五步闭环（STRIDE 的设计依据）</h2>
+        <pre class="pre-block">结构化访谈 → 主题综合与裁决 → 指标与成本模型 → 数字化工作台 → 季度运营与证据</pre>
+        <div class="timeline">
+          <div class="timeline-item"><strong>6.1 访谈</strong><p>分角色/分产品线；先情境与成功标准，再谈功能</p></div>
+          <div class="timeline-item"><strong>6.2 裁决</strong><p>冲突显性化；单一事实来源（如 HR 详版 vs 经营摘要隐藏末位）</p></div>
+          <div class="timeline-item"><strong>6.3 模型</strong><p>HR 成本层 + 组织层 + 战略编制层；双通道 disclosed/proxy/assumption</p></div>
+          <div class="timeline-item"><strong>6.4 平台</strong><p>四 Tab 工作台 + 问数 + 情景试算；快照不可覆盖</p></div>
+          <div class="timeline-item"><strong>6.5 运营</strong><p>季初对齐 → 季中监控 → 季末核算与同源报告</p></div>
+        </div>
+        <pre class="pre-block">岗位投入 = 全职当量 × 13周 × 岗位成本系数 × 分摊%
+公司人力总成本 = Σ 岗位投入</pre>
+      </section>
+
+      <section class="doc-section" id="s7">
+        <p class="section-label">七</p>
+        <h2>跨行业可迁移的三条规律</h2>
+        <ol>
+          <li><strong>先定义高价值任务，再谈编制</strong>（产研 AI 化、创意项目制均同）</li>
+          <li><strong>区分环境损耗与能力问题</strong>（流程/工具 vs 态度）</li>
+          <li><strong>个人提效 ≠ 组织提效</strong>（须进入标准工作流与验收）</li>
+        </ol>
+      </section>
+
+      <section class="doc-section" id="s8">
+        <p class="section-label">八</p>
+        <h2>HR 应建立的管理语言（结论）</h2>
+        <ol>
+          <li>以 People Analytics 为底座（TCOW、人力成本率、Rev/FTE、编制、组织信号）</li>
+          <li>以战略季为节奏（能力×产品线×岗位族；stage 化预警）</li>
+          <li>以任务与采纳为闭环（横切项目看 Handoff/采纳）</li>
+          <li>以情景试算支持编制与调薪（三档区间 + 假设清单）</li>
+          <li>以问数与追溯为日常习惯（每个数字可回溯来源）</li>
+        </ol>
+        <div class="card warn">
+          <h4>边界</h4>
+          <p style="margin:0;font-size:0.85rem;">非裁员工具；不替代 HRIS；小样本脱敏；proxy 不得冒充披露。</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <section class="doc-cta">
+    <div class="cta-box">
+      <h2>下一步：PRD 与可点击原型</h2>
+      <p>看我们要交付什么，再打开 HTML 产品原型</p>
+      <div class="cta-links">
+        <a class="cta-btn" href="prd.html">PRD v1.3 →</a>
+        <a class="cta-btn ghost" href="prototype/workbench.html">产品原型</a>
+      </div>
+    </div>
+  </section>
+  <footer class="disclaimer-footer">源文档：docs/00-background/business-narrative.md v3.1 · MiniMax 公开信息推演</footer>
+  <script>
+    document.querySelectorAll('.toc a').forEach(a => {
+      a.addEventListener('click', () => {
+        document.querySelectorAll('.toc a').forEach(x => { x.style.fontWeight = ''; x.style.color = ''; });
+        a.style.fontWeight = '600'; a.style.color = 'var(--accent)';
+      });
+    });
+  </script>
+</body>
+</html>
