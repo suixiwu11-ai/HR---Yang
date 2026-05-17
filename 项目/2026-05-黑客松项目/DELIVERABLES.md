@@ -116,8 +116,8 @@
 
 | 交付物 | 路径 | 类型 | 状态 |
 |--------|------|------|------|
-| **产品需求文档（主）** | [STRIDE/docs/02-requirements/PRD-v1.2.md](./STRIDE/docs/02-requirements/PRD-v1.2.md) | PRD | 已完成 |
-| PRD v1.1 | [STRIDE/docs/02-requirements/PRD-v1.1.md](./STRIDE/docs/02-requirements/PRD-v1.1.md) | PRD | 已归档 |
+| **产品需求文档（主）** | [STRIDE/docs/02-requirements/PRD-v1.3.md](./STRIDE/docs/02-requirements/PRD-v1.3.md) | PRD | 已完成 |
+| PRD v1.2 / v1.1 | [STRIDE/docs/02-requirements/PRD-v1.2.md](./STRIDE/docs/02-requirements/PRD-v1.2.md) 等 | PRD | 已归档 |
 | 用户交付决策（6 项） | [STRIDE/docs/02-requirements/user-decisions.md](./STRIDE/docs/02-requirements/user-decisions.md) | 决策 | 已完成 |
 | 指标字典 | [STRIDE/docs/02-requirements/metrics-dictionary.csv](./STRIDE/docs/02-requirements/metrics-dictionary.csv) | 数据 | 已完成（骨架+HR/X10 行） |
 | 默认分摊与协作矩阵 | [STRIDE/docs/02-requirements/allocation-default.json](./STRIDE/docs/02-requirements/allocation-default.json) | 数据 | 已完成 |

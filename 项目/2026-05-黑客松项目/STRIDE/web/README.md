@@ -3,7 +3,7 @@
 HR Hackathon 2026-05 · STRIDE 前端。路径：`项目/2026-05-黑客松项目/STRIDE/web`
 
 - [docs/HACKATHON.md](../docs/HACKATHON.md)
-- [docs/02-requirements/PRD-v1.2.md](../docs/02-requirements/PRD-v1.2.md)
+- [docs/02-requirements/PRD-v1.3.md](../docs/02-requirements/PRD-v1.3.md)
 - [docs/03-architecture/ui-design-digital-v1.md](../docs/03-architecture/ui-design-digital-v1.md)
 
 **UX 参考**：[Netlify HRBP 原型](https://warm-squirrel-e57666.netlify.app/)

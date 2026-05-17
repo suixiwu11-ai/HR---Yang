@@ -1,6 +1,6 @@
 # 项目背景 — STRIDE 作品集与桌面研究约束
 
-> **关联**：[business-narrative.md](./business-narrative.md) · [strategic-context.md](./strategic-context.md) | [PRD v1.2](../02-requirements/PRD-v1.2.md) | [用户决策](../02-requirements/user-decisions.md)
+> **关联**：[business-narrative.md](./business-narrative.md) · [strategic-context.md](./strategic-context.md) | [PRD v1.3](../02-requirements/PRD-v1.3.md) | [用户决策](../02-requirements/user-decisions.md)
 
 ---
 

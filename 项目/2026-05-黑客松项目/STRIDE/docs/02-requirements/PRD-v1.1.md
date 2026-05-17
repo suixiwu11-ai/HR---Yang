@@ -1,6 +1,6 @@
 # 某大模型公司战略人效核算台 — 产品需求文档 v1.1（已 supersede）
 
-> **⚠️ 请以 [PRD-v1.2.md](./PRD-v1.2.md) 为单一事实来源**（v1.2：HR 工作台优先、Chat-to-BI、预测能力、Netlify 为 UX 北极星）。  
+> **⚠️ 请以 [PRD-v1.3.md](./PRD-v1.3.md) 为单一事实来源**。  
 > **英文代号**：**STRIDE** — *Strategic Talent ROI & Investment Decision Engine*  
 > **中文产品名**：某大模型公司战略人效核算台（对外标题不出现 MiniMax 品牌）  
 > **数据主体**：MiniMax 公开信息推演；**交付定位**：长期作品集（Portfolio）  

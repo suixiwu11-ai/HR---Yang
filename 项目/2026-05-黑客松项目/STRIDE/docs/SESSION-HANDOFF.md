@@ -1,7 +1,7 @@
 # 新 Session 开发提示词（复制整段发给 Agent）
 
 > 将下方 **「复制块」** 全文粘贴到新的 Cursor Chat。  
-> 文档索引：[README.md](./README.md) | **PRD v1.2** | UX 北极星：https://warm-squirrel-e57666.netlify.app/
+> 文档索引：[README.md](./README.md) | **PRD v1.3** | UX 北极星：https://warm-squirrel-e57666.netlify.app/
 
 ---
 
@@ -16,7 +16,7 @@
 **UX 北极星**：https://warm-squirrel-e57666.netlify.app/ — 四 Tab（总览/成本/组织/薪酬绩效）+ 右侧 Chat-to-BI + 调薪沙盘。
 **勿把** `mockups/stride-home-executive.html` 当首页（仅 `/executive` 经营摘要参考）。
 
-**先读**：`docs/README.md` → `PRD-v1.2.md` → `architecture-v2.1.md` → **`ui-design-digital-v1.md`**（亮色 UI 规范）→ `allocation-default.json`、`metrics-dictionary.csv` → `.cursor/skills/minimax-strategic-workforce/SKILL.md`
+**先读**：`docs/README.md` → `business-narrative.md` → `PRD-v1.3.md`（含附录 A）→ `architecture-v2.1.md` → **`ui-design-digital-v1.md`** → `allocation-default.json`、`metrics-dictionary.csv` → `.cursor/skills/minimax-strategic-workforce/SKILL.md`
 
 **栈**：Next.js 14 + TS + SQLite；ECharts；MD+PDF；无 RBAC；默认 `?view=hrbp` 或路由 `/`。
 
@@ -41,5 +41,5 @@
 | 字段 | 值 |
 |------|-----|
 | 更新日期 | 2026-05-16 |
-| PRD | `docs/02-requirements/PRD-v1.2.md` |
+| PRD | `docs/02-requirements/PRD-v1.3.md` |
 | UX | Netlify HRBP 原型 |
