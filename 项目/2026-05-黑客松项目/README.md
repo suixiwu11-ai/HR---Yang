@@ -61,6 +61,7 @@
 
 | 文件 | 用途 | 状态 |
 |------|------|------|
+| **[交付物清单（按阶段）](DELIVERABLES.md)** | **全项目交付物 inventory** | 已完成 |
 | **[STRIDE/](STRIDE/README.md)** | **产品文档（PRD v1.2）+ mockups + Next.js**；入口 [HACKATHON.md](STRIDE/docs/HACKATHON.md) | 已结构化入库 |
 | [业务场景-广告营销.md](业务场景-广告营销.md) | 广告营销行业人效分析场景文档 | 初稿（待补充战略优势和业务困境） |
 | [业务场景文档-模板.md](业务场景文档-模板.md) | 业务场景文档模板 | 已完成 |

@@ -11,6 +11,7 @@
 | 文档 | 说明 |
 |------|------|
 | **[HACKATHON.md](./HACKATHON.md)** | **5 分钟阅读路径**（Tier 0/1/2/3） |
+| [../DELIVERABLES.md](../DELIVERABLES.md) | **全项目交付物清单（按阶段）** |
 | [MANIFEST.md](./MANIFEST.md) | 全文件清单与 tier 标签 |
 | [STRIDE README](../README.md) | 本产品设计说明、`web/` 启动 |
 | [团队仓库根 README](../../../README.md) | 黑客松团队入口 |
