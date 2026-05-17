@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STRIDE · 季度总览（Executive UI 原型）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0c0d0b;
+      --bg-elevated: #141612;
+      --surface: #1c1e19;
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #f4f2eb;
+      --text-muted: rgba(244, 242, 235, 0.62);
+      --green: #2d4a3e;
+      --green-bright: #4a7c62;
+      --gold: #c9a962;
+      --gold-soft: rgba(201, 169, 98, 0.15);
+      --warn: #d4a574;
+      --radius: 2px;
+      --font-display: "Cormorant Garamond", Georgia, serif;
+      --font-body: "DM Sans", system-ui, sans-serif;
+      --nav-h: 72px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* —— Nav (GolfSpace-style minimal top bar) —— */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.25rem, 4vw, 3rem);
+      background: linear-gradient(to bottom, rgba(12, 13, 11, 0.92), transparent);
+      backdrop-filter: blur(8px);
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.2em;
+      font-weight: 600;
+    }
+
+    .logo span { color: var(--gold); font-weight: 400; }
+
+    .nav-links {
+      display: none;
+      gap: 2rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    @media (min-width: 900px) {
+      .nav-links { display: flex; }
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .view-toggle {
+      display: flex;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .view-toggle button {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.5rem 0.75rem;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .view-toggle button.active {
+      background: var(--green);
+      color: var(--text);
+    }
+
+    .btn {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #0c0d0b;
+      border-color: var(--gold);
+    }
+
+    .btn-primary:hover { filter: brightness(1.08); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* —— Hero —— */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: calc(var(--nav-h) + 2rem) clamp(1.25rem, 4vw, 3rem) 4rem;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(165deg, rgba(12, 13, 11, 0.35) 0%, rgba(12, 13, 11, 0.88) 55%, var(--bg) 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%231a2e26'/%3E%3Cstop offset='50%25' stop-color='%230f1410'/%3E%3Cstop offset='100%25' stop-color='%230c0d0b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill='url(%23g)' width='1200' height='800'/%3E%3Cpath fill='%232d4a3e' fill-opacity='0.12' d='M0 520 Q300 380 600 480 T1200 420 V800 H0Z'/%3E%3Cpath fill='%23c9a962' fill-opacity='0.06' d='M0 600 Q400 500 800 560 T1200 500 V800 H0Z'/%3E%3C/svg%3E") center/cover no-repeat;
+    }
+
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 50% at 70% 20%, rgba(74, 124, 98, 0.18), transparent 60%);
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 52rem;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.75rem, 7vw, 4.5rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--text-muted);
+    }
+
+    .hero-lead {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--text-muted);
+      max-width: 36rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      max-width: 42rem;
+    }
+
+    .hero-metric {
+      background: rgba(20, 22, 18, 0.85);
+      padding: 1.25rem 1.5rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-metric .label {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-metric .value {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      color: var(--gold);
+    }
+
+    .hero-metric .delta {
+      font-size: 0.75rem;
+      color: var(--green-bright);
+      margin-top: 0.25rem;
+    }
+
+    .hero-metric .delta.warn { color: var(--warn); }
+
+    /* —— Section shell —— */
+    section {
+      padding: clamp(4rem, 10vw, 7rem) clamp(1.25rem, 4vw, 3rem);
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 40rem;
+      margin: 0 auto 3.5rem;
+    }
+
+    .section-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight: 400;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* —— Four pillars (Elevate / Play / … pattern) —— */
+    .pillars {
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1px;
+      background: var(--border);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      .pillar-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1100px) {
+      .pillar-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .pillar-card {
+      position: relative;
+      min-height: 320px;
+      background: var(--surface);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+
+    .pillar-card:hover { background: #22241f; }
+
+    .pillar-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--surface) 30%, transparent 70%);
+      z-index: 1;
+    }
+
+    .pillar-bg {
+      position: absolute;
+      inset: 0;
+      opacity: 0.35;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .pillar-card:nth-child(1) .pillar-bg { background: linear-gradient(135deg, #1a2e26, #0c0d0b); }
+    .pillar-card:nth-child(2) .pillar-bg { background: linear-gradient(135deg, #2a3a2e, #141612); }
+    .pillar-card:nth-child(3) .pillar-bg { background: linear-gradient(135deg, #3a3220, #141612); }
+    .pillar-card:nth-child(4) .pillar-bg { background: linear-gradient(135deg, #1e2830, #0c0d0b); }
+
+    .pillar-card h3,
+    .pillar-card p { position: relative; z-index: 2; }
+
+    .pillar-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .pillar-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .pillar-tag {
+      position: relative;
+      z-index: 2;
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: auto;
+      padding-bottom: 1.5rem;
+    }
+
+    /* —— Capability spaces grid —— */
+    .spaces .space-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 640px) {
+      .space-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .space-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .space-card {
+      group: space;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .space-card:hover {
+      border-color: rgba(201, 169, 98, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .space-visual {
+      height: 180px;
+      background: var(--green);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .space-visual::after {
+      content: attr(data-code);
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      font-family: var(--font-display);
+      font-size: 3rem;
+      opacity: 0.2;
+      color: var(--text);
+    }
+
+    .space-card:nth-child(1) .space-visual { background: linear-gradient(145deg, #2d4a3e, #1a2e26); }
+    .space-card:nth-child(2) .space-visual { background: linear-gradient(145deg, #3a4a3e, #243028); }
+    .space-card:nth-child(3) .space-visual { background: linear-gradient(145deg, #2e3a4a, #1a2430); }
+    .space-card:nth-child(4) .space-visual { background: linear-gradient(145deg, #4a3e2d, #2e261a); }
+    .space-card:nth-child(5) .space-visual { background: linear-gradient(145deg, #3e2d4a, #261a30); }
+    .space-card:nth-child(6) .space-visual { background: linear-gradient(145deg, #2d4a4a, #1a2e2e); }
+    .space-card:nth-child(7) .space-visual { background: linear-gradient(145deg, #4a4a2d, #2e2e1a); }
+
+    .space-body { padding: 1.5rem; }
+
+    .space-body h4 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .space-body .roi {
+      font-size: 0.8rem;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+
+    .space-body p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* —— Membership-style views band —— */
+    .membership {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+
+    .membership-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .membership-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    .membership h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 2.5rem);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .membership h2 strong { color: var(--gold); font-weight: 600; }
+
+    .benefit-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .benefit-list li {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .benefit-list li::before {
+      content: "◆";
+      color: var(--gold);
+      font-size: 0.5rem;
+      margin-top: 0.45rem;
+    }
+
+    .membership-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 2rem;
+    }
+
+    .membership-card .badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: var(--gold-soft);
+      color: var(--gold);
+      padding: 0.35rem 0.65rem;
+      margin-bottom: 1rem;
+    }
+
+    .leverage-value {
+      font-family: var(--font-display);
+      font-size: 4rem;
+      color: var(--gold);
+      line-height: 1;
+    }
+
+    .leverage-formula {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* —— Warnings (events-style triptych) —— */
+    .warnings .warn-grid {
+      display: grid;
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 900px) {
+      .warn-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .warn-card {
+      padding: 2rem;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+    }
+
+    .warn-card .code {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      color: var(--warn);
+      margin-bottom: 0.75rem;
+    }
+
+    .warn-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .warn-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* —— Closing + disclaimer —— */
+    .closing {
+      text-align: center;
+      padding-bottom: 2rem;
+    }
+
+    .closing h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.25rem);
+      font-weight: 400;
+      max-width: 28rem;
+      margin: 0 auto 1rem;
+      line-height: 1.3;
+    }
+
+    .closing p {
+      color: var(--text-muted);
+      max-width: 32rem;
+      margin: 0 auto 2rem;
+    }
+
+    .disclaimer {
+      background: #080908;
+      border-top: 1px solid var(--border);
+      padding: 2rem clamp(1.25rem, 4vw, 3rem);
+      font-size: 0.75rem;
+      color: rgba(244, 242, 235, 0.45);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .prototype-banner {
+      position: fixed;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+      background: rgba(201, 169, 98, 0.95);
+      color: #0c0d0b;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <!-- PRD v1.2：本页仅作 /executive 经营摘要视觉参考，非产品默认首页。默认体验见 https://warm-squirrel-e57666.netlify.app/ -->
+
+  <header class="site-header">
+    <a href="#" class="logo">STRIDE<span>.</span></a>
+    <nav class="nav-links" aria-label="主导航">
+      <a href="#hero">季度总览</a>
+      <a href="#pillars">核算路径</a>
+      <a href="#spaces">战略能力</a>
+      <a href="#warnings">预警</a>
+      <a href="#report">报告</a>
+    </nav>
+    <div class="header-actions">
+      <div class="view-toggle" role="group" aria-label="视图切换">
+        <button type="button" class="active" data-view="executive">Executive</button>
+        <button type="button" data-view="cpo">CPO</button>
+        <button type="button" data-view="hrbp">HRBP</button>
+      </div>
+      <button type="button" class="btn btn-primary">开始本季核算</button>
+    </div>
+  </header>
+
+  <section class="hero" id="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">2025 Q3 · Executive View · Demo 推演</p>
+      <h1>战略季，<em>人力投资组合</em>的一页结论。</h1>
+      <p class="hero-lead">
+        把编制、产出与 C1–C7 战略能力放在同一坐标系里——供董事会与经营层讨论「主投哪里」，而非口水战。
+      </p>
+      <div class="hero-ctas">
+        <button type="button" class="btn btn-primary">加载 Demo 种子</button>
+        <button type="button" class="btn btn-ghost">导出 Executive 报告</button>
+      </div>
+      <div class="hero-metrics">
+        <div class="hero-metric">
+          <div class="label">能力 ROI（主投 C2）</div>
+          <div class="value">1.24</div>
+          <div class="delta">↑ 8% QoQ</div>
+        </div>
+        <div class="hero-metric">
+          <div class="label">10x 杠杆系数</div>
+          <div class="value">0.62</div>
+          <div class="delta">采纳 18 / 投入 29</div>
+        </div>
+        <div class="hero-metric">
+          <div class="label">活跃预警</div>
+          <div class="value">2</div>
+          <div class="delta warn">W2 · W4</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pillars" id="pillars">
+    <header class="section-header">
+      <h2>Unique Views. Unrivalled Clarity.</h2>
+      <p>参考 GolfSpace 四支柱叙事——映射 STRIDE 从战略配置到可审计披露的闭环。</p>
+    </header>
+    <div class="pillar-grid">
+      <article class="pillar-card">
+        <div class="pillar-bg" aria-hidden="true"></div>
+        <span class="pillar-tag">向导 1</span>
+        <h3>Align</h3>
+        <p>战略权重、产品线 stage、披露/代理双通道——含可选 C7 与审计备注。</p>
+      </article>
+      <article class="pillar-card">
+        <div class="pillar-bg" aria-hidden="true"></div>
+        <span class="pillar-tag">向导 2</span>
+        <h3>Measure</h3>
+        <p>九岗位族 FTE + 分摊（行和 100%）；70% 经 P6 二次分摊至各产品线。</p>
+      </article>
+      <article class="pillar-card">
+        <div class="pillar-bg" aria-hidden="true"></div>
+        <span class="pillar-tag">向导 3</span>
+        <h3>Decide</h3>
+        <p>CalcEngine 输出能力 ROI、人效指数；假设变动 &gt;30% 自动水印。</p>
+      </article>
+      <article class="pillar-card">
+        <div class="pillar-bg" aria-hidden="true"></div>
+        <span class="pillar-tag">报告</span>
+        <h3>Disclose</h3>
+        <p>Executive 一页结论 + 免责声明；HRBP 详版含来源附录与协作义务。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="spaces" id="spaces">
+    <header class="section-header">
+      <h2>Discover Strategic Capabilities</h2>
+      <p>以「空间卡片」呈现 C1–C7——Executive 视图仅展示 ROI 与战略对齐，隐藏岗位末位。</p>
+    </header>
+    <div class="space-grid">
+      <article class="space-card">
+        <div class="space-visual" data-code="C1"></div>
+        <div class="space-body">
+          <p class="roi">ROI 1.18 · 权重 22%</p>
+          <h4>多模态基础能力</h4>
+          <p>模型发布节奏与跨线复用；与 P6 中台投入强相关。</p>
+        </div>
+      </article>
+      <article class="space-card">
+        <div class="space-visual" data-code="C2"></div>
+        <div class="space-body">
+          <p class="roi">ROI 1.24 · 权重 28% ★</p>
+          <h4>C 端全球增长</h4>
+          <p>本季主投能力；投入 QoQ +6%，产出指数 +11%。</p>
+        </div>
+      </article>
+      <article class="space-card">
+        <div class="space-visual" data-code="C3"></div>
+        <div class="space-body">
+          <p class="roi">ROI 0.96</p>
+          <h4>开放平台 / API</h4>
+          <p>披露通道收入占比上升；触发 W5 负向杠杆观察。</p>
+        </div>
+      </article>
+      <article class="space-card">
+        <div class="space-visual" data-code="C4"></div>
+        <div class="space-body">
+          <p class="roi">ROI 1.05</p>
+          <h4>垂直行业方案</h4>
+          <p>与 10x Program 绑定 PL 分摊 50%；Handoff 登记占位。</p>
+        </div>
+      </article>
+      <article class="space-card">
+        <div class="space-visual" data-code="C5"></div>
+        <div class="space-body">
+          <p class="roi">ROI 1.12</p>
+          <h4>研发效能与质量</h4>
+          <p>工程岗位族 RF03 投入占比与战略权重偏离 &lt;5pp。</p>
+        </div>
+      </article>
+      <article class="space-card">
+        <div class="space-visual" data-code="C6"></div>
+        <div class="space-body">
+          <p class="roi">ROI 0.89 ⚠</p>
+          <h4>商业化与 unit 经济</h4>
+          <p>低于公司中位数；W2 预警已点亮（explore stage 降敏）。</p>
+        </div>
+      </article>
+      <article class="space-card">
+        <div class="space-visual" data-code="C7"></div>
+        <div class="space-body">
+          <p class="roi">可选 · 未启用</p>
+          <h4>生态与资本效率</h4>
+          <p>本季未纳入主表；可在向导 1 开启并写入 audit log。</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="membership" id="report">
+    <div class="membership-inner">
+      <div>
+        <h2>Elevate decisions with <strong>Executive</strong> membership.</h2>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          无登录鉴权，通过顶栏视图切换呈现不同卡片集——本原型默认 Executive。
+        </p>
+        <ul class="benefit-list">
+          <li>能力 ROI 总览与单条战略决策建议</li>
+          <li>10x 杠杆系数卡（当季采纳 / 总投入）</li>
+          <li>固定免责声明与假设水印策略</li>
+          <li>隐藏岗位末位排名与 P6 收入人效细项</li>
+        </ul>
+      </div>
+      <aside class="membership-card">
+        <span class="badge">Executive · 2025 Q3</span>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem;">10x 杠杆系数</p>
+        <p class="leverage-value">0.62</p>
+        <p class="leverage-formula">
+          当季全公司 10x 被采纳条目数 / 当季 10x 总投入<br />
+          <span style="color: var(--gold);">18 ÷ 29</span> · 协作分修正（v1.2 占位）
+        </p>
+        <button type="button" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;">生成一页报告 MD+PDF</button>
+      </aside>
+    </div>
+  </section>
+
+  <section class="warnings" id="warnings">
+    <header class="section-header">
+      <h2>Two signals. We surface the rest.</h2>
+      <p>预警 W1–W5（stage 降敏）；W6–W11 为 10x v1.2 backlog，本页仅占位。</p>
+    </header>
+    <div class="warn-grid">
+      <article class="warn-card">
+        <p class="code">W2 · 能力 ROI</p>
+        <h4>C6 低于公司中位数</h4>
+        <p>主投能力 ROI 1.24，但商业化能力 C6 为 0.89，建议 CPO 复核 stage 与产出证据。</p>
+      </article>
+      <article class="warn-card">
+        <p class="code">W4 · 模型 × 产品</p>
+        <h4>发布有、major 无</h4>
+        <p>本季模型发布 ≥1，产品线 P3 major 版本 = 0；联动 CPO linkage 视图查看。</p>
+      </article>
+      <article class="warn-card">
+        <p class="code">W5 · 负向杠杆</p>
+        <h4>收入升、投入降</h4>
+        <p>开放平台收入占比 QoQ +4pp，投入占比 -2pp——需确认是否为效率红利。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="closing">
+    <h2>STRIDE 是你的第三张表——战略、人力、证据，同一俱乐部。</h2>
+    <p>静态 HTML 原型，仅用于 UI 确认；非 Next.js 实现。</p>
+    <button type="button" class="btn btn-ghost">进入向导 1：战略配置</button>
+  </section>
+
+  <footer class="disclaimer">
+    基于公开信息的推演模型，非任何公司官方 HR/财务数据。假设变动超过 30% 的字段将带水印展示。
+    · STRIDE Portfolio Mockup · UI ref: GolfSpace homepage layout
+  </footer>
+
+  <div class="prototype-banner" role="status">UI 原型 · 双击本地打开确认</div>
+
+  <script>
+    document.querySelectorAll(".view-toggle button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".view-toggle button").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        const view = btn.dataset.view;
+        document.querySelector(".hero-eyebrow").textContent =
+          `2025 Q3 · ${view.charAt(0).toUpperCase() + view.slice(1)} View · Demo 推演`;
+      });
+    });
+  </script>
+</body>
+</html>

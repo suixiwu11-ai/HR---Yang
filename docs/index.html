@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STRIDE · HR 黑客松 2026-05</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="stride-doc-shared.css" />
+  <style>
+    .hub { max-width: 720px; margin: 0 auto; padding: 3rem 1.5rem 4rem; text-align: center; }
+    .hub-cards { display: grid; gap: 1rem; margin-top: 2rem; text-align: left; }
+    @media (min-width: 560px) { .hub-cards { grid-template-columns: 1fr 1fr; } }
+    .hub-cards .full { grid-column: 1 / -1; }
+    .hub-card {
+      display: block; padding: 1.5rem;
+      background: var(--bg-white); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);
+      color: inherit; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .hub-card:hover { border-color: rgba(99,91,255,0.35); box-shadow: var(--shadow-md); }
+    .hub-card h2 { font-size: 1.1rem; margin-bottom: 0.35rem; }
+    .hub-card p { font-size: 0.88rem; color: var(--text-secondary); margin: 0; }
+    .hub-card .tag { font-size: 0.65rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; }
+  </style>
+</head>
+<body>
+  <div class="page-bg" aria-hidden="true"></div>
+  <div class="grid-dots" aria-hidden="true"></div>
+  <header class="doc-header">
+    <span class="brand">
+      <span class="brand-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M8 2L14 8L8 14L2 8L8 2Z" fill="white"/></svg></span>
+      STRIDE
+    </span>
+    <nav class="doc-nav">
+      <a href="index.html" class="active">首页</a>
+      <a href="business-narrative.html">业务背景</a>
+      <a href="prd.html">PRD</a>
+      <a href="prototype/workbench.html">产品原型</a>
+    </nav>
+  </header>
+  <main class="hub">
+    <div class="badge-row" style="justify-content:center;margin-bottom:1rem;">
+      <span class="badge accent">HR×AI 公益黑客松 2026-05</span>
+      <span class="badge">假设案例 · MiniMax 公开信息</span>
+    </div>
+    <p class="slogan-main"><span class="gradient-text">人力有账，战略有据。</span></p>
+    <p class="slogan-sub" style="margin-top:0.75rem;">
+      战略人效核算台 STRIDE — 给队友的一键导读<br />
+      <span class="slogan-en">Strategic Talent ROI & Investment Decision Engine</span>
+    </p>
+    <div class="hub-cards">
+      <a class="hub-card" href="business-narrative.html">
+        <span class="tag">Step 1 · 为什么</span>
+        <h2>业务背景</h2>
+        <p>行业—企业—HR 痛点—方法论五步闭环（v3.1）</p>
+      </a>
+      <a class="hub-card" href="prd.html">
+        <span class="tag">Step 2 · 做什么</span>
+        <h2>PRD v1.3</h2>
+        <p>人力工作台四 Tab、问数、情景试算、向导与经营摘要</p>
+      </a>
+      <a class="hub-card full" href="prototype/workbench.html" style="border-color:rgba(99,91,255,0.35);background:linear-gradient(135deg,rgba(99,91,255,0.06),#fff);">
+        <span class="tag">Step 3 · 产品长什么样</span>
+        <h2>可点击 HTML 原型 →</h2>
+        <p>HR 工作台、向导、情景沙盘、经营摘要 — 数字化亮色 UI</p>
+      </a>
+    </div>
+    <p style="margin-top:2rem;font-size:0.85rem;">
+      <a href="https://frankli9986.github.io/HR-hackathon-2026-05/" style="font-weight:600;">在线阅读（GitHub Pages）→</a>
+    </p>
+    <p style="margin-top:0.75rem;font-size:0.72rem;color:var(--text-muted);">
+      基于公开信息推演 · 非任何公司官方 HR/财务数据 ·
+      <a href="https://github.com/Frankli9986/HR-hackathon-2026-05">团队仓库</a>
+    </p>
+  </main>
+</body>
+</html>

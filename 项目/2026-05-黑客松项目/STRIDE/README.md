@@ -37,9 +37,10 @@ npm run dev
 
 ### 看文档 HTML（无环境）
 
-本地：[`mockups/stride-business-narrative.html`](mockups/stride-business-narrative.html) → [`stride-prd.html`](mockups/stride-prd.html)
+本地：[`mockups/index.html`](mockups/index.html)（业务背景 · PRD · 原型）
 
-**一键分享给评委（GitHub Pages，访客无需登录）**：见 [`docs/GITHUB-PAGES.md`](docs/GITHUB-PAGES.md)
+**在线（GitHub Pages）**：https://frankli9986.github.io/HR-hackathon-2026-05/  
+开启步骤：仓库根 [`docs/GITHUB-PAGES-开启说明.md`](../../../docs/GITHUB-PAGES-开启说明.md) · 维护说明 [`docs/GITHUB-PAGES.md`](docs/GITHUB-PAGES.md)
 
 ---
 

@@ -1,4 +1,5 @@
 # STRIDE 静态文档 · GitHub Pages（访客无需登录）
+# 每次从 mockups 复制到 _site 再发布，避免 docs/ 未同步时部署旧内容
 name: Deploy STRIDE HTML docs
 
 on:
@@ -6,7 +7,9 @@ on:
     branches: [main, master]
     paths:
       - "项目/2026-05-黑客松项目/STRIDE/mockups/**"
+      - "docs/**"
       - ".github/workflows/deploy-stride-docs.yml"
+      - ".github/workflows/sync-stride-docs.yml"
   workflow_dispatch:
 
 permissions:
@@ -26,9 +29,18 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Build site from mockups
+        run: |
+          rm -rf _site
+          mkdir -p _site
+          cp -r "项目/2026-05-黑客松项目/STRIDE/mockups/." _site/
+
       - uses: actions/configure-pages@v5
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: 项目/2026-05-黑客松项目/STRIDE/mockups
+          path: _site
+
       - id: deployment
         uses: actions/deploy-pages@v4
