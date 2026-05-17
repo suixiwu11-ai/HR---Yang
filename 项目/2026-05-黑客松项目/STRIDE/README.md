@@ -39,7 +39,7 @@ npm run dev
 
 本地：[`mockups/index.html`](mockups/index.html)（业务背景 · PRD · 原型）
 
-**在线（GitHub Pages）**：https://frankli9986.github.io/HR-hackathon-2026-05/  
+**在线（GitHub Pages）**：https://suixiwu11-ai.github.io/HR-hackathon-2026-05/（吴隋栖 fork）· [Frank 主仓](https://frankli9986.github.io/HR-hackathon-2026-05/)  
 开启步骤：仓库根 [`docs/GITHUB-PAGES-开启说明.md`](../../../docs/GITHUB-PAGES-开启说明.md) · 维护说明 [`docs/GITHUB-PAGES.md`](docs/GITHUB-PAGES.md)
 
 ---

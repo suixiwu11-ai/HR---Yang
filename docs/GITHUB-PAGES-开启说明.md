@@ -1,10 +1,12 @@
 # STRIDE 文档站 · GitHub Pages 开启说明（约 2 分钟）
 
-团队链接：`https://frankli9986.github.io/HR-hackathon-2026-05/`
+| 仓库 | 在线地址 | Settings |
+|------|----------|----------|
+| **吴隋栖 fork**（`suixiwu11-ai`） | https://suixiwu11-ai.github.io/HR-hackathon-2026-05/ | [Pages 设置](https://github.com/suixiwu11-ai/HR-hackathon-2026-05/settings/pages) |
+| Frank 主仓 | https://frankli9986.github.io/HR-hackathon-2026-05/ | [Pages 设置](https://github.com/Frankli9986/HR-hackathon-2026-05/settings/pages) |
 
 **源码位置**：`项目/2026-05-黑客松项目/STRIDE/mockups/`（编辑这里）  
 **发布副本**：仓库根目录 `docs/`（由工作流自动同步，也可用于分支部署）
-
 ---
 
 ## 1. 仓库可见性
@@ -20,11 +22,14 @@
 
 ### 方式 A · GitHub Actions（推荐）
 
-1. 打开 https://github.com/Frankli9986/HR-hackathon-2026-05/settings/pages  
+以 **你的 fork** 为例（`suixiwu11-ai`）：
+
+1. 打开 https://github.com/suixiwu11-ai/HR-hackathon-2026-05/settings/pages  
 2. **Build and deployment → Source** 选 **GitHub Actions**  
 3. 打开 **Actions** → **Deploy STRIDE HTML docs** → **Run workflow**  
-4. 约 1–2 分钟后访问：https://frankli9986.github.io/HR-hackathon-2026-05/
+4. 约 1–2 分钟后访问：https://suixiwu11-ai.github.io/HR-hackathon-2026-05/
 
+（Frank 主仓把上面链接里的 `suixiwu11-ai` 换成 `Frankli9986` 即可。）
 工作流在仓库根：`.github/workflows/deploy-stride-docs.yml`（**不是** `STRIDE/.github/workflows/`，子目录工作流 GitHub 不会执行）。
 
 ### 方式 B · 分支部署
