@@ -58,7 +58,7 @@
 
 | 顺序 | 文档 | 目的 |
 |------|------|------|
-| 1 | [00-background/business-narrative.md](./00-background/business-narrative.md) | **HRBP 视角业务背景、痛点、数字化价值** |
+| 1 | [00-background/business-narrative.md](./00-background/business-narrative.md) | **行业—企业—HR 业务叙事（v3，咨询体例）** |
 | 2 | [00-background/project-background.md](./00-background/project-background.md) | 为何做、约束、选型 |
 | 3 | [00-background/strategic-context.md](./00-background/strategic-context.md) | C1–C7、P1–P6、X10、人效动机 |
 | 4 | [01-discovery/interview-synthesis.md](./01-discovery/interview-synthesis.md) | 跨访谈洞察与产品裁决（含 10x） |
@@ -129,7 +129,7 @@ docs/
 | PRD | [02-requirements/PRD-v1.2.md](./02-requirements/PRD-v1.2.md) |
 | 用户决策 | [02-requirements/user-decisions.md](./02-requirements/user-decisions.md) |
 | 架构 | [03-architecture/architecture-v2.1.md](./03-architecture/architecture-v2.1.md) |
-| UI 设计 / 评委导读 HTML | [mockups/index.html](../mockups/index.html) · [ui-design-digital-v1.md](./03-architecture/ui-design-digital-v1.md) |
+| 队友 / 评委导读 HTML | [mockups/stride-business-narrative.html](../mockups/stride-business-narrative.html) · [stride-prd.html](../mockups/stride-prd.html) |
 | **UI 设计（亮色数字化）** | [03-architecture/ui-design-digital-v1.md](./03-architecture/ui-design-digital-v1.md) · 原型 [mockups/stride-home-digital.html](../mockups/stride-home-digital.html) |
 | Demo 种子 | [04-demo/demo-seed-plan.md](./04-demo/demo-seed-plan.md) |
 | 德勤产品化建议（归档） | [99-archive/advisory/deloitte-china-strategic-workforce-product-recommendation.md](./99-archive/advisory/deloitte-china-strategic-workforce-product-recommendation.md) |
