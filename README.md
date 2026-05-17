@@ -28,6 +28,7 @@
 
 | 入口 | 路径 |
 |------|------|
+| **交付物清单（按阶段）** | [`项目/2026-05-黑客松项目/DELIVERABLES.md`](项目/2026-05-黑客松项目/DELIVERABLES.md) |
 | **黑客松 5 分钟读文档** | [`项目/2026-05-黑客松项目/STRIDE/docs/HACKATHON.md`](项目/2026-05-黑客松项目/STRIDE/docs/HACKATHON.md) |
 | **STRIDE 仓库说明** | [`项目/2026-05-黑客松项目/STRIDE/README.md`](项目/2026-05-黑客松项目/STRIDE/README.md) |
 | **UX 北极星** | [Netlify HRBP 原型](https://warm-squirrel-e57666.netlify.app/) |
