@@ -1,0 +1,13 @@
+services:
+  stride:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - stride-data:/app/data
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+
+volumes:
+  stride-data:

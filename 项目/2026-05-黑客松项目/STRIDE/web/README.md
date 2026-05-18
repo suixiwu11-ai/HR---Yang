@@ -2,6 +2,10 @@
 
 可运行演示程序：真实 SQLite 存储、JSON 导入/导出、MD/HTML 报告下载、10× Lite。
 
+## 服务器部署（阿里云轻量推荐）
+
+见 [DEPLOY.md](./DEPLOY.md)，登录 Ubuntu 后执行 `scripts/deploy/bootstrap.sh`。
+
 ## 本地运行
 
 ```bash
