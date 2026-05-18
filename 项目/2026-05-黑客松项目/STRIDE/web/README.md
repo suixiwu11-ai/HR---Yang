@@ -1,8 +1,8 @@
 # STRIDE Web · Next.js
 
-HR Hackathon 2026-05 · STRIDE 前端。路径：`项目/2026-05-黑客松项目/STRIDE/web`
+STRIDE 前端骨架。路径：`项目/2026-05-黑客松项目/STRIDE/web`
 
-- [docs/HACKATHON.md](../docs/HACKATHON.md)
+- [docs/README.md](../docs/README.md)
 - [docs/02-requirements/PRD-v1.3.md](../docs/02-requirements/PRD-v1.3.md)
 - [docs/03-architecture/ui-design-digital-v1.md](../docs/03-architecture/ui-design-digital-v1.md)
 

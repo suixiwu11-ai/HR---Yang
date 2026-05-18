@@ -4,7 +4,6 @@
 
 | Tier | 路径 | 说明 |
 |------|------|------|
-| T0 | [HACKATHON.md](./HACKATHON.md) | 黑客松阅读路径 |
 | T0 | [00-background/business-narrative.md](./00-background/business-narrative.md) | HRBP 业务叙事 v2 |
 | T0 | [02-requirements/PRD-v1.3.md](./02-requirements/PRD-v1.3.md) | 主 PRD（含附录 A 架构） |
 | T0 | [04-demo/demo-seed-plan.md](./04-demo/demo-seed-plan.md) | Demo 种子 |

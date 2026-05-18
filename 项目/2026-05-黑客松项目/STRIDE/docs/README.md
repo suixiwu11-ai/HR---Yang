@@ -6,15 +6,14 @@
 
 ---
 
-## 黑客松 · 先读这里
+## 先读这里
 
 | 文档 | 说明 |
 |------|------|
-| **[HACKATHON.md](./HACKATHON.md)** | **5 分钟阅读路径**（Tier 0/1/2/3） |
-| [../../DELIVERABLES.md](../../DELIVERABLES.md) | **全项目交付物清单（按阶段）** |
-| [MANIFEST.md](./MANIFEST.md) | 全文件清单与 tier 标签 |
-| [STRIDE README](../README.md) | 本产品设计说明、`web/` 启动 |
-| [团队仓库根 README](../../../README.md) | 黑客松团队入口 |
+| [MANIFEST.md](./MANIFEST.md) | 全文件清单 |
+| [STRIDE README](../README.md) | 产品设计说明、`web/` 启动 |
+| [仓库根 README](../../../README.md) | 个人作品入口 |
+| [mockups/index.html](../mockups/index.html) | HTML 导读（业务 → PRD → 原型） |
 
 ---
 
@@ -104,7 +103,6 @@ docs/
 │   └── demo-seed-plan.md              # 2025Q2–Q4 预填计划
 ├── 99-archive/                        # Tier 3：superseded PRD、历史 stub
 │   └── README.md
-├── HACKATHON.md                       # 黑客松阅读路径
 ├── MANIFEST.md                        # 文档清单 + tier
 └── assets/                            # 预留（Mermaid 源等）
 
