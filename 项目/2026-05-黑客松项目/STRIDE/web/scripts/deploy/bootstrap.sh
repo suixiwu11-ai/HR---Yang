@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# STRIDE one-shot deploy on Ubuntu 22.04 (Aliyun SWAS / ECS)
+# STRIDE one-shot deploy on Ubuntu 22.04 (Aliyun ECS / SWAS)
 set -euo pipefail
 
 APP_DIR="$(cd "$(dirname "$0")/../.." && pwd)"
