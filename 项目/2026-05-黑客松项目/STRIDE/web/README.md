@@ -1,12 +1,6 @@
-# STRIDE Web · Next.js
+# STRIDE Web · Next.js + SQLite
 
-STRIDE 前端骨架。路径：`项目/2026-05-黑客松项目/STRIDE/web`
-
-- [docs/README.md](../docs/README.md)
-- [docs/02-requirements/PRD-v1.3.md](../docs/02-requirements/PRD-v1.3.md)
-- [docs/03-architecture/ui-design-digital-v1.md](../docs/03-architecture/ui-design-digital-v1.md)
-
-**UX 参考**：[Netlify HRBP 原型](https://warm-squirrel-e57666.netlify.app/)
+可运行演示程序：真实 SQLite 存储、JSON 导入/导出、MD/HTML 报告下载、10× Lite。
 
 ## 本地运行
 
@@ -17,11 +11,25 @@ npm run dev
 
 打开 http://localhost:3000
 
-## MVP 对齐（PRD v1.2）
+**首次使用**：进入「数据与报告」→「加载演示数据」，回到工作台「执行核算」。
 
-- 默认 **HRBP 四 Tab**（总览 / 成本 / 组织 / 薪酬×绩效）
-- Insight Copilot（Chat-to-BI）占位
-- Forecast 情景占位
-- `/executive` 经营摘要（非营销首页）
+## 数据
 
-静态原型：`../mockups/`
+| 能力 | 入口 / API |
+|------|------------|
+| 演示种子 | `POST /api/demo/seed` · 设置页按钮 |
+| 季度参数 | `POST /api/quarters`（收入 proxy 等） |
+| 导出 JSON | `GET /api/data/export?quarter=2025Q3` · 设置页 |
+| 导入 JSON | `POST /api/data/import` · 设置页上传 |
+| 核算 | `POST /api/quarters/{id}/calculate` |
+| HR 报告 MD | `GET /api/report?quarter=&type=hrbp&format=md` |
+| HR 报告 HTML | `format=html` |
+| 经营摘要 | `type=executive` · 同上 md/html |
+
+数据库文件：`data/stride.db`（自动创建）
+
+## 页面
+
+- `/` 工作台（KPI / Copilot / 预警 / 场景）
+- `/x10` 10× Handoff 与采纳登记
+- `/settings` 数据与报告（导入导出、报告下载）
