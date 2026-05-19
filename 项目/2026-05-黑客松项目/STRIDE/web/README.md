@@ -6,12 +6,23 @@
 
 见 [DEPLOY.md](./DEPLOY.md)：ECS + Ubuntu 22.04 + 安全组放行 22/80，SSH 后执行 `scripts/deploy/bootstrap.sh`。
 
-## Copilot 大模型（可选）
+## Copilot 大模型（通义 Qwen3.5）
 
-1. 复制 `.env.example` 为 `.env.local`
-2. 填入 `LLM_API_KEY`（**不要**提交到 GitHub）
-3. 默认按 **DeepSeek** 兼容接口；其他厂商改 `LLM_BASE_URL` / `LLM_MODEL`
-4. 重启 `npm run dev`，侧栏 Copilot 显示 **LLM** 徽标即已启用
+1. 在 [阿里云百炼 / DashScope](https://dashscope.console.aliyun.com/) 创建 **API Key**
+2. 复制 `.env.example` → `.env.local`，填入：
+   ```env
+   LLM_PROVIDER=qwen
+   LLM_API_KEY=sk-xxx
+   LLM_MODEL=qwen3.5-plus
+   LLM_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
+   ```
+3. `npm run dev` 重启后，Copilot 旁显示 **LLM** 即成功
+
+| 你说的 | 建议 `LLM_MODEL` |
+|--------|------------------|
+| Qwen3.5 大 / Plus | `qwen3.5-plus` |
+| 更快 | `qwen3.5-flash` |
+| 最大开源规格 | `qwen3.5-397b-a17b`（需控制台已开通） |
 
 无 Key 时自动退回规则问数。
 

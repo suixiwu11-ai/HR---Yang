@@ -1,10 +1,26 @@
 export type ChatMessage = { role: "system" | "user" | "assistant"; content: string };
 
 function getLlmConfig() {
-  const apiKey = process.env.LLM_API_KEY || process.env.OPENAI_API_KEY;
-  const baseUrl = (process.env.LLM_BASE_URL || "https://api.deepseek.com/v1").replace(/\/$/, "");
-  const model = process.env.LLM_MODEL || "deepseek-chat";
-  return { apiKey, baseUrl, model };
+  const apiKey =
+    process.env.LLM_API_KEY ||
+    process.env.DASHSCOPE_API_KEY ||
+    process.env.OPENAI_API_KEY;
+  const provider = (process.env.LLM_PROVIDER || "qwen").toLowerCase();
+
+  let baseUrl = process.env.LLM_BASE_URL;
+  let model = process.env.LLM_MODEL;
+
+  if (!baseUrl) {
+    baseUrl =
+      provider === "qwen"
+        ? "https://dashscope.aliyuncs.com/compatible-mode/v1"
+        : "https://api.deepseek.com/v1";
+  }
+  if (!model) {
+    model = provider === "qwen" ? "qwen3.5-plus" : "deepseek-chat";
+  }
+
+  return { apiKey, baseUrl: baseUrl.replace(/\/$/, ""), model };
 }
 
 export function isLlmEnabled() {
