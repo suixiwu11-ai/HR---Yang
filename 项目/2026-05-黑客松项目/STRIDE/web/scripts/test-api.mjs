@@ -62,6 +62,23 @@ await test("export import roundtrip", async () => {
   assert(res.ok, "import " + JSON.stringify(body));
 });
 
+await test("csv template import roundtrip", async () => {
+  const tpl = await fetch(BASE + `/api/data/template?quarter=${Q}&format=csv`);
+  assert(tpl.ok, "template csv " + tpl.status);
+  assert((tpl.headers.get("content-type") || "").includes("text/csv"), "csv content-type");
+  const csv = await tpl.text();
+  assert(csv.includes("fte,"), "template missing fte rows");
+  const { res, body } = await json("/api/data/import", {
+    method: "POST",
+    headers: { "Content-Type": "text/csv; charset=utf-8" },
+    body: csv.replaceAll(Q, "2025Q3-CSV-RT"),
+  });
+  assert(res.ok, "csv import " + JSON.stringify(body));
+  const expCsv = await fetch(BASE + `/api/data/export?quarter=2025Q3-CSV-RT&format=csv`);
+  assert(expCsv.ok, "export csv");
+  assert((await expCsv.text()).includes("fte,"), "exported csv missing fte");
+});
+
 await test("copilot", async () => {
   const { res, body } = await json("/api/copilot/ask", {
     method: "POST",

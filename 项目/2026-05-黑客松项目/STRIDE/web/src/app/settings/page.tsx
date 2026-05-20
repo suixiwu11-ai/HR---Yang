@@ -37,15 +37,28 @@ export default function SettingsPage() {
     } else setStatus("\u4fdd\u5b58\u5931\u8d25");
   }
 
-  async function exportJson() {
-    const res = await fetch(`/api/data/export?quarter=${quarterId}`);
-    const bundle = await res.json();
-    const blob = new Blob([JSON.stringify(bundle, null, 2)], { type: "application/json" });
+  async function downloadBlob(url: string, filename: string) {
+    const res = await fetch(url);
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error((err as { error?: string }).error ?? `\u5bfc\u51fa\u5931\u8d25 ${res.status}`);
+    }
+    const blob = await res.blob();
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = `stride-${quarterId}.json`;
+    a.download = filename;
     a.click();
-    setStatus("\u5df2\u5bfc\u51fa\u5b63\u5ea6\u6570\u636e\u5305");
+    URL.revokeObjectURL(a.href);
+  }
+
+  async function exportJson() {
+    await downloadBlob(`/api/data/export?quarter=${quarterId}`, `stride-${quarterId}.json`);
+    setStatus("\u5df2\u5bfc\u51fa\u5b63\u5ea6\u6570\u636e\u5305\uff08JSON\uff09");
+  }
+
+  async function exportCsv() {
+    await downloadBlob(`/api/data/export?quarter=${quarterId}&format=csv`, `stride-${quarterId}.csv`);
+    setStatus("\u5df2\u5bfc\u51fa\u5b63\u5ea6\u6570\u636e\u5305\uff08CSV\uff09");
   }
 
   async function importFile(file: File) {
@@ -54,12 +67,19 @@ export default function SettingsPage() {
       const text = await file.text();
       let res: Response;
       if (name.endsWith(".csv")) {
-        const bundle = parseImportCsv(text);
         res = await fetch("/api/data/import", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(bundle),
+          headers: { "Content-Type": "text/csv; charset=utf-8" },
+          body: text,
         });
+        if (!res.ok) {
+          const bundle = parseImportCsv(text);
+          res = await fetch("/api/data/import", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(bundle),
+          });
+        }
       } else {
         res = await fetch("/api/data/import", {
           method: "POST",
@@ -68,14 +88,33 @@ export default function SettingsPage() {
         });
       }
       const d = await res.json();
-      setStatus(res.ok ? `\u5df2\u5bfc\u5165\u5b63\u5ea6 ${d.quarterId}\uff0c\u8bf7\u56de\u5de5\u4f5c\u53f0\u70b9\u300c\u91cd\u65b0\u6838\u7b97\u300d` : d.error ?? "\u5bfc\u5165\u5931\u8d25");
+      const backend =
+        d.backend === "turso"
+          ? "\uff08\u5df2\u5199\u5165 Turso \u4e91\u7aef\u6570\u636e\u5e93\uff09"
+          : d.backend === "sqlite"
+            ? "\uff08\u672c\u5730 SQLite\uff09"
+            : "";
+      setStatus(
+        res.ok
+          ? `\u5df2\u5bfc\u5165\u5b63\u5ea6 ${d.quarterId}${backend}\uff0c\u8bf7\u56de\u5de5\u4f5c\u53f0\u70b9\u300c\u91cd\u65b0\u6838\u7b97\u300d`
+          : d.error ?? "\u5bfc\u5165\u5931\u8d25"
+      );
     } catch (e) {
       setStatus(String(e));
     }
   }
 
-  function downloadTemplate(format: "csv" | "json") {
-    window.open(`/api/data/template?quarter=${quarterId}&format=${format}`, "_blank");
+  async function downloadTemplate(format: "csv" | "json") {
+    try {
+      const ext = format === "csv" ? "csv" : "json";
+      await downloadBlob(
+        `/api/data/template?quarter=${quarterId}&format=${format}`,
+        `stride-${quarterId}-template.${ext}`
+      );
+      setStatus(`\u5df2\u4e0b\u8f7d ${format.toUpperCase()} \u6a21\u677f`);
+    } catch (e) {
+      setStatus(String(e));
+    }
   }
 
   function downloadReport(type: "hrbp" | "executive", format: "md" | "html") {
@@ -139,6 +178,9 @@ export default function SettingsPage() {
                 onChange={(e) => e.target.files?.[0] && importFile(e.target.files[0])}
               />
             </label>
+            <button type="button" className="btn btn-secondary" onClick={exportCsv}>
+              {"\u5bfc\u51fa\u5f53\u524d\u5b63\u5ea6\uff08CSV\uff09"}
+            </button>
             <button type="button" className="btn btn-secondary" onClick={exportJson}>
               {"\u5bfc\u51fa\u5f53\u524d\u5b63\u5ea6\uff08JSON\uff09"}
             </button>
@@ -148,8 +190,13 @@ export default function SettingsPage() {
             <strong>{quarterId}</strong>
             {" \u00b7 \u6a21\u677f\u91cc\u7684 quarter_id \u5217\u8981\u4e0e\u60a8\u8981\u5bfc\u5165\u7684\u5b63\u5ea6\u4e00\u81f4"}
           </p>
-          <p style={{ marginTop: "0.5rem", fontSize: "0.85rem", color: "var(--text-muted)" }}>
-            {"\u957f\u671f demo\uff1aNetlify \u914d\u7f6e Turso \u540e\u6570\u636e\u4e91\u7aef\u4fdd\u7559\uff1b\u5efa\u8bae\u5b9a\u671f\u300c\u5bfc\u51fa JSON\u300d\u4f5c\u5907\u4efd\uff0c\u8be6\u89c1 DEPLOY-TURSO.md\u3002"}
+          <p style={{ marginTop: "0.5rem", fontSize: "0.85rem", color: "var(--forest)" }}>
+            <strong>{"CSV \u5bfc\u5165\u5bfc\u51fa\u5728 Turso \u4e0a\u6301\u4e45\u4fdd\u5b58"}</strong>
+            {"\uff1aNetlify \u751f\u4ea7\u73af\u5883\u914d\u7f6e "}
+            <code>TURSO_DATABASE_URL</code>
+            {" + "}
+            <code>TURSO_AUTH_TOKEN</code>
+            {" \u540e\uff0c\u5bfc\u5165\u4f1a\u5199\u5165\u4e91\u7aef\u5e93\uff0c\u5bfc\u51fa\u4ece\u4e91\u7aef\u8bfb\u53d6\uff1b\u51b7\u542f\u52a8\u4e0d\u4e22\u6570\u636e\u3002\u5efa\u8bae\u5b9a\u671f\u5bfc\u51fa CSV/JSON \u5907\u4efd\uff0c\u8be6\u89c1 DEPLOY-TURSO.md\u3002"}
           </p>
         </section>
 

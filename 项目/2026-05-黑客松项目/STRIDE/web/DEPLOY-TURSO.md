@@ -116,7 +116,7 @@ curl -X POST https://你的站点.netlify.app/api/demo/seed -H "Content-Type: ap
 ### 长期 demo 建议
 
 - **线上持久化**：生产环境务必配置 `TURSO_DATABASE_URL` + `TURSO_AUTH_TOKEN`（勿提交 Git）。
-- **JSON 备份**：设置页 →「导出当前季度（JSON）」可下载完整季度包；换环境或清库后用「导入 CSV / JSON」恢复。
+- **CSV / JSON 备份**：设置页可「导出当前季度（CSV 或 JSON）」；Netlify 配 Turso 后**导入、导出均读写云端库**，跨访问与冷启动保留。换环境或清库后用「导入 CSV / JSON」恢复。
 - **首次上线**：部署后点「加载演示数据」或 `POST /api/demo/seed`，再在工作台「重新核算」。
 
 ---

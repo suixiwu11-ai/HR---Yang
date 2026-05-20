@@ -99,8 +99,19 @@ class SqliteDb implements StrideDb {
   }
 
   async transaction<T>(fn: (tx: StrideDb) => Promise<T>): Promise<T> {
-    // better-sqlite3 事务回调必须同步；导入等 async 流程在本地顺序执行即可
-    return fn(this);
+    this.db.exec("BEGIN");
+    try {
+      const result = await fn(this);
+      this.db.exec("COMMIT");
+      return result;
+    } catch (e) {
+      try {
+        this.db.exec("ROLLBACK");
+      } catch {
+        /* ignore */
+      }
+      throw e;
+    }
   }
 }
 
