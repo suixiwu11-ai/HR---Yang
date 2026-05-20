@@ -1,0 +1,14 @@
+# 仓库根目录配置：告诉 Netlify 真正的 Next 应用在子目录里
+# 若 UI 里已填 Base directory，可与本文件二选一保持一致
+
+[build]
+  base = "项目/2026-05-黑客松项目/STRIDE/web"
+  command = "npm ci && npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--legacy-peer-deps"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

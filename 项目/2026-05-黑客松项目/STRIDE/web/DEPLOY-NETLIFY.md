@@ -2,18 +2,29 @@
 
 仓库：https://github.com/suixiwu11-ai/HR---Yang
 
-## 一、Netlify 控制台设置
+## 一、Netlify 控制台设置（404 多半是这里没配对）
 
 进入站点 → **Site configuration** → **Build & deploy** → **Build settings**：
 
 | 项 | 填写 |
 |----|------|
 | **Base directory** | `项目/2026-05-黑客松项目/STRIDE/web` |
-| **Build command** | `npm run build`（或留空，读 `netlify.toml`） |
-| **Publish directory** | 留空或 `.next`（由 `@netlify/plugin-nextjs` 处理） |
+| **Build command** | `npm ci && npm run build` |
+| **Publish directory** | **留空**（交给插件）或 `.next` |
 | **Node version** | 20 |
 
-保存后 **Trigger deploy** → **Deploy site**。
+仓库**根目录**已添加 `netlify.toml`（含 `base = .../STRIDE/web`）。  
+若 UI 里 Base directory **留空**，也会用根目录配置文件。
+
+保存后 **Clear cache and deploy site**（清缓存重新部署）。
+
+### 出现 “Page not found” 时检查
+
+1. **Deploy log** 是否绿色 Published？若 Build failed，先修 log。  
+2. log 里是否有 `Installing @netlify/plugin-nextjs`、`Next.js`？没有则说明目录错了。  
+3. 是否误把 **Publish** 指到仓库根目录的 `docs/`（那是 GitHub Pages，不是本程序）。  
+4. 访问的是 **Production 的 `xxx.netlify.app` 根路径 `/`**，不是旧 deploy 预览链接。  
+5. 仍 404 → 建议改 **阿里云 ECS**（国内、不用买域名），见 `DEPLOY.md`。
 
 ## 二、环境变量（Site configuration → Environment variables）
 

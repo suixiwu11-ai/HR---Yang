@@ -1,6 +1,6 @@
 # STRIDE Next.js on Netlify（在 Netlify 站点设置里也可填相同项）
 [build]
-  command = "npm run build"
+  command = "npm ci && npm run build"
   publish = ".next"
 
 [build.environment]
