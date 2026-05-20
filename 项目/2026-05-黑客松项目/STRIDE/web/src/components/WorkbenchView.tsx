@@ -1,8 +1,9 @@
-﻿"use client";
+"use client";
 
 import { useCallback, useEffect, useState } from "react";
 import { useQuarter } from "@/components/AppShell";
 import { CopilotPanel } from "@/components/CopilotPanel";
+import { PageHero } from "@/components/PageHero";
 import { fmtMoney } from "@/lib/format";
 import { useViewMode } from "@/contexts/ViewModeContext";
 import type { CalcSnapshot } from "@/lib/types";
@@ -16,7 +17,7 @@ function fmtYi(n: number) {
 function fmtWanFte(n: number) {
   return "\u00a5 " + (n / 1e4).toFixed(0) + "\u4e07";
 }
-const BAR_COLORS = ["#635bff", "#00d4ff", "#94a3b8", "#ff80b5"] as const;
+const BAR_COLORS = ["#0f3d32", "#c85532", "#3d6b58", "#8aab7a"] as const;
 
 export function WorkbenchView() {
   const { quarterId } = useQuarter();
@@ -79,30 +80,22 @@ export function WorkbenchView() {
 
   return (
     <>
-      <p className="breadcrumb">
-        <a href="/">STRIDE</a>
-        {" / "}
-        <strong>{"\u5de5\u4f5c\u53f0"}</strong>
-        <span style={{ color: "var(--text-muted)" }}>
-          {" \u00b7 "}
-          {quarterId}
-        </span>
-        <button
-          type="button"
-          onClick={calculate}
-          style={{
-            marginLeft: "1rem",
-            fontSize: "0.75rem",
-            padding: "0.25rem 0.75rem",
-            borderRadius: 8,
-            border: "1px solid var(--border)",
-            background: "var(--bg-white)",
-            cursor: "pointer",
-          }}
-        >
-          {"\u91cd\u65b0\u6838\u7b97"}
-        </button>
-      </p>
+      <PageHero
+        title={"\u6218\u7565\u4eba\u6548\u5de5\u4f5c\u53f0"}
+        meta={`${quarterId} \u00b7 HRBP \u89c6\u56fe \u00b7 \u56db Tab \u603b\u89c8 / \u6210\u672c / \u7ec4\u7ec7 / \u85aa\u916c\u00d7\u7ee9\u6548`}
+        breadcrumb={
+          <>
+            <a href="/">STRIDE</a>
+            {" / "}
+            <strong>{"\u5de5\u4f5c\u53f0"}</strong>
+          </>
+        }
+        actions={
+          <button type="button" className="btn-secondary" onClick={calculate} style={{ marginTop: "0.75rem" }}>
+            {"\u91cd\u65b0\u6838\u7b97"}
+          </button>
+        }
+      />
 
       <div className="app-main with-copilot">
         <div>
@@ -258,21 +251,16 @@ export function WorkbenchView() {
                       <p className="tab-intro">{"\u6682\u65e0\u9884\u8b66\u3002"}</p>
                     ) : (
                       snapshot.warnings.map((w) => (
-                        <div
-                          key={w.code}
-                          style={{
-                            padding: "0.75rem",
-                            marginBottom: "0.5rem",
-                            borderRadius: 8,
-                            border:
-                              w.severity === "high" ? "1px solid var(--orange)" : "1px solid var(--border)",
-                            background: "var(--bg-white)",
-                          }}
-                        >
-                          <p>
-                            <strong>{w.code}</strong> {w.title}
-                          </p>
-                          <p style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>{w.message}</p>
+                        <div key={w.code} className="alert-card">
+                          <span className="code">{w.code}</span>
+                          <div>
+                            <p>
+                              <strong>{w.title}</strong>
+                            </p>
+                            <p style={{ fontSize: "0.8rem", margin: 0, color: "var(--text-secondary)" }}>
+                              {w.message}
+                            </p>
+                          </div>
                         </div>
                       ))
                     )}

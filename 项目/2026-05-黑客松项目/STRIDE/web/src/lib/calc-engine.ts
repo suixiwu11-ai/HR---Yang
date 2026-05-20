@@ -19,22 +19,24 @@ function roleCoef(rfId: string) {
   return ROLE_FAMILIES.find((r) => r.id === rfId)?.coef ?? 1;
 }
 
-export function calculateQuarter(quarterId: string): CalcSnapshot {
-  const db = getDb();
-  const q = db.prepare(`SELECT * FROM quarters WHERE id = ?`).get(quarterId) as {
+export async function calculateQuarter(quarterId: string): Promise<CalcSnapshot> {
+  const db = await getDb();
+  const q = await db.get<{
     id: string;
     weeks: number;
     revenue_proxy: number;
     config_json: string;
-  } | undefined;
+  }>(`SELECT * FROM quarters WHERE id = ?`, [quarterId]);
   if (!q) throw new Error(`Quarter ${quarterId} not found`);
 
-  const ftes = db
-    .prepare(`SELECT rf_id, fte FROM role_fte WHERE quarter_id = ?`)
-    .all(quarterId) as { rf_id: string; fte: number }[];
-  const allocs = db
-    .prepare(`SELECT rf_id, pl_id, percent FROM allocations WHERE quarter_id = ?`)
-    .all(quarterId) as { rf_id: string; pl_id: string; percent: number }[];
+  const ftes = await db.all<{ rf_id: string; fte: number }>(
+    `SELECT rf_id, fte FROM role_fte WHERE quarter_id = ?`,
+    [quarterId]
+  );
+  const allocs = await db.all<{ rf_id: string; pl_id: string; percent: number }>(
+    `SELECT rf_id, pl_id, percent FROM allocations WHERE quarter_id = ?`,
+    [quarterId]
+  );
 
   const plTcow: Record<string, number> = {};
   for (const pl of PRODUCT_LINES) plTcow[pl.id] = 0;
@@ -78,16 +80,16 @@ export function calculateQuarter(quarterId: string): CalcSnapshot {
 
   const warnings: WarningRow[] = [];
 
-  // W8: handoff done, zero adoptions
-  const doneHandoffs = db
-    .prepare(`SELECT id, title FROM x10_handoffs WHERE quarter_id = ? AND status = 'done'`)
-    .all(quarterId) as { id: string; title: string }[];
+  const doneHandoffs = await db.all<{ id: string; title: string }>(
+    `SELECT id, title FROM x10_handoffs WHERE quarter_id = ? AND status = 'done'`,
+    [quarterId]
+  );
   for (const h of doneHandoffs) {
-    const adCount = (
-      db
-        .prepare(`SELECT COUNT(*) as c FROM x10_adoptions WHERE handoff_id = ?`)
-        .get(h.id) as { c: number }
-    ).c;
+    const row = await db.get<{ c: number }>(
+      `SELECT COUNT(*) as c FROM x10_adoptions WHERE handoff_id = ?`,
+      [h.id]
+    );
+    const adCount = Number(row?.c ?? 0);
     if (adCount === 0) {
       warnings.push({
         code: "W8",
@@ -133,45 +135,48 @@ export function calculateQuarter(quarterId: string): CalcSnapshot {
     warnings,
   };
 
-  db.prepare(
-    `INSERT INTO calc_snapshots (id, quarter_id, payload_json, created_at) VALUES (?, ?, ?, ?)`
-  ).run(snapshotId, quarterId, JSON.stringify(payload), payload.createdAt);
-
-  // refresh headline observations
-  db.prepare(`DELETE FROM metric_observations WHERE quarter_id = ? AND pl_id IS NULL`).run(quarterId);
-  const ins = db.prepare(
-    `INSERT INTO metric_observations (quarter_id, metric_code, value, source_type, pl_id) VALUES (?, ?, ?, 'proxy', NULL)`
+  await db.run(
+    `INSERT INTO calc_snapshots (id, quarter_id, payload_json, created_at) VALUES (?, ?, ?, ?)`,
+    [snapshotId, quarterId, JSON.stringify(payload), payload.createdAt]
   );
-  ins.run(quarterId, "HR-TCOW", payload.kpis.tcow);
-  ins.run(quarterId, "HR-LABOR-COST-PCT", payload.kpis.laborCostPct);
-  ins.run(quarterId, "HR-REV-FTE", payload.kpis.revPerFte);
-  ins.run(quarterId, "HR-HEADCOUNT-ATTAIN", payload.kpis.headcountAttainment);
+
+  await db.run(`DELETE FROM metric_observations WHERE quarter_id = ? AND pl_id IS NULL`, [
+    quarterId,
+  ]);
+  const headlineMetrics: [string, number][] = [
+    ["HR-TCOW", payload.kpis.tcow],
+    ["HR-LABOR-COST-PCT", payload.kpis.laborCostPct],
+    ["HR-REV-FTE", payload.kpis.revPerFte],
+    ["HR-HEADCOUNT-ATTAIN", payload.kpis.headcountAttainment],
+  ];
+  for (const [code, value] of headlineMetrics) {
+    await db.run(
+      `INSERT INTO metric_observations (quarter_id, metric_code, value, source_type, pl_id) VALUES (?, ?, ?, 'proxy', NULL)`,
+      [quarterId, code, value]
+    );
+  }
 
   return payload;
 }
 
-export function getLatestSnapshot(quarterId: string): CalcSnapshot | null {
-  const db = getDb();
-  const row = db
-    .prepare(
-      `SELECT payload_json FROM calc_snapshots WHERE quarter_id = ? ORDER BY created_at DESC LIMIT 1`
-    )
-    .get(quarterId) as { payload_json: string } | undefined;
+export async function getLatestSnapshot(quarterId: string): Promise<CalcSnapshot | null> {
+  const db = await getDb();
+  const row = await db.get<{ payload_json: string }>(
+    `SELECT payload_json FROM calc_snapshots WHERE quarter_id = ? ORDER BY created_at DESC LIMIT 1`,
+    [quarterId]
+  );
   if (!row) return null;
   return JSON.parse(row.payload_json) as CalcSnapshot;
 }
 
-export function getX10Collaboration(quarterId: string) {
-  const db = getDb();
-  const handoffs = db
-    .prepare(`SELECT * FROM x10_handoffs WHERE quarter_id = ?`)
-    .all(quarterId);
-  const adoptions = db
-    .prepare(`SELECT * FROM x10_adoptions WHERE quarter_id = ?`)
-    .all(quarterId);
-  const supports = db
-    .prepare(`SELECT * FROM x10_support_tasks WHERE quarter_id = ?`)
-    .all(quarterId) as { rf_id: string; pl_id: string; completed: number }[];
+export async function getX10Collaboration(quarterId: string) {
+  const db = await getDb();
+  const handoffs = await db.all(`SELECT * FROM x10_handoffs WHERE quarter_id = ?`, [quarterId]);
+  const adoptions = await db.all(`SELECT * FROM x10_adoptions WHERE quarter_id = ?`, [quarterId]);
+  const supports = await db.all<{ rf_id: string; pl_id: string; completed: number }>(
+    `SELECT * FROM x10_support_tasks WHERE quarter_id = ?`,
+    [quarterId]
+  );
 
   const byPl: Record<string, { adoptions: number; supportRate: number }> = {};
   for (const pl of PRODUCT_LINES) {

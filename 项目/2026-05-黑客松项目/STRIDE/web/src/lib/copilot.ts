@@ -1,19 +1,22 @@
 import { getLatestSnapshot, getX10Collaboration } from "./calc-engine";
 import { chatCompletion, isLlmEnabled, markdownToHtml, type ChatMessage } from "./llm";
 
-const RULES: { match: RegExp; answer: (q: string, quarterId: string) => string }[] = [
+const RULES: {
+  match: RegExp;
+  answer: (q: string, quarterId: string) => Promise<string>;
+}[] = [
   {
     match: /tcow|人力总成本|总成本/i,
-    answer: (_, qid) => {
-      const s = getLatestSnapshot(qid);
+    answer: async (_, qid) => {
+      const s = await getLatestSnapshot(qid);
       if (!s) return "请先加载演示数据并执行核算。";
       return `本季（${qid}）人力总成本 **¥${(s.kpis.tcow / 1e8).toFixed(2)}亿**。<br/><span style="font-size:0.75rem;color:#697386">来源：HR-TCOW · proxy</span>`;
     },
   },
   {
     match: /人力成本率|成本率.*最高/i,
-    answer: (_, qid) => {
-      const s = getLatestSnapshot(qid);
+    answer: async (_, qid) => {
+      const s = await getLatestSnapshot(qid);
       if (!s) return "请先核算。";
       const top = [...s.plCosts].sort((a, b) => b.laborCostPct - a.laborCostPct)[0];
       return `本季人力成本率最高产品线为 **${top.plName}**（${(top.laborCostPct * 100).toFixed(1)}%）。<br/><span style="font-size:0.75rem;color:#697386">来源：proxy</span>`;
@@ -21,27 +24,27 @@ const RULES: { match: RegExp; answer: (q: string, quarterId: string) => string }
   },
   {
     match: /10x|10×|handoff|采纳/i,
-    answer: (_, qid) => {
-      const x = getX10Collaboration(qid);
+    answer: async (_, qid) => {
+      const x = await getX10Collaboration(qid);
       return `本季 10× Handoff **${x.handoffs.length}** 项，采纳 **${x.adoptions.length}** 项。<br/><span style="font-size:0.75rem;color:#697386">来源：X10 · proxy</span>`;
     },
   },
   {
     match: /编制达成/i,
-    answer: (_, qid) => {
-      const s = getLatestSnapshot(qid);
+    answer: async (_, qid) => {
+      const s = await getLatestSnapshot(qid);
       if (!s) return "请先核算。";
       return `编制达成率 **${(s.kpis.headcountAttainment * 100).toFixed(0)}%**。<br/><span style="font-size:0.75rem;color:#697386">来源：proxy</span>`;
     },
   },
 ];
 
-function buildDataContext(quarterId: string): string {
-  const s = getLatestSnapshot(quarterId);
+async function buildDataContext(quarterId: string): Promise<string> {
+  const s = await getLatestSnapshot(quarterId);
   if (!s) {
     return JSON.stringify({ quarterId, error: "no_snapshot", hint: "请先加载演示数据并核算" });
   }
-  const x10 = getX10Collaboration(quarterId);
+  const x10 = await getX10Collaboration(quarterId);
   return JSON.stringify(
     {
       quarterId,
@@ -61,10 +64,10 @@ function buildDataContext(quarterId: string): string {
   );
 }
 
-function askByRules(question: string, quarterId: string) {
+async function askByRules(question: string, quarterId: string) {
   for (const r of RULES) {
     if (r.match.test(question)) {
-      return { answer: r.answer(question, quarterId), refused: false, mode: "rules" as const };
+      return { answer: await r.answer(question, quarterId), refused: false, mode: "rules" as const };
     }
   }
   return {
@@ -90,7 +93,7 @@ export async function askCopilot(
       content: `你是 STRIDE 人力洞察 Copilot。你只能根据【本季数据包】回答，禁止编造未给出的数字。
 回答要求：简体中文；关键数字用 **加粗**；每条结论注明来源（proxy/推演/假设）；若数据包无相关信息，明确说无法从当前快照回答。
 本季数据包（JSON）：
-${buildDataContext(quarterId)}`,
+${await buildDataContext(quarterId)}`,
     };
 
     const messages: ChatMessage[] = [
@@ -114,8 +117,9 @@ ${buildDataContext(quarterId)}`,
     };
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
+    const fallback = await askByRules(question, quarterId);
     return {
-      answer: `智能问数暂时不可用（${msg}），已切换规则回答。<br/>${askByRules(question, quarterId).answer}`,
+      answer: `智能问数暂时不可用（${msg}），已切换规则回答。<br/>${fallback.answer}`,
       refused: false,
       mode: "fallback" as const,
     };

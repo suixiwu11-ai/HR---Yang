@@ -1,58 +1,60 @@
 import { getDb } from "./db";
 import type { QuarterRow } from "./types";
 
-export function listQuarters(): QuarterRow[] {
-  const db = getDb();
-  return db.prepare(`SELECT * FROM quarters ORDER BY id DESC`).all() as QuarterRow[];
+export async function listQuarters(): Promise<QuarterRow[]> {
+  const db = await getDb();
+  return db.all<QuarterRow>(`SELECT * FROM quarters ORDER BY id DESC`);
 }
 
-export function getQuarter(id: string): QuarterRow | undefined {
-  const db = getDb();
-  return db.prepare(`SELECT * FROM quarters WHERE id = ?`).get(id) as QuarterRow | undefined;
+export async function getQuarter(id: string): Promise<QuarterRow | undefined> {
+  const db = await getDb();
+  return db.get<QuarterRow>(`SELECT * FROM quarters WHERE id = ?`, [id]);
 }
 
-export function upsertQuarter(input: {
+export async function upsertQuarter(input: {
   id: string;
   label?: string;
   weeks?: number;
   revenue_proxy?: number;
 }) {
-  const db = getDb();
-  const existing = getQuarter(input.id);
-  db.prepare(
+  const db = await getDb();
+  const existing = await getQuarter(input.id);
+  await db.run(
     `INSERT OR REPLACE INTO quarters (id, label, weeks, revenue_proxy, config_json)
-     VALUES (?, ?, ?, ?, ?)`
-  ).run(
-    input.id,
-    input.label ?? existing?.label ?? input.id,
-    input.weeks ?? existing?.weeks ?? 13,
-    input.revenue_proxy ?? existing?.revenue_proxy ?? 0,
-    existing?.config_json ?? "{}"
+     VALUES (?, ?, ?, ?, ?)`,
+    [
+      input.id,
+      input.label ?? existing?.label ?? input.id,
+      input.weeks ?? existing?.weeks ?? 13,
+      input.revenue_proxy ?? existing?.revenue_proxy ?? 0,
+      existing?.config_json ?? "{}",
+    ]
   );
-  return getQuarter(input.id)!;
+  return (await getQuarter(input.id))!;
 }
 
-export function setRoleFte(quarterId: string, rfId: string, fte: number) {
-  const db = getDb();
-  db.prepare(`INSERT OR REPLACE INTO role_fte (quarter_id, rf_id, fte) VALUES (?, ?, ?)`).run(
+export async function setRoleFte(quarterId: string, rfId: string, fte: number) {
+  const db = await getDb();
+  await db.run(`INSERT OR REPLACE INTO role_fte (quarter_id, rf_id, fte) VALUES (?, ?, ?)`, [
     quarterId,
     rfId,
-    fte
-  );
+    fte,
+  ]);
 }
 
-export function setObservation(
+export async function setObservation(
   quarterId: string,
   metricCode: string,
   value: number,
   sourceType: string,
   plId?: string | null
 ) {
-  const db = getDb();
-  db.prepare(
+  const db = await getDb();
+  await db.run(
     `INSERT INTO metric_observations (quarter_id, metric_code, value, source_type, pl_id)
      VALUES (?, ?, ?, ?, ?)
      ON CONFLICT(quarter_id, metric_code, pl_id) DO UPDATE SET
-       value = excluded.value, source_type = excluded.source_type`
-  ).run(quarterId, metricCode, value, sourceType, plId ?? null);
+       value = excluded.value, source_type = excluded.source_type`,
+    [quarterId, metricCode, value, sourceType, plId ?? null]
+  );
 }

@@ -4,18 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>STRIDE · HR 工作台（原型）</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../stride-doc-shared.css" />
   <link rel="stylesheet" href="../stride-app.css" />
+  <link rel="stylesheet" href="../stride-theme-mandai.css" />
 </head>
-<body class="app-shell">
-  <div class="proto-banner">HTML 原型 · 2025 Q3 · 假设案例 MiniMax · PRD §3.1 四 Tab 必交付</div>
+<body class="app-shell theme-mandai">
+  <div class="proto-banner">Mandai 配色 · 2025 Q3 · 假设案例 MiniMax · PRD §3.1 四 Tab</div>
 
   <header class="app-header">
     <div class="app-header-inner">
       <a href="../index.html" class="brand" style="text-decoration:none;color:inherit;">
         <span class="brand-icon"><svg viewBox="0 0 16 16" fill="none"><path d="M8 2L14 8L8 14L2 8L8 2Z" fill="white"/></svg></span>
-        STRIDE
+        STRIDE <span class="theme-badge-ui">Mandai</span>
       </a>
       <nav class="app-tabs" id="main-tabs">
         <button type="button" class="active" data-panel="overview">总览</button>
@@ -37,10 +38,13 @@
     </div>
   </header>
 
-  <p class="breadcrumb" style="max-width:1400px;margin:0.75rem auto 0;padding:0 1.5rem;">
-    <a href="../index.html">首页</a> / <a href="../prd.html">PRD</a> / <strong>工作台</strong>
-    <span style="color:var(--text-muted);"> · 2025 Q3</span>
-  </p>
+  <div class="mandai-page-hero">
+    <p class="breadcrumb">
+      <a href="../index.html">首页</a> / <a href="../prd.html">PRD</a> / <strong>工作台</strong>
+    </p>
+    <h1>战略人效工作台</h1>
+    <p class="meta">2025 Q3 · HRBP 视图 · 四 Tab 总览 / 成本 / 组织 / 薪酬×绩效</p>
+  </div>
 
   <div class="app-main with-copilot" id="app-main">
     <div id="panels-root">

@@ -7,11 +7,11 @@ export async function GET(req: Request) {
   const quarter = url.searchParams.get("quarter") ?? "2025Q3";
   const type = (url.searchParams.get("type") ?? "hrbp") as "hrbp" | "executive";
   const format = url.searchParams.get("format") ?? "md";
-  const snapshot = getLatestSnapshot(quarter);
+  const snapshot = await getLatestSnapshot(quarter);
   if (!snapshot) return NextResponse.json({ error: "no snapshot" }, { status: 404 });
 
   if (format === "html") {
-    const html = buildReportHtml(snapshot, type);
+    const html = await buildReportHtml(snapshot, type);
     return new NextResponse(html, {
       headers: {
         "Content-Type": "text/html; charset=utf-8",
@@ -19,7 +19,7 @@ export async function GET(req: Request) {
       },
     });
   }
-  const md = buildReportMarkdown(snapshot, type);
+  const md = await buildReportMarkdown(snapshot, type);
   return new NextResponse(md, {
     headers: {
       "Content-Type": "text/markdown; charset=utf-8",
@@ -33,10 +33,10 @@ export async function POST(req: Request) {
   const quarter = String(body.quarter ?? "2025Q3");
   const type = (body.type ?? "hrbp") as "hrbp" | "executive";
   const format = String(body.format ?? "md");
-  const snapshot = getLatestSnapshot(quarter);
+  const snapshot = await getLatestSnapshot(quarter);
   if (!snapshot) return NextResponse.json({ error: "no snapshot" }, { status: 404 });
   if (format === "html") {
-    return NextResponse.json({ content: buildReportHtml(snapshot, type), format: "html" });
+    return NextResponse.json({ content: await buildReportHtml(snapshot, type), format: "html" });
   }
-  return NextResponse.json({ content: buildReportMarkdown(snapshot, type), format: "md" });
+  return NextResponse.json({ content: await buildReportMarkdown(snapshot, type), format: "md" });
 }

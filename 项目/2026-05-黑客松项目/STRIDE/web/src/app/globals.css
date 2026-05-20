@@ -3,21 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #fffef9;
+  --foreground: #0f2e24;
 }
 
 body {
-  color: var(--text, #0a2540);
-  background: var(--bg, #f6f9fc);
-  font-family: var(--font, system-ui, sans-serif);
+  color: var(--text, #0f2e24);
+  background: var(--bg, #fffef9);
+  font-family: var(--font, "DM Sans", "PingFang SC", "Microsoft YaHei", sans-serif);
   position: relative;
   pointer-events: auto;
 }
@@ -29,10 +22,20 @@ body {
 
 @layer components {
   .btn-primary {
-    @apply rounded-lg bg-[#635bff] px-4 py-2 text-sm font-medium text-white hover:bg-[#4f46e5];
+    @apply rounded-full px-4 py-2 text-sm font-semibold text-white;
+    background: var(--accent, #c85532);
+  }
+  .btn-primary:hover {
+    background: var(--accent-hover, #a84628);
   }
   .btn-secondary {
-    @apply rounded-lg border border-[#e3e8ee] bg-white px-4 py-2 text-sm text-[#0a2540] hover:bg-[#f6f9fc];
+    @apply rounded-full border-2 px-4 py-2 text-sm font-medium;
+    border-color: var(--forest-mid, #1a5c4a);
+    color: var(--forest, #0f3d32);
+    background: transparent;
+  }
+  .btn-secondary:hover {
+    background: var(--sage, #e4ebe0);
   }
 }
 

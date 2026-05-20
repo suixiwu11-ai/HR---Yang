@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useQuarter } from "@/components/AppShell";
+import { PageHero } from "@/components/PageHero";
 import { parseImportCsv } from "@/lib/csv-import";
 import { L } from "@/lib/labels";
 
@@ -82,108 +83,114 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="space-y-6" style={{ maxWidth: 720, margin: "0 auto", padding: "1rem" }}>
-      <p className="breadcrumb">
-        <a href="/">STRIDE</a> / <strong>{L.settingsTitle}</strong>
-      </p>
-      <h1 className="text-2xl font-semibold">{L.settingsTitle}</h1>
-      {status && <p className="text-sm" style={{ color: "var(--accent)" }}>{status}</p>}
+    <>
+      <PageHero
+        title={L.settingsTitle}
+        meta={"\u5bfc\u5165\u6a21\u677f\u3001\u6f14\u793a\u6570\u636e\u3001\u5b63\u5ea6\u53c2\u6570\u4e0e\u62a5\u544a\u4e0b\u8f7d"}
+        breadcrumb={
+          <>
+            <a href="/">STRIDE</a> / <strong>{L.settingsTitle}</strong>
+          </>
+        }
+      />
+      <div className="app-main" style={{ maxWidth: 720 }}>
+        {status && (
+          <p className="tab-intro" style={{ color: "var(--forest)" }}>
+            {status}
+          </p>
+        )}
 
-      <section className="chart-panel tab-intro" style={{ fontSize: "0.88rem" }}>
-        <h3 style={{ marginBottom: "0.5rem" }}>{"\u5bfc\u5165\u662f\u4ec0\u4e48\uff1f"}</h3>
-        <p style={{ marginBottom: "0.5rem" }}>
-          {
-            "\u628a\u4e00\u4e2a\u5b63\u5ea6\u7684\u4eba\u529b\u6570\u636e\u4e00\u6b21\u6027\u5199\u8fdb\u7cfb\u7edf\uff0c\u5305\u62ec\uff1a"
-          }
-        </p>
-        <ul style={{ paddingLeft: "1.25rem", marginBottom: "0.75rem" }}>
-          <li>{"\u5b63\u5ea6\u6536\u5165 proxy\u3001\u5468\u6570"}</li>
-          <li>{"\u5404\u5c97\u4f4d\u65cf FTE\uff08\u5982 RF01 \u7b97\u6cd5\uff09"}</li>
-          <li>{"FTE \u5206\u644a\u5230\u4ea7\u54c1\u7ebf\u7684\u767e\u5206\u6bd4\uff08P1\u2013P6\uff09"}</li>
-          <li>{"\u5173\u952e\u6307\u6807\u89c2\u6d4b\u503c\uff08\u53ef\u9009\uff09"}</li>
-          <li>{"10\u00d7 Handoff / \u91c7\u7eb3\uff08\u53ef\u9009\uff09"}</li>
-        </ul>
-        <p>
-          <strong>{"\u63a8\u8350\u7528 CSV\u6a21\u677f"}</strong>
-          {
-            "\uff1a\u7528 Excel / WPS \u6253\u5f00\u3001\u6539\u6570\u5b57\u3001\u4fdd\u5b58\u4e3a CSV \u540e\u518d\u5bfc\u5165\u3002"
-          }
-        </p>
-        <p style={{ marginTop: "0.5rem", color: "var(--text-muted)" }}>
-          {
-            "JSON \u662f\u7a0b\u5e8f\u7528\u7684\u6570\u636e\u5305\u683c\u5f0f\uff08\u548c Excel \u91cc\u7684\u8868\u683c\u5185\u5bb9\u4e00\u81f4\uff0c\u53ea\u662f\u6362\u4e86\u79cd\u5199\u6cd5\uff09\u3002\u4e0d\u719f\u6089\u53ef\u5ffd\u7565 JSON\uff0c\u53ea\u7528 CSV \u5373\u53ef\u3002"
-          }
-        </p>
-      </section>
+        <section className="chart-panel tab-intro" style={{ fontSize: "0.88rem" }}>
+          <h3 style={{ marginBottom: "0.5rem" }}>{"\u5bfc\u5165\u662f\u4ec0\u4e48\uff1f"}</h3>
+          <p style={{ marginBottom: "0.5rem" }}>
+            {"\u628a\u4e00\u4e2a\u5b63\u5ea6\u7684\u4eba\u529b\u6570\u636e\u4e00\u6b21\u6027\u5199\u8fdb\u7cfb\u7edf\uff0c\u5305\u62ec\uff1a"}
+          </p>
+          <ul style={{ paddingLeft: "1.25rem", marginBottom: "0.75rem" }}>
+            <li>{"\u5b63\u5ea6\u6536\u5165 proxy\u3001\u5468\u6570"}</li>
+            <li>{"\u5404\u5c97\u4f4d\u65cf FTE\uff08\u5982 RF01 \u7b97\u6cd5\uff09"}</li>
+            <li>{"FTE \u5206\u644a\u5230\u4ea7\u54c1\u7ebf\u7684\u767e\u5206\u6bd4\uff08P1\u2013P6\uff09"}</li>
+            <li>{"\u5173\u952e\u6307\u6807\u89c2\u6d4b\u503c\uff08\u53ef\u9009\uff09"}</li>
+            <li>{"10\u00d7 Handoff / \u91c7\u7eb3\uff08\u53ef\u9009\uff09"}</li>
+          </ul>
+          <p>
+            <strong>{"\u63a8\u8350\u7528 CSV\u6a21\u677f"}</strong>
+            {"\uff1a\u7528 Excel / WPS \u6253\u5f00\u3001\u6539\u6570\u5b57\u3001\u4fdd\u5b58\u4e3a CSV \u540e\u518d\u5bfc\u5165\u3002"}
+          </p>
+          <p style={{ marginTop: "0.5rem", color: "var(--text-muted)" }}>
+            {"JSON \u662f\u7a0b\u5e8f\u7528\u7684\u6570\u636e\u5305\u683c\u5f0f\uff08\u548c Excel \u91cc\u7684\u8868\u683c\u5185\u5bb9\u4e00\u81f4\uff0c\u53ea\u662f\u6362\u4e86\u79cd\u5199\u6cd5\uff09\u3002\u4e0d\u719f\u6089\u53ef\u5ffd\u7565 JSON\uff0c\u53ea\u7528 CSV \u5373\u53ef\u3002"}
+          </p>
+        </section>
 
-      <section className="chart-panel space-y-3">
-        <h2 className="font-medium">{"\u6a21\u677f\u4e0e\u5bfc\u5165"}</h2>
-        <div className="flex flex-wrap gap-2">
-          <button type="button" className="btn-primary" onClick={() => downloadTemplate("csv")}>
-            {"\u2b07 \u4e0b\u8f7d CSV \u6a21\u677f\uff08\u63a8\u8350\uff09"}
-          </button>
-          <button type="button" className="btn-secondary" onClick={() => downloadTemplate("json")}>
-            {"\u2b07 \u4e0b\u8f7d JSON \u6a21\u677f"}
-          </button>
-          <label className="btn-secondary cursor-pointer">
-            {"\u2b06 \u5bfc\u5165 CSV / JSON"}
-            <input
-              type="file"
-              accept=".csv,.json,text/csv,application/json"
-              className="hidden"
-              onChange={(e) => e.target.files?.[0] && importFile(e.target.files[0])}
-            />
-          </label>
-          <button type="button" className="btn-secondary" onClick={exportJson}>
-            {"\u5bfc\u51fa\u5f53\u524d\u5b63\u5ea6\uff08JSON\uff09"}
-          </button>
-        </div>
-        <p className="text-sm" style={{ color: "var(--text-muted)" }}>
-          {"\u5f53\u524d\u5b63\u5ea6\uff1a"}
-          <strong>{quarterId}</strong>
-          {" \u00b7 \u6a21\u677f\u91cc\u7684 quarter_id \u5217\u8981\u4e0e\u60a8\u8981\u5bfc\u5165\u7684\u5b63\u5ea6\u4e00\u81f4"}
-        </p>
-      </section>
+        <section className="chart-panel">
+          <h2 style={{ fontWeight: 600, marginBottom: "0.75rem" }}>{"\u6a21\u677f\u4e0e\u5bfc\u5165"}</h2>
+          <div className="btn-row">
+            <button type="button" className="btn btn-primary" onClick={() => downloadTemplate("csv")}>
+              {"\u2b07 \u4e0b\u8f7d CSV \u6a21\u677f\uff08\u63a8\u8350\uff09"}
+            </button>
+            <button type="button" className="btn btn-secondary" onClick={() => downloadTemplate("json")}>
+              {"\u2b07 \u4e0b\u8f7d JSON \u6a21\u677f"}
+            </button>
+            <label className="btn btn-secondary" style={{ cursor: "pointer" }}>
+              {"\u2b06 \u5bfc\u5165 CSV / JSON"}
+              <input
+                type="file"
+                accept=".csv,.json,text/csv,application/json"
+                style={{ display: "none" }}
+                onChange={(e) => e.target.files?.[0] && importFile(e.target.files[0])}
+              />
+            </label>
+            <button type="button" className="btn btn-secondary" onClick={exportJson}>
+              {"\u5bfc\u51fa\u5f53\u524d\u5b63\u5ea6\uff08JSON\uff09"}
+            </button>
+          </div>
+          <p style={{ marginTop: "0.75rem", fontSize: "0.85rem", color: "var(--text-muted)" }}>
+            {"\u5f53\u524d\u5b63\u5ea6\uff1a"}
+            <strong>{quarterId}</strong>
+            {" \u00b7 \u6a21\u677f\u91cc\u7684 quarter_id \u5217\u8981\u4e0e\u60a8\u8981\u5bfc\u5165\u7684\u5b63\u5ea6\u4e00\u81f4"}
+          </p>
+          <p style={{ marginTop: "0.5rem", fontSize: "0.85rem", color: "var(--text-muted)" }}>
+            {"\u957f\u671f demo\uff1aNetlify \u914d\u7f6e Turso \u540e\u6570\u636e\u4e91\u7aef\u4fdd\u7559\uff1b\u5efa\u8bae\u5b9a\u671f\u300c\u5bfc\u51fa JSON\u300d\u4f5c\u5907\u4efd\uff0c\u8be6\u89c1 DEPLOY-TURSO.md\u3002"}
+          </p>
+        </section>
 
-      <section className="chart-panel space-y-3">
-        <h2 className="font-medium">{"\u5feb\u901f\u5f00\u59cb"}</h2>
-        <button type="button" onClick={seed} className="btn-primary">
-          {L.seed}
-        </button>
-      </section>
+        <section className="chart-panel">
+          <h2 style={{ fontWeight: 600, marginBottom: "0.75rem" }}>{"\u5feb\u901f\u5f00\u59cb"}</h2>
+          <button type="button" onClick={seed} className="btn btn-primary">
+            {L.seed}
+          </button>
+        </section>
 
-      <section className="chart-panel space-y-3">
-        <h2 className="font-medium">{"\u5b63\u5ea6\u53c2\u6570"}</h2>
-        <label className="block text-sm">
-          {L.revenue}
-          <input
-            className="mt-1 w-full rounded border border-[#e3e8ee] px-3 py-2"
-            value={revenue}
-            onChange={(e) => setRevenue(e.target.value)}
-          />
-        </label>
-        <button type="button" onClick={saveQuarter} className="btn-primary">
-          {L.saveQuarter}
-        </button>
-      </section>
+        <section className="chart-panel">
+          <h2 style={{ fontWeight: 600, marginBottom: "0.75rem" }}>{"\u5b63\u5ea6\u53c2\u6570"}</h2>
+          <div className="form-field">
+            <label>{L.revenue}</label>
+            <input value={revenue} onChange={(e) => setRevenue(e.target.value)} />
+          </div>
+          <div className="btn-row">
+            <button type="button" onClick={saveQuarter} className="btn btn-primary">
+              {L.saveQuarter}
+            </button>
+          </div>
+        </section>
 
-      <section className="chart-panel space-y-3">
-        <h2 className="font-medium">{"\u62a5\u544a\u4e0b\u8f7d"}</h2>
-        <div className="grid gap-2 sm:grid-cols-2">
-          <button type="button" className="btn-secondary" onClick={() => downloadReport("hrbp", "md")}>
-            {L.reportHrMd}
-          </button>
-          <button type="button" className="btn-secondary" onClick={() => downloadReport("hrbp", "html")}>
-            {L.reportHrHtml}
-          </button>
-          <button type="button" className="btn-secondary" onClick={() => downloadReport("executive", "md")}>
-            {L.reportExecMd}
-          </button>
-          <button type="button" className="btn-secondary" onClick={() => downloadReport("executive", "html")}>
-            {L.reportExecHtml}
-          </button>
-        </div>
-      </section>
-    </div>
+        <section className="chart-panel">
+          <h2 style={{ fontWeight: 600, marginBottom: "0.75rem" }}>{"\u62a5\u544a\u4e0b\u8f7d"}</h2>
+          <div className="btn-row">
+            <button type="button" className="btn btn-secondary" onClick={() => downloadReport("hrbp", "md")}>
+              {L.reportHrMd}
+            </button>
+            <button type="button" className="btn btn-secondary" onClick={() => downloadReport("hrbp", "html")}>
+              {L.reportHrHtml}
+            </button>
+            <button type="button" className="btn btn-secondary" onClick={() => downloadReport("executive", "md")}>
+              {L.reportExecMd}
+            </button>
+            <button type="button" className="btn btn-secondary" onClick={() => downloadReport("executive", "html")}>
+              {L.reportExecHtml}
+            </button>
+          </div>
+        </section>
+      </div>
+    </>
   );
 }

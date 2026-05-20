@@ -13,10 +13,10 @@ web/out/
 .env.*
 !.env.example
 
-# SQLite / local data
+# SQLite / local data (not src/app/api/data)
 *.db
 *.db-journal
-data/
+web/data/
 
 # OS & IDE
 .DS_Store

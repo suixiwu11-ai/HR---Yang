@@ -86,20 +86,7 @@ export function CopilotPanel() {
     <aside className="copilot-panel">
       <h3>
         Insight Copilot
-        {llmOn && (
-          <span
-            style={{
-              marginLeft: 6,
-              fontSize: "0.6rem",
-              padding: "2px 6px",
-              borderRadius: 4,
-              background: "var(--accent-soft)",
-              color: "var(--accent)",
-            }}
-          >
-            LLM
-          </span>
-        )}
+        {llmOn && <span className="badge accent">LLM</span>}
       </h3>
       <div style={{ maxHeight: 320, overflowY: "auto", marginBottom: 8 }}>
         {messages.map((msg, i) =>
@@ -117,25 +104,9 @@ export function CopilotPanel() {
         )}
         {loading && <p className="copilot-msg bot">{"\u601d\u8003\u4e2d\u2026"}</p>}
       </div>
-      <div
-        className="copilot-chips"
-        style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem", marginBottom: "0.5rem" }}
-      >
+      <div className="copilot-chips">
         {SUGGESTIONS.map((s) => (
-          <button
-            key={s}
-            type="button"
-            disabled={loading}
-            onClick={() => send(s)}
-            style={{
-              fontSize: "0.65rem",
-              padding: "0.25rem 0.5rem",
-              borderRadius: 999,
-              border: "1px solid var(--border)",
-              background: "var(--bg)",
-              cursor: loading ? "wait" : "pointer",
-            }}
-          >
+          <button key={s} type="button" disabled={loading} onClick={() => send(s)}>
             {s}
           </button>
         ))}

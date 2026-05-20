@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useQuarter } from "@/components/AppShell";
+import { PageHero } from "@/components/PageHero";
 import { ROLE_FAMILIES, PRODUCT_LINES } from "@/lib/catalog";
 
 export default function WizardPage() {
@@ -16,87 +17,105 @@ export default function WizardPage() {
   }
 
   return (
-    <div style={{ maxWidth: 900, margin: "0 auto", padding: "1rem" }}>
-      <p className="breadcrumb">
-        <a href="/">STRIDE</a> / <strong>{"\u5b63\u5ea6\u5411\u5bfc"}</strong>
-      </p>
-      <section className="chart-panel">
-        <h3>
-          {"\u6b65\u9aa4 "}
-          {step}
-          /4
-        </h3>
-        {step === 1 && (
-          <p className="tab-intro">
-            {"\u786e\u8ba4\u5b63\u5ea6 "}
-            <strong>{quarterId}</strong>
-            {"\uff1b\u8bf7\u5728\u300c\u6570\u636e\u300d\u9875\u8bbe\u7f6e\u6536\u5165 proxy\u3002"}
-          </p>
-        )}
-        {step === 2 && (
-          <div className="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>RF</th>
-                  <th>{"\u540d\u79f0"}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {ROLE_FAMILIES.map((r) => (
-                  <tr key={r.id}>
-                    <td>{r.id}</td>
-                    <td>{r.name}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-        {step === 3 && (
-          <div className="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>PL</th>
-                  <th>{"\u4ea7\u54c1\u7ebf"}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {PRODUCT_LINES.map((p) => (
-                  <tr key={p.id}>
-                    <td>{p.id}</td>
-                    <td>{p.name}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-        {step === 4 && <p className="tab-intro">{msg}</p>}
-        <div style={{ marginTop: "1rem", display: "flex", gap: "0.5rem" }}>
-          {step > 1 && step < 4 && (
-            <button type="button" className="btn-secondary" onClick={() => setStep(step - 1)}>
-              {"\u4e0a\u4e00\u6b65"}
-            </button>
+    <>
+      <PageHero
+        title={"\u6218\u7565\u5b63\u5411\u5bfc"}
+        meta={"\u5411\u5bfc 1\u20134 \u00b7 \u5b63\u5ea6\u914d\u7f6e \u2192 \u5c97\u4f4d\u65cf \u2192 \u4ea7\u54c1\u7ebf \u2192 \u6838\u7b97"}
+        breadcrumb={
+          <>
+            <a href="/">STRIDE</a> / <strong>{"\u5b63\u5ea6\u5411\u5bfc"}</strong>
+          </>
+        }
+      />
+      <div className="app-main" style={{ maxWidth: 900 }}>
+        <div className="wizard-steps">
+          {[1, 2, 3, 4].map((n) => (
+            <div key={n} className={`step${step === n ? " active" : ""}${step > n ? " done" : ""}`}>
+              {n === 1 && "1 \u5b63\u5ea6\u786e\u8ba4"}
+              {n === 2 && "2 \u5c97\u4f4d\u65cf"}
+              {n === 3 && "3 \u4ea7\u54c1\u7ebf"}
+              {n === 4 && "4 \u5b8c\u6210"}
+            </div>
+          ))}
+        </div>
+        <section className="chart-panel">
+          <h3>
+            {"\u6b65\u9aa4 "}
+            {step}
+            /4
+          </h3>
+          {step === 1 && (
+            <p className="tab-intro">
+              {"\u786e\u8ba4\u5b63\u5ea6 "}
+              <strong>{quarterId}</strong>
+              {"\uff1b\u8bf7\u5728\u300c\u6570\u636e\u300d\u9875\u8bbe\u7f6e\u6536\u5165 proxy\u3002"}
+            </p>
           )}
-          {step < 3 && (
-            <button type="button" className="btn-primary" onClick={() => setStep(step + 1)}>
-              {"\u4e0b\u4e00\u6b65"}
-            </button>
+          {step === 2 && (
+            <div className="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>RF</th>
+                    <th>{"\u540d\u79f0"}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {ROLE_FAMILIES.map((r) => (
+                    <tr key={r.id}>
+                      <td>{r.id}</td>
+                      <td>{r.name}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
           {step === 3 && (
-            <button type="button" className="btn-primary" onClick={finish}>
-              {"\u63d0\u4ea4\u5e76\u6838\u7b97"}
-            </button>
+            <div className="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>PL</th>
+                    <th>{"\u4ea7\u54c1\u7ebf"}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {PRODUCT_LINES.map((p) => (
+                    <tr key={p.id}>
+                      <td>{p.id}</td>
+                      <td>{p.name}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
-          {step === 4 && (
-            <a href="/" className="btn-primary" style={{ display: "inline-block", textDecoration: "none" }}>
-              {"\u8fd4\u56de\u5de5\u4f5c\u53f0"}
-            </a>
-          )}
-        </div>
-      </section>
-    </div>
+          {step === 4 && <p className="tab-intro">{msg}</p>}
+          <div className="btn-row">
+            {step > 1 && step < 4 && (
+              <button type="button" className="btn btn-secondary" onClick={() => setStep(step - 1)}>
+                {"\u4e0a\u4e00\u6b65"}
+              </button>
+            )}
+            {step < 3 && (
+              <button type="button" className="btn btn-primary" onClick={() => setStep(step + 1)}>
+                {"\u4e0b\u4e00\u6b65"}
+              </button>
+            )}
+            {step === 3 && (
+              <button type="button" className="btn btn-primary" onClick={finish}>
+                {"\u63d0\u4ea4\u5e76\u6838\u7b97"}
+              </button>
+            )}
+            {step === 4 && (
+              <a href="/" className="btn btn-primary" style={{ display: "inline-block", textDecoration: "none" }}>
+                {"\u8fd4\u56de\u5de5\u4f5c\u53f0"}
+              </a>
+            )}
+          </div>
+        </section>
+      </div>
+    </>
   );
 }

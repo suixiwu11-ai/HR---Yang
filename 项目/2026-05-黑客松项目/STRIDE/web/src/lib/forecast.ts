@@ -1,14 +1,14 @@
 import { getLatestSnapshot } from "./calc-engine";
 import type { CalcSnapshot } from "./types";
 
-export function runForecastScenario(
+export async function runForecastScenario(
   quarterId: string,
   deltaFtePct: number,
   deltaRevenuePct: number
-): { baseline: CalcSnapshot | null; scenario: CalcSnapshot | null; note: string } {
-  const baseline = getLatestSnapshot(quarterId);
+): Promise<{ baseline: CalcSnapshot | null; scenario: CalcSnapshot | null; note: string }> {
+  const baseline = await getLatestSnapshot(quarterId);
   if (!baseline) {
-    return { baseline: null, scenario: null, note: "\u8bf7\u5148\u6267\u884c\u6838\u7b97" };
+    return { baseline: null, scenario: null, note: "请先执行核算" };
   }
   const fteFactor = 1 + deltaFtePct / 100;
   const revFactor = 1 + deltaRevenuePct / 100;
@@ -33,15 +33,13 @@ export function runForecastScenario(
       tcow: Math.round(p.tcow * fteFactor),
       revenue: Math.round(p.revenue * revFactor),
       laborCostPct:
-        p.revenue * revFactor > 0
-          ? (p.tcow * fteFactor) / (p.revenue * revFactor)
-          : 0,
+        p.revenue * revFactor > 0 ? (p.tcow * fteFactor) / (p.revenue * revFactor) : 0,
     })),
     warnings: [],
   };
   return {
     baseline,
     scenario,
-    note: `FTE ${deltaFtePct >= 0 ? "+" : ""}${deltaFtePct}%, \u6536\u5165 ${deltaRevenuePct >= 0 ? "+" : ""}${deltaRevenuePct}%`,
+    note: `FTE ${deltaFtePct >= 0 ? "+" : ""}${deltaFtePct}%, 收入 ${deltaRevenuePct >= 0 ? "+" : ""}${deltaRevenuePct}%`,
   };
 }

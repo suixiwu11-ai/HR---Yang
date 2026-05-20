@@ -34,20 +34,45 @@
 |--------|-----|
 | `LLM_PROVIDER` | `qwen` |
 | `LLM_API_KEY` | 你的百炼 Key |
-| `LLM_BASE_URL` | `https://dashscope.aliyuncs.com/compatible-mode/v1` |
-| `LLM_MODEL` | `qwen3.5-plus` |
+| `LLM_BASE_URL` | 国内 Key：`https://dashscope.aliyuncs.com/compatible-mode/v1`；**Netlify 海外** 优先 `https://dashscope-intl.aliyuncs.com/compatible-mode/v1` |
+| `LLM_MODEL` | `qwen-plus`（或已开通的 `qwen3.5-plus`） |
+
+变量值**不要加引号**（`"https://..."` 会导致 `fetch failed`）。从 `.env` 导入后请 **Clear cache and deploy**。
 
 保存后需 **重新部署** 才生效。
 
-## 三、首次访问必做
+### 从 .env 文件批量导入（推荐）
 
-Netlify 上 SQLite 在 **`/tmp`**，冷启动后可能为空：
+仓库内已提供模板（路径均在 `STRIDE/web/`）：
+
+| 文件 | 说明 |
+|------|------|
+| `env.netlify.example` | 仅占位符，**可提交** Git |
+| `env.netlify` | 本地填写用，**已加入 .gitignore**，勿提交含真实 Key 的版本 |
+
+**步骤：**
+
+1. 复制 `env.netlify.example` 为 `env.netlify`（若尚无 `env.netlify`）。
+2. 编辑 `env.netlify`，将 `LLM_API_KEY=your-dashscope-api-key-here` 改为你的百炼 Key（也可先导入占位符，再在 Netlify UI 里改 Key）。
+3. Netlify 站点 → **Site configuration** → **Environment variables** → **Import from a .env file**（或 **Import from .env**）。
+4. 选择本地的 `env.netlify` 上传/粘贴内容并确认导入。
+5. **Clear cache and deploy site**（清缓存重新部署），Copilot 等 LLM 功能才会读到新变量。
+
+**注意：** 切勿把填好真实 `LLM_API_KEY` 的 `env.netlify` 提交到 GitHub。Node 版本已在根目录 `netlify.toml` 的 `[build.environment]` 中配置，无需通过 env 导入。
+
+## 三、数据库持久化（推荐 Turso）
+
+未配置 Turso 时，SQLite 在 **`/tmp`**，冷启动后数据会丢。
+
+**推荐**：按 **`DEPLOY-TURSO.md`** 配置 `TURSO_DATABASE_URL` + `TURSO_AUTH_TOKEN`，数据保存在云端。
+
+### 首次访问必做（无论是否 Turso）
 
 1. 打开站点 → 顶栏 **数据**
 2. 点 **加载演示数据**
 3. 回工作台 **重新核算**
 
-同一时段内导入/导出可用；**长期持久化**仍建议用 ECS（见 `DEPLOY.md`）。
+配置 Turso 后，导入/导出/核算结果会**长期保留**；未配置时同一时段内仍可用，冷启动后需重新加载演示数据。
 
 ## 四、和 GitHub Pages 的区别
 
@@ -64,8 +89,8 @@ Netlify 上 SQLite 在 **`/tmp`**，冷启动后可能为空：
 |------|------|
 | Build 找不到 package.json | 检查 Base directory 路径是否含 `STRIDE/web` |
 | better-sqlite3 编译失败 | Node 20；Build 日志里看 npm install 是否成功 |
-| Copilot 无回复 | 检查环境变量是否配置并重新 deploy |
-| 数据丢了 | Netlify 无状态，再点「加载演示数据」 |
+| Copilot 无回复 / `fetch failed` | 检查 Key 与 `LLM_BASE_URL`（无引号）；海外 Netlify 改 **intl** 域名；开发环境看 `GET /api/copilot/ask` 的 `debug` |
+| 数据丢了 | 配置 Turso（见 DEPLOY-TURSO.md）；否则再点「加载演示数据」 |
 
 ## 六、自定义域名（可选）
 

@@ -3,5 +3,5 @@ import { getX10Collaboration } from "@/lib/calc-engine";
 
 export async function GET(req: Request) {
   const quarter = new URL(req.url).searchParams.get("quarter") ?? "2025Q3";
-  return NextResponse.json(getX10Collaboration(quarter));
+  return NextResponse.json(await getX10Collaboration(quarter));
 }

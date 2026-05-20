@@ -17,8 +17,9 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 
-# sqlite / local data
-data/
+# sqlite / local data (not Next.js api/data routes)
+/data/
+项目/**/STRIDE/web/data/
 *.db
 
 # local agent tooling (not part of hackathon deliverable)

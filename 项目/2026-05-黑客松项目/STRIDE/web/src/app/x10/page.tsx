@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useQuarter } from "@/components/AppShell";
+import { PageHero } from "@/components/PageHero";
 import { L } from "@/lib/labels";
 import { PRODUCT_LINES } from "@/lib/catalog";
 
@@ -52,77 +53,75 @@ export default function X10Page() {
   }
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-semibold">{L.x10Title}</h1>
-
-      <section className="rounded-xl border border-[#e3e8ee] bg-white p-4">
-        <h2 className="mb-3 font-medium">Handoff</h2>
-        <ul className="space-y-2 text-sm">
-          {handoffs.map((h) => (
-            <li key={h.id} className="flex flex-wrap justify-between gap-2 border-b border-[#e3e8ee] py-2">
-              <span>
-                <strong>{h.title}</strong> <span className="text-[#697386]">({h.bound_pl})</span>
-              </span>
-              <span
-                className={
-                  h.status === "done"
-                    ? "rounded bg-[#d4f4e2] px-2 py-0.5 text-xs text-[#0d652d]"
-                    : "rounded bg-[#f6f9fc] px-2 py-0.5 text-xs"
-                }
-              >
-                {h.status}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="rounded-xl border border-[#e3e8ee] bg-white p-4">
-        <h2 className="mb-3 font-medium">{"\u534f\u4f5c\u770b\u677f\uff08PL \u00d7 \u91c7\u7eb3\uff09"}</h2>
-        <div className="grid gap-2 sm:grid-cols-3">
-          {PRODUCT_LINES.map((pl) => (
-            <article key={pl.id} className="rounded-lg border border-[#e3e8ee] p-3 text-sm">
-              <p className="font-medium">{pl.name}</p>
-              <p className="text-[#697386]">
-                {"\u91c7\u7eb3 "}
-                {byPl[pl.id]?.adoptions ?? 0}
-                {" \u00b7 \u652f\u6491 "}
-                {((byPl[pl.id]?.supportRate ?? 0) * 100).toFixed(0)}%
-              </p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <form onSubmit={addAdoption} className="rounded-xl border border-[#e3e8ee] bg-white p-4 space-y-3">
-        <h2 className="font-medium">{L.addAdoption}</h2>
-        <label className="block text-sm">
-          Handoff
-          <select
-            className="mt-1 w-full rounded border border-[#e3e8ee] px-3 py-2"
-            value={handoffId}
-            onChange={(e) => setHandoffId(e.target.value)}
-          >
-            <option value="">--</option>
+    <>
+      <PageHero
+        title={L.x10Title}
+        meta={"Handoff \u00b7 PL \u00d7 \u91c7\u7eb3 \u00b7 10\u00d7 \u534f\u4f5c\u770b\u677f"}
+        breadcrumb={
+          <>
+            <a href="/">STRIDE</a> / <strong>{L.x10Title}</strong>
+          </>
+        }
+      />
+      <div className="app-main">
+        <section className="chart-panel">
+          <h2 style={{ fontWeight: 600, marginBottom: "0.75rem" }}>Handoff</h2>
+          <ul className="vacancy-list">
             {handoffs.map((h) => (
-              <option key={h.id} value={h.id}>
-                {h.title}
-              </option>
+              <li key={h.id}>
+                <span>
+                  <strong>{h.title}</strong>{" "}
+                  <span style={{ color: "var(--text-muted)" }}>({h.bound_pl})</span>
+                </span>
+                <span className={h.status === "done" ? "tag-ok" : "tag-warn"}>{h.status}</span>
+              </li>
             ))}
-          </select>
-        </label>
-        <label className="block text-sm">
-          {"\u6807\u9898"}
-          <input
-            className="mt-1 w-full rounded border border-[#e3e8ee] px-3 py-2"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </label>
-        <button type="submit" className="btn-primary">
-          {L.addAdoption}
-        </button>
-      </form>
-    </div>
+          </ul>
+        </section>
+
+        <section className="chart-panel">
+          <h2 style={{ fontWeight: 600, marginBottom: "0.75rem" }}>{"\u534f\u4f5c\u770b\u677f\uff08PL \u00d7 \u91c7\u7eb3\uff09"}</h2>
+          <div className="kpi-grid">
+            {PRODUCT_LINES.map((pl) => (
+              <article key={pl.id} className="kpi-card">
+                <p className="label">{pl.name}</p>
+                <p className="value" style={{ fontSize: "1rem" }}>
+                  {"\u91c7\u7eb3 "}
+                  {byPl[pl.id]?.adoptions ?? 0}
+                </p>
+                <p style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
+                  {"\u652f\u6491 "}
+                  {((byPl[pl.id]?.supportRate ?? 0) * 100).toFixed(0)}%
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <form onSubmit={addAdoption} className="chart-panel">
+          <h2 style={{ fontWeight: 600, marginBottom: "0.75rem" }}>{L.addAdoption}</h2>
+          <div className="form-field">
+            <label>Handoff</label>
+            <select value={handoffId} onChange={(e) => setHandoffId(e.target.value)}>
+              <option value="">--</option>
+              {handoffs.map((h) => (
+                <option key={h.id} value={h.id}>
+                  {h.title}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="form-field">
+            <label>{"\u6807\u9898"}</label>
+            <input value={title} onChange={(e) => setTitle(e.target.value)} />
+          </div>
+          <div className="btn-row">
+            <button type="submit" className="btn btn-primary">
+              {L.addAdoption}
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }
