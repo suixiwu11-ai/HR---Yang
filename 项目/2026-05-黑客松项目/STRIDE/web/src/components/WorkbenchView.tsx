@@ -52,14 +52,8 @@ export function WorkbenchView() {
     { id: "pay", label: "\u85aa\u916c\u00d7\u7ee9\u6548" },
   ];
 
-  if (viewMode === "executive") {
-    return (
-      <p className="tab-intro">
-        {"\u7ecf\u8425\u5c42\u89c6\u56fe\uff1a\u8bf7\u8bbf\u95ee "}
-        <a href="/executive">{"\u7ecf\u8425\u6458\u8981"}</a>
-      </p>
-    );
-  }
+  const viewLabel =
+    viewMode === "cpo" ? "CPO \u89c6\u56fe \u00b7 \u5f53\u524d\u4e0e HRBP \u76f8\u540c" : "HRBP \u89c6\u56fe";
 
   function plRevPerFte(kp: NonNullable<typeof k>, p: (typeof plSorted)[0]) {
     if (kp.fte <= 0 || kp.tcow <= 0) return null;
@@ -82,7 +76,7 @@ export function WorkbenchView() {
     <>
       <PageHero
         title={"\u6218\u7565\u4eba\u6548\u5de5\u4f5c\u53f0"}
-        meta={`${quarterId} \u00b7 HRBP \u89c6\u56fe \u00b7 \u56db Tab \u603b\u89c8 / \u6210\u672c / \u7ec4\u7ec7 / \u85aa\u916c\u00d7\u7ee9\u6548`}
+        meta={`${quarterId} \u00b7 ${viewLabel} \u00b7 \u56db Tab \u603b\u89c8 / \u6210\u672c / \u7ec4\u7ec7 / \u85aa\u916c\u00d7\u7ee9\u6548`}
         breadcrumb={
           <>
             <a href="/">STRIDE</a>

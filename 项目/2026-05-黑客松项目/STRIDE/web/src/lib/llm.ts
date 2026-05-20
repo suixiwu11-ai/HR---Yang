@@ -75,7 +75,41 @@ export function getLlmDebugInfo() {
     model,
     timeoutMs,
     hasApiKey: Boolean(apiKey),
+    /** 仅开发环境：核对 Netlify/本地是否同一条 Key（末 4 位） */
+    keySuffix:
+      process.env.NODE_ENV === "development" && apiKey ? apiKey.slice(-4) : undefined,
   };
+}
+
+/** 将 HTTP 错误转为 Copilot 可读的中文说明 */
+export function formatLlmHttpError(status: number, body: string, provider: string): string {
+  const snippet = body.slice(0, 200).trim();
+  if (status === 401) {
+    if (provider === "qwen") {
+      return [
+        "通义 API Key 无效或未授权（401）。",
+        "请在阿里云 DashScope 创建新 Key，填入 LLM_API_KEY；勿把 DeepSeek Key 填进通义配置。",
+        "变量值勿加引号；Netlify 改后需重新部署。",
+        snippet ? `接口返回：${snippet}` : "",
+      ]
+        .filter(Boolean)
+        .join(" ");
+    }
+    return [
+      "DeepSeek API Key 无效或未授权（401）。",
+      "请按顺序排查：① 在 https://platform.deepseek.com/api_keys 创建新 Key（充值后建议新建，勿复用已失效 Key）；",
+      "② 本地 .env.local 与 Netlify 的 LLM_API_KEY 填同一条，勿加引号、勿首尾空格；",
+      "③ LLM_PROVIDER=deepseek，勿把阿里云 DashScope Key 填进 DeepSeek 槽位；",
+      "④ Netlify 保存后 Clear cache and deploy。",
+      snippet ? `接口返回：${snippet}` : "",
+    ]
+      .filter(Boolean)
+      .join(" ");
+  }
+  if (status === 402 || /insufficient|balance|quota/i.test(snippet)) {
+    return `账户余额或额度不足（${status}）。请在 DeepSeek 控制台充值后重试。${snippet ? ` ${snippet}` : ""}`;
+  }
+  return `LLM 请求失败（${status}）${snippet ? `：${snippet}` : ""}`;
 }
 
 export function isLlmEnabled() {
@@ -160,7 +194,8 @@ export async function chatCompletion(messages: ChatMessage[]): Promise<string | 
 
   if (!res.ok) {
     const err = await res.text();
-    throw new Error(`LLM ${res.status}: ${err.slice(0, 200)}`);
+    const { provider } = getLlmConfig();
+    throw new Error(formatLlmHttpError(res.status, err, provider));
   }
 
   const data = (await res.json()) as {

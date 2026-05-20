@@ -37,6 +37,14 @@
 
 无 Key 时自动退回规则问数。
 
+### Copilot 报 401 / invalid API key
+
+1. 打开 [platform.deepseek.com/api_keys](https://platform.deepseek.com/api_keys) **新建** API Key（充值后若仍 401，不要用旧 Key）。
+2. 本地：复制 `.env.example` → `.env.local`，填写 `LLM_API_KEY=sk-...`（**不要**加引号，不要首尾空格）。
+3. 确认 `LLM_PROVIDER=deepseek`，**不要**把阿里云 DashScope Key 填进 DeepSeek 配置。
+4. Netlify：Site configuration → Environment variables 中 `LLM_API_KEY` 与本地一致，保存后 **Clear cache and deploy**。
+5. 开发环境 `GET /api/copilot/ask` 的 `debug.keySuffix` 可核对 Key 末 4 位是否与平台一致。
+
 ## 本地运行
 
 ```bash
@@ -62,6 +70,14 @@ npm run dev
 | 经营摘要 | `type=executive` · 同上 md/html |
 
 数据库文件：`data/stride.db`（自动创建）
+
+## 视图角色
+
+| 角色 | 说明 |
+|------|------|
+| **HRBP** | 默认工作台四 Tab + Copilot |
+| **CPO** | 当前与 HRBP **相同**（占位，差异化待实现） |
+| **经营** | 点击顶栏「经营」进入 `/executive`，不占用工作台默认视图 |
 
 ## 页面
 

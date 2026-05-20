@@ -1,5 +1,7 @@
 # 部署到 Netlify（已关联 GitHub）
 
+**改 Netlify 环境变量后必须 Clear cache and deploy；本地必须同步 `.env.local`（见 `LOCAL-DEV.md`）。**
+
 仓库：https://github.com/suixiwu11-ai/HR---Yang
 
 ## 一、Netlify 控制台设置（404 多半是这里没配对）
@@ -48,6 +50,16 @@
 变量值**不要加引号**（`"https://..."` 会导致 `fetch failed`）。从 `.env` 导入后请 **Clear cache and deploy**。
 
 保存后需 **重新部署** 才生效。
+
+### Copilot 401 / Authentication Fails
+
+| 检查项 | 说明 |
+|--------|------|
+| 新建 Key | 在 [platform.deepseek.com/api_keys](https://platform.deepseek.com/api_keys) 创建**新** Key，勿复用已失效 Key |
+| 本地 vs Netlify | `LLM_API_KEY` 两处应一致；Netlify 改后必须重新部署 |
+| 勿混用厂商 | `LLM_PROVIDER=deepseek` 时 Key 必须来自 DeepSeek，不能填 DashScope Key |
+| 勿加引号 | `LLM_API_KEY=sk-xxx`，不要写成 `"sk-xxx"` |
+| 末 4 位核对 | 本地 `npm run dev` 后访问 `GET /api/copilot/ask`，开发环境 `debug.keySuffix` 应与控制台 Key 一致 |
 
 ### 从 .env 文件批量导入（推荐）
 

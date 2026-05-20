@@ -62,13 +62,25 @@ export function CopilotPanel() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question: text, quarterId, history }),
       });
-      const d = await res.json();
+      const d = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        const err = typeof d.error === "string" ? d.error : "\u670d\u52a1\u7aef\u9519\u8bef";
+        setMessages((m) => [
+          ...m,
+          { role: "bot", html: `<strong>\u8bf7\u6c42\u5931\u8d25</strong><br/>${err}` },
+        ]);
+        return;
+      }
       const plain = typeof d.answer === "string" ? stripHtml(d.answer) : "";
+      const authHint =
+        d.mode === "error"
+          ? "<br/><span style=\"font-size:0.8rem;color:#697386\">\u8bf7\u68c0\u67e5 .env.local \u4e0e Netlify \u7684 LLM_API_KEY\uff08<a href=\"https://platform.deepseek.com/api_keys\" target=\"_blank\" rel=\"noreferrer\">platform.deepseek.com</a>\uff09\uff0c\u65e0\u5f15\u53f7\u3002</span>"
+          : "";
       setMessages((m) => [
         ...m,
         {
           role: "bot",
-          html: (d.answer ?? "\u65e0\u56de\u590d") + (d.mode === "llm" ? "" : ""),
+          html: (d.answer ?? "\u65e0\u56de\u590d") + authHint,
           plain,
         },
       ]);

@@ -4,7 +4,7 @@
 
 import Link from "next/link";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { createContext, useContext, useEffect, useState } from "react";
 
@@ -39,6 +39,8 @@ export function useQuarter() {
 function HeaderNav() {
 
   const pathname = usePathname();
+
+  const router = useRouter();
 
   const { viewMode, setViewMode } = useViewMode();
 
@@ -150,9 +152,26 @@ function HeaderNav() {
 
                 type="button"
 
-                className={viewMode === id ? "active" : ""}
+                className={
+                  id === "executive"
+                    ? pathname === "/executive"
+                      ? "active"
+                      : ""
+                    : viewMode === id
+                      ? "active"
+                      : ""
+                }
 
-                onClick={() => setViewMode(id)}
+                title={id === "cpo" ? "\u5f53\u524d\u4e0e HRBP \u76f8\u540c\uff08CPO \u5dee\u5f02\u5316\u5f85\u5b9e\u73b0\uff09" : undefined}
+
+                onClick={() => {
+                  if (id === "executive") {
+                    router.push("/executive");
+                    return;
+                  }
+                  setViewMode(id);
+                  if (pathname === "/executive") router.push("/");
+                }}
 
               >
 

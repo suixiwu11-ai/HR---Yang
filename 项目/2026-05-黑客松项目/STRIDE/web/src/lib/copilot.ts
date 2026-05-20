@@ -117,6 +117,16 @@ ${await buildDataContext(quarterId)}`,
     };
   } catch (e) {
     const msg = e instanceof Error ? e.message : String(e);
+    const isAuth =
+      /401|invalid.*api.*key|authentication/i.test(msg) ||
+      /未授权|无效.*Key/i.test(msg);
+    if (isAuth) {
+      return {
+        answer: `<strong>智能问数鉴权失败</strong><br/>${msg}`,
+        refused: true,
+        mode: "error" as const,
+      };
+    }
     const fallback = await askByRules(question, quarterId);
     return {
       answer: `智能问数暂时不可用（${msg}），已切换规则回答。<br/>${fallback.answer}`,

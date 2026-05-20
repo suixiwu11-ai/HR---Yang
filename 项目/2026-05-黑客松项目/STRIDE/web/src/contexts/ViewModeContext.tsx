@@ -9,14 +9,27 @@ const Ctx = createContext<{
   setViewMode: (m: ViewMode) => void;
 }>({ viewMode: "hrbp", setViewMode: () => {} });
 
+function readStoredViewMode(): ViewMode {
+  const s = localStorage.getItem("stride-view");
+  if (s === "cpo") return "cpo";
+  if (s === "hrbp") return "hrbp";
+  // 旧版曾把「经营」存进 stride-view，导致工作台默认空白；统一回 HRBP
+  if (s === "executive") {
+    localStorage.setItem("stride-view", "hrbp");
+    return "hrbp";
+  }
+  return "hrbp";
+}
+
 export function ViewModeProvider({ children }: { children: React.ReactNode }) {
   const [viewMode, setViewMode] = useState<ViewMode>("hrbp");
   useEffect(() => {
-    const s = localStorage.getItem("stride-view") as ViewMode | null;
-    if (s) setViewMode(s);
+    setViewMode(readStoredViewMode());
   }, []);
   useEffect(() => {
-    localStorage.setItem("stride-view", viewMode);
+    if (viewMode !== "executive") {
+      localStorage.setItem("stride-view", viewMode);
+    }
   }, [viewMode]);
   return <Ctx.Provider value={{ viewMode, setViewMode }}>{children}</Ctx.Provider>;
 }
