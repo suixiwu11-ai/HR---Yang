@@ -2,6 +2,14 @@
 
 可运行演示程序：真实 SQLite 存储、JSON 导入/导出、MD/HTML 报告下载、10× Lite。
 
+## 部署到 Netlify（已连 GitHub）
+
+见 [DEPLOY-NETLIFY.md](./DEPLOY-NETLIFY.md)。**Base directory** 填：
+
+`项目/2026-05-黑客松项目/STRIDE/web`
+
+上线后请到 **数据** 页点 **加载演示数据**。
+
 ## 服务器部署（阿里云 ECS · 方案 B）
 
 见 [DEPLOY.md](./DEPLOY.md)：ECS + Ubuntu 22.04 + 安全组放行 22/80，SSH 后执行 `scripts/deploy/bootstrap.sh`。

@@ -2,12 +2,23 @@ import Database from "better-sqlite3";
 import fs from "fs";
 import path from "path";
 
-const DATA_DIR = path.join(process.cwd(), "data");
-const DB_PATH = path.join(DATA_DIR, "stride.db");
+/** Netlify/Lambda 仅 /tmp 可写；本地开发用项目 data/ */
+function resolveDataDir() {
+  if (process.env.NETLIFY || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+    return path.join("/tmp", "stride-data");
+  }
+  return path.join(process.cwd(), "data");
+}
+
+function getPaths() {
+  const DATA_DIR = resolveDataDir();
+  return { DATA_DIR, DB_PATH: path.join(DATA_DIR, "stride.db") };
+}
 
 let db: Database.Database | null = null;
 
 function ensureDataDir() {
+  const { DATA_DIR } = getPaths();
   if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
 }
 
@@ -84,6 +95,7 @@ CREATE TABLE IF NOT EXISTS x10_support_tasks (
 
 export function getDb(): Database.Database {
   if (!db) {
+    const { DB_PATH } = getPaths();
     ensureDataDir();
     db = new Database(DB_PATH);
     db.pragma("journal_mode = WAL");
@@ -94,6 +106,7 @@ export function getDb(): Database.Database {
 }
 
 export function resetDb() {
+  const { DB_PATH } = getPaths();
   if (db) {
     db.close();
     db = null;
