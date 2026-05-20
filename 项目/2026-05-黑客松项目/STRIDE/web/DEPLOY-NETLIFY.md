@@ -32,10 +32,12 @@
 
 | 变量名 | 值 |
 |--------|-----|
-| `LLM_PROVIDER` | `qwen` |
-| `LLM_API_KEY` | 你的百炼 Key |
-| `LLM_BASE_URL` | 国内 Key：`https://dashscope.aliyuncs.com/compatible-mode/v1`；**Netlify 海外** 优先 `https://dashscope-intl.aliyuncs.com/compatible-mode/v1` |
-| `LLM_MODEL` | `qwen-plus`（或已开通的 `qwen3.5-plus`） |
+| `LLM_PROVIDER` | `deepseek` |
+| `LLM_API_KEY` | 你的 [DeepSeek API Key](https://platform.deepseek.com/api_keys) |
+| `LLM_BASE_URL` | `https://api.deepseek.com/v1` |
+| `LLM_MODEL` | `deepseek-chat`（可选 `deepseek-reasoner`） |
+
+通义千问（可选）：`LLM_PROVIDER=qwen`，`LLM_BASE_URL` 用 `https://dashscope.aliyuncs.com/compatible-mode/v1`；Netlify 海外可试 `https://dashscope-intl.aliyuncs.com/compatible-mode/v1`，`LLM_MODEL=qwen-plus`。
 
 变量值**不要加引号**（`"https://..."` 会导致 `fetch failed`）。从 `.env` 导入后请 **Clear cache and deploy**。
 
@@ -53,7 +55,7 @@
 **步骤：**
 
 1. 复制 `env.netlify.example` 为 `env.netlify`（若尚无 `env.netlify`）。
-2. 编辑 `env.netlify`，将 `LLM_API_KEY=your-dashscope-api-key-here` 改为你的百炼 Key（也可先导入占位符，再在 Netlify UI 里改 Key）。
+2. 编辑 `env.netlify`，将 `LLM_API_KEY=your-deepseek-api-key-here` 改为你的 DeepSeek Key（也可先导入占位符，再在 Netlify UI 里改 Key）。
 3. Netlify 站点 → **Site configuration** → **Environment variables** → **Import from a .env file**（或 **Import from .env**）。
 4. 选择本地的 `env.netlify` 上传/粘贴内容并确认导入。
 5. **Clear cache and deploy site**（清缓存重新部署），Copilot 等 LLM 功能才会读到新变量。
@@ -89,7 +91,7 @@
 |------|------|
 | Build 找不到 package.json | 检查 Base directory 路径是否含 `STRIDE/web` |
 | better-sqlite3 编译失败 | Node 20；Build 日志里看 npm install 是否成功 |
-| Copilot 无回复 / `fetch failed` | 检查 Key 与 `LLM_BASE_URL`（无引号）；海外 Netlify 改 **intl** 域名；开发环境看 `GET /api/copilot/ask` 的 `debug` |
+| Copilot 无回复 / `fetch failed` | 检查 [DeepSeek Key](https://platform.deepseek.com/api_keys) 与 `LLM_BASE_URL`（无引号）；用通义时海外 Netlify 可改 **intl** 域名；开发环境看 `GET /api/copilot/ask` 的 `debug` |
 | 数据丢了 | 配置 Turso（见 DEPLOY-TURSO.md）；否则再点「加载演示数据」 |
 
 ## 六、自定义域名（可选）

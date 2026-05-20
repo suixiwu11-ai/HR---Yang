@@ -21,7 +21,7 @@ function getLlmConfig() {
     cleanEnv(process.env.LLM_API_KEY) ||
     cleanEnv(process.env.DASHSCOPE_API_KEY) ||
     cleanEnv(process.env.OPENAI_API_KEY);
-  const provider = (cleanEnv(process.env.LLM_PROVIDER) || "qwen").toLowerCase();
+  const provider = (cleanEnv(process.env.LLM_PROVIDER) || "deepseek").toLowerCase();
 
   let baseUrl = cleanEnv(process.env.LLM_BASE_URL);
   let model = cleanEnv(process.env.LLM_MODEL);
@@ -33,7 +33,7 @@ function getLlmConfig() {
         : "https://api.deepseek.com/v1";
   }
   if (!model) {
-    // qwen-plus 在百炼控制台开通面最广；qwen3.5-plus 需在控制台已开通
+    // deepseek-chat 为默认对话模型；deepseek-reasoner 为可选推理模型
     model = provider === "qwen" ? "qwen-plus" : "deepseek-chat";
   }
 
@@ -98,22 +98,29 @@ function formatFetchError(e: unknown, timeoutMs: number, requestUrl: string): Er
     return new Error(`LLM 请求超时（${timeoutMs}ms），目标 ${host}`);
   }
 
-  const netlifyHint =
-    host.includes("dashscope.aliyuncs.com") && !host.includes("dashscope-intl")
-      ? "；Netlify 海外节点可试 LLM_BASE_URL=https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
-      : "";
+  let helpHint = "；请检查 LLM_API_KEY 与 LLM_BASE_URL（勿加引号）";
+  if (host.includes("api.deepseek.com")) {
+    helpHint =
+      "；请在 https://platform.deepseek.com/api_keys 核对 Key、余额与 LLM_BASE_URL=https://api.deepseek.com/v1";
+  } else if (
+    host.includes("dashscope.aliyuncs.com") &&
+    !host.includes("dashscope-intl")
+  ) {
+    helpHint =
+      "；通义可选：Netlify 海外节点试 LLM_BASE_URL=https://dashscope-intl.aliyuncs.com/compatible-mode/v1";
+  }
 
   const isDev = process.env.NODE_ENV === "development";
   if (isDev) {
     const parts = [`LLM fetch failed: ${err.message}`];
     if (cause) parts.push(`cause: ${cause}`);
     parts.push(`host: ${host}`);
-    if (netlifyHint) parts.push(netlifyHint.replace(/^；/, ""));
+    if (helpHint) parts.push(helpHint.replace(/^；/, ""));
     return new Error(parts.join(" | "));
   }
 
   const detail = cause ? ` (${cause})` : "";
-  return new Error(`fetch failed${detail}${netlifyHint}`);
+  return new Error(`fetch failed${detail}${helpHint}`);
 }
 
 /** OpenAI 兼容 Chat Completions（DeepSeek / 通义 / 多数国内厂商） */

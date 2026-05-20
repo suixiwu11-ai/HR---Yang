@@ -34,7 +34,7 @@ export function CopilotPanel() {
             role: "bot",
             html: d.llmEnabled
               ? "Insight Copilot \u00b7 <strong>\u667a\u80fd\u95ee\u6570\u5df2\u5f00\u542f</strong>\uff0c\u57fa\u4e8e\u672c\u5b63\u6838\u7b97\u5feb\u7167\u3002\u53ef\u8fde\u7eed\u5bf9\u8bdd\u3002"
-              : "Insight Copilot \u00b7 \u89c4\u5219\u95ee\u6570\u6a21\u5f0f\u3002\u8bf7\u5728 <code>.env.local</code> \u914d\u7f6e <code>LLM_API_KEY</code> \u542f\u7528\u5927\u6a21\u578b\u3002",
+              : "Insight Copilot \u00b7 \u89c4\u5219\u95ee\u6570\u6a21\u5f0f\u3002\u8bf7\u5728 <code>.env.local</code> \u914d\u7f6e DeepSeek <code>LLM_API_KEY</code>\uff08<a href=\"https://platform.deepseek.com/api_keys\" target=\"_blank\" rel=\"noreferrer\">platform.deepseek.com</a>\uff09\u3002",
           },
         ]);
       })

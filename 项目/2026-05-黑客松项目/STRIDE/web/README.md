@@ -14,23 +14,24 @@
 
 见 [DEPLOY.md](./DEPLOY.md)：ECS + Ubuntu 22.04 + 安全组放行 22/80，SSH 后执行 `scripts/deploy/bootstrap.sh`。
 
-## Copilot 大模型（通义 Qwen3.5）
+## Copilot 大模型（DeepSeek，推荐）
 
-1. 在 [阿里云百炼 / DashScope](https://dashscope.console.aliyun.com/) 创建 **API Key**
+1. 在 [DeepSeek 开放平台](https://platform.deepseek.com/api_keys) 创建 **API Key**
 2. 复制 `.env.example` → `.env.local`，填入：
    ```env
-   LLM_PROVIDER=qwen
+   LLM_PROVIDER=deepseek
    LLM_API_KEY=sk-xxx
-   LLM_MODEL=qwen3.5-plus
-   LLM_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
+   LLM_MODEL=deepseek-chat
+   LLM_BASE_URL=https://api.deepseek.com/v1
    ```
 3. `npm run dev` 重启后，Copilot 旁显示 **LLM** 即成功
 
-| 你说的 | 建议 `LLM_MODEL` |
-|--------|------------------|
-| Qwen3.5 大 / Plus | `qwen3.5-plus` |
-| 更快 | `qwen3.5-flash` |
-| 最大开源规格 | `qwen3.5-397b-a17b`（需控制台已开通） |
+| 模型 | `LLM_MODEL` |
+|------|-------------|
+| 对话（默认） | `deepseek-chat` |
+| 推理（可选） | `deepseek-reasoner` |
+
+**通义千问（可选）**：`LLM_PROVIDER=qwen`，Key 见 [DashScope](https://dashscope.console.aliyun.com/)，`LLM_MODEL=qwen-plus` 或 `qwen3.5-plus`。
 
 无 Key 时自动退回规则问数。
 
