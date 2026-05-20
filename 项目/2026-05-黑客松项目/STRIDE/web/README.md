@@ -22,8 +22,10 @@
    LLM_PROVIDER=deepseek
    LLM_API_KEY=sk-xxx
    LLM_MODEL=deepseek-chat
-   LLM_BASE_URL=https://api.deepseek.com/v1
+   LLM_BASE_URL=https://api.deepseek.com
    ```
+   与 [DeepSeek 官方文档](https://api-docs.deepseek.com/zh-cn/) 的 `base_url` 一致；程序会自行拼接 `/chat/completions`，勿多写 `/v1`（写了也会自动纠正）。
+
 3. `npm run dev` 重启后，Copilot 旁显示 **LLM** 即成功
 
 | 模型 | `LLM_MODEL` |

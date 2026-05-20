@@ -8,10 +8,19 @@ export function cleanEnv(value?: string): string | undefined {
   return value.trim().replace(/^['"]+|['"]+$/g, "");
 }
 
+/** 官方 DeepSeek base_url 为 https://api.deepseek.com（无 /v1）；本模块再拼 /chat/completions */
 function normalizeBaseUrl(raw: string): string {
   let baseUrl = raw.replace(/\/$/, "");
   if (baseUrl.endsWith("/chat/completions")) {
     baseUrl = baseUrl.slice(0, -"/chat/completions".length).replace(/\/$/, "");
+  }
+  try {
+    const host = new URL(baseUrl).host;
+    if (host === "api.deepseek.com" && /\/v1$/i.test(baseUrl)) {
+      baseUrl = baseUrl.replace(/\/v1$/i, "");
+    }
+  } catch {
+    /* invalid URL surfaced in getLlmDebugInfo */
   }
   return baseUrl;
 }
@@ -30,7 +39,7 @@ function getLlmConfig() {
     baseUrl =
       provider === "qwen"
         ? "https://dashscope.aliyuncs.com/compatible-mode/v1"
-        : "https://api.deepseek.com/v1";
+        : "https://api.deepseek.com";
   }
   if (!model) {
     // deepseek-chat 为默认对话模型；deepseek-reasoner 为可选推理模型
@@ -101,7 +110,7 @@ function formatFetchError(e: unknown, timeoutMs: number, requestUrl: string): Er
   let helpHint = "；请检查 LLM_API_KEY 与 LLM_BASE_URL（勿加引号）";
   if (host.includes("api.deepseek.com")) {
     helpHint =
-      "；请在 https://platform.deepseek.com/api_keys 核对 Key、余额与 LLM_BASE_URL=https://api.deepseek.com/v1";
+      "；请在 https://platform.deepseek.com/api_keys 核对 Key、余额与 LLM_BASE_URL=https://api.deepseek.com（勿多写 /v1）";
   } else if (
     host.includes("dashscope.aliyuncs.com") &&
     !host.includes("dashscope-intl")

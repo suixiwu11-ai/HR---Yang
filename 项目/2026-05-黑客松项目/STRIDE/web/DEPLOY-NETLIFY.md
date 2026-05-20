@@ -34,8 +34,14 @@
 |--------|-----|
 | `LLM_PROVIDER` | `deepseek` |
 | `LLM_API_KEY` | 你的 [DeepSeek API Key](https://platform.deepseek.com/api_keys) |
-| `LLM_BASE_URL` | `https://api.deepseek.com/v1` |
+| `LLM_BASE_URL` | `https://api.deepseek.com` |
 | `LLM_MODEL` | `deepseek-chat`（可选 `deepseek-reasoner`） |
+
+**DeepSeek 地址说明（与[官方文档](https://api-docs.deepseek.com/zh-cn/)一致）**
+
+- 官方 `base_url` 为 **`https://api.deepseek.com`**，完整请求路径为 `POST /chat/completions`（示例：`curl https://api.deepseek.com/chat/completions`）。
+- STRIDE 在 `src/lib/llm.ts` 里会把 `LLM_BASE_URL` 与 **`/chat/completions`** 拼接，因此环境变量里**不要**再写 `/v1`。
+- 若你按 OpenAI SDK 习惯填了 `https://api.deepseek.com/v1`，程序会**自动去掉末尾 `/v1`**，仍能打到正确地址；Netlify 上推荐只填官方形式，避免混淆。
 
 通义千问（可选）：`LLM_PROVIDER=qwen`，`LLM_BASE_URL` 用 `https://dashscope.aliyuncs.com/compatible-mode/v1`；Netlify 海外可试 `https://dashscope-intl.aliyuncs.com/compatible-mode/v1`，`LLM_MODEL=qwen-plus`。
 
