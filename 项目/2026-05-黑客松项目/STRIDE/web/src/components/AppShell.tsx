@@ -131,56 +131,25 @@ function HeaderNav() {
         <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", flexWrap: "wrap" }}>
 
           <div className="view-switch">
-
             {(
-
               [
-
                 ["hrbp", "HRBP"],
-
                 ["cpo", "CPO"],
-
-                ["executive", "\u7ecf\u8425"],
-
               ] as const
-
             ).map(([id, label]) => (
-
               <button
-
                 key={id}
-
                 type="button"
-
-                className={
-                  id === "executive"
-                    ? pathname === "/executive"
-                      ? "active"
-                      : ""
-                    : viewMode === id
-                      ? "active"
-                      : ""
-                }
-
+                className={viewMode === id ? "active" : ""}
                 title={id === "cpo" ? "\u5f53\u524d\u4e0e HRBP \u76f8\u540c\uff08CPO \u5dee\u5f02\u5316\u5f85\u5b9e\u73b0\uff09" : undefined}
-
                 onClick={() => {
-                  if (id === "executive") {
-                    router.push("/executive");
-                    return;
-                  }
                   setViewMode(id);
                   if (pathname === "/executive") router.push("/");
                 }}
-
               >
-
                 {label}
-
               </button>
-
             ))}
-
           </div>
 
           <select value={quarterId} onChange={(e) => setQuarterId(e.target.value)}>

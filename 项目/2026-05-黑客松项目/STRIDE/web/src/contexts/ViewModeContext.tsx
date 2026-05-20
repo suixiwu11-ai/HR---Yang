@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 
-export type ViewMode = "hrbp" | "cpo" | "executive";
+export type ViewMode = "hrbp" | "cpo";
 
 const Ctx = createContext<{
   viewMode: ViewMode;
@@ -27,9 +27,7 @@ export function ViewModeProvider({ children }: { children: React.ReactNode }) {
     setViewMode(readStoredViewMode());
   }, []);
   useEffect(() => {
-    if (viewMode !== "executive") {
-      localStorage.setItem("stride-view", viewMode);
-    }
+    localStorage.setItem("stride-view", viewMode);
   }, [viewMode]);
   return <Ctx.Provider value={{ viewMode, setViewMode }}>{children}</Ctx.Provider>;
 }

@@ -24,13 +24,52 @@ export function WorkbenchView() {
   const { viewMode } = useViewMode();
   const [tab, setTab] = useState<WorkTab>("overview");
   const [snapshot, setSnapshot] = useState<CalcSnapshot | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [emptyHint, setEmptyHint] = useState<string | null>(null);
 
   const load = useCallback(async () => {
-    const res = await fetch(`/api/quarters/${quarterId}/snapshot`);
-    if (res.ok) {
-      const d = await res.json();
-      setSnapshot(d.snapshot as CalcSnapshot);
-    } else setSnapshot(null);
+    setLoading(true);
+    setEmptyHint(null);
+    let hint: string | null = null;
+    try {
+      let res = await fetch(`/api/quarters/${quarterId}/snapshot`);
+      if (res.status === 404) {
+        await fetch(`/api/quarters/${quarterId}/calculate`, { method: "POST" });
+        res = await fetch(`/api/quarters/${quarterId}/snapshot`);
+      }
+      if (res.status === 404) {
+        const seedRes = await fetch("/api/demo/seed", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ quarterId }),
+        });
+        if (seedRes.ok) {
+          res = await fetch(`/api/quarters/${quarterId}/snapshot`);
+        } else {
+          const err = await seedRes.json().catch(() => ({}));
+          hint = (err as { error?: string }).error ?? "\u6f14\u793a\u6570\u636e\u52a0\u8f7d\u5931\u8d25";
+        }
+      }
+      if (res.ok) {
+        const d = await res.json();
+        setSnapshot(d.snapshot as CalcSnapshot);
+        setEmptyHint(null);
+      } else {
+        setSnapshot(null);
+        if (!hint) {
+          hint =
+            res.status === 404
+              ? "\u672c\u5b63\u5ea6\u6682\u65e0\u8ba1\u7b97\u5feb\u7167"
+              : `\u52a0\u8f7d\u5931\u8d25 (${res.status})`;
+        }
+        setEmptyHint(hint);
+      }
+    } catch {
+      setSnapshot(null);
+      setEmptyHint("\u65e0\u6cd5\u8fde\u63a5\u670d\u52a1\uff0c\u8bf7\u786e\u8ba4\u5df2\u8fd0\u884c npm run dev");
+    } finally {
+      setLoading(false);
+    }
   }, [quarterId]);
 
   useEffect(() => {
@@ -106,10 +145,23 @@ export function WorkbenchView() {
             ))}
           </nav>
 
-          {!snapshot || !k || !overviewRows ? (
-            <p className="tab-intro">
-              {"\u6682\u65e0\u6570\u636e\u3002\u8bf7\u5728\u300c\u6570\u636e\u4e0e\u62a5\u544a\u300d\u52a0\u8f7d\u6f14\u793a\u6570\u636e\u3002"}
-            </p>
+          {loading ? (
+            <p className="tab-intro">{"\u52a0\u8f7d\u4e2d\u2026"}</p>
+          ) : !snapshot || !k || !overviewRows ? (
+            <section className="panel">
+              <p className="tab-intro">
+                {emptyHint ?? "\u6682\u65e0\u6570\u636e\u3002"}
+                {" \u53ef\u5728\u300c\u6570\u636e\u300d\u9875\u52a0\u8f7d\u6f14\u793a\u6570\u636e\uff0c\u6216\u70b9\u4e0b\u65b9\u91cd\u8bd5\u3002"}
+              </p>
+              <div className="btn-row">
+                <button type="button" className="btn btn-primary" onClick={load}>
+                  {"\u91cd\u8bd5\u52a0\u8f7d"}
+                </button>
+                <a href="/settings" className="btn btn-secondary" style={{ textDecoration: "none" }}>
+                  {"\u524d\u5f80\u6570\u636e\u9875"}
+                </a>
+              </div>
+            </section>
           ) : (
             <>
               {tab === "overview" && (
